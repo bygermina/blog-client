@@ -15,7 +15,7 @@ export const registerSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(registerByUsername.pending, (state) => {
-                state.error = undefined;
+                // state.error = undefined;
                 state.isLoading = true;
             })
             .addCase(registerByUsername.fulfilled, (state) => {
@@ -23,7 +23,7 @@ export const registerSlice = createSlice({
             })
             .addCase(registerByUsername.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                // state.error = action.payload;
             });
     },
 });
