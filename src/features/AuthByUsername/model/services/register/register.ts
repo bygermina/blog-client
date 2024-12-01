@@ -3,20 +3,20 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-interface LoginByUsernameProps {
+interface registerByUsernameProps {
     username: string;
     password: string;
 }
 
-export const loginByUsername = createAsyncThunk<
+export const registerByUsername = createAsyncThunk<
     User,
-    LoginByUsernameProps,
+    registerByUsernameProps,
     ThunkConfig<string>
->('login/loginByUsername', async (authData, thunkApi) => {
+>('register/registerByUsername', async (authData, thunkApi) => {
     const { extra, dispatch, rejectWithValue } = thunkApi;
 
     try {
-        const response = await extra.api.post<User>('/login', authData);
+        const response = await extra.api.post<User>('/register', authData);
 
         if (!response.data) {
             throw new Error();

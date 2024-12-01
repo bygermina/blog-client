@@ -6,7 +6,7 @@ import {
     Button as ButtonDeprecated,
     ButtonTheme,
 } from '@/shared/ui/deprecated/Button';
-import { LoginModal } from '@/features/AuthByUsername';
+import { LoginModal, LoginFormAsync } from '@/features/AuthByUsername';
 import { getUserAuthData } from '@/entities/User';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
@@ -102,7 +102,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             />
 
             {isAuthModal && (
-                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal}>
+                    <LoginFormAsync onSuccess={onCloseModal} />
+                </LoginModal>
             )}
         </header>
     );
