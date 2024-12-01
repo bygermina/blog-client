@@ -1,4 +1,6 @@
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
@@ -10,6 +12,7 @@ interface ProfilePageProps {
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
     const { id } = useParams<{ id: string }>();
+    const { t } = useTranslation();
 
     return (
         <Page

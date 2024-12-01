@@ -1,0 +1,1 @@
+export { InfoSEO } from './InfoSEO';

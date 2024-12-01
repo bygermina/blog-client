@@ -12,6 +12,7 @@ import {
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from '@/widgets/Page';
+import { InfoSEO } from '@/shared/lib/components/SEO';
 
 import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
@@ -57,6 +58,11 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                             className,
                         ])}
                     >
+                        <InfoSEO
+                            title={t('Articles page')}
+                            description={t('Articles page description')}
+                            keywords={t('Articles keywords')}
+                        />
                         <ArticleInfiniteList className={cls.list} />
                         <ArticlePageGreeting />
                     </Page>

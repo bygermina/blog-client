@@ -1,5 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import { StoreProvider } from '@/app/providers/StoreProvider';
 import App from './app/App';
@@ -24,7 +26,9 @@ root.render(
             <ErrorBoundary>
                 <ForceUpdateProvider>
                     <ThemeProvider>
-                        <App />
+                        <HelmetProvider>
+                            <App />
+                        </HelmetProvider>
                     </ThemeProvider>
                 </ForceUpdateProvider>
             </ErrorBoundary>
