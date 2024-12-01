@@ -1,13 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
+import { HStack } from '@/shared/ui/redesigned/Stack';
+
 import { ArticleView } from '../../model/consts/articleConsts';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
-import cls from './ArticleList.module.scss';
 import { Article } from '../../model/types/article';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+
+import cls from './ArticleList.module.scss';
 
 interface ArticleListProps {
     className?: string;
@@ -28,46 +31,47 @@ const getSkeletons = (view: ArticleView) =>
             />
         ));
 
-export const ArticleList = memo((props: ArticleListProps) => {
-    const {
+export const ArticleList = memo(
+    ({
         className,
         articles,
         view = ArticleView.SMALL,
         isLoading,
         target,
-    } = props;
-    const { t } = useTranslation();
+    }: ArticleListProps) => {
+        const { t } = useTranslation();
 
-    if (!isLoading && !articles.length) {
+        if (!isLoading && !articles.length) {
+            return (
+                <div
+                    className={classNames(cls.ArticleList, {}, [
+                        className,
+                        cls[view],
+                    ])}
+                >
+                    <Text size={TextSize.L} title={t('Статьи не найдены')} />
+                </div>
+            );
+        }
+
         return (
-            <div
-                className={classNames(cls.ArticleList, {}, [
-                    className,
-                    cls[view],
-                ])}
+            <HStack
+                wrap="wrap"
+                gap="16"
+                className={classNames(cls.ArticleListRedesigned, {}, [])}
+                data-testid="ArticleList"
             >
-                <Text size={TextSize.L} title={t('Статьи не найдены')} />
-            </div>
+                {articles.map((item) => (
+                    <ArticleListItem
+                        article={item}
+                        view={view}
+                        target={target}
+                        key={item.id}
+                        className={cls.card}
+                    />
+                ))}
+                {isLoading && getSkeletons(view)}
+            </HStack>
         );
-    }
-
-    return (
-        <HStack
-            wrap="wrap"
-            gap="16"
-            className={classNames(cls.ArticleListRedesigned, {}, [])}
-            data-testid="ArticleList"
-        >
-            {articles.map((item) => (
-                <ArticleListItem
-                    article={item}
-                    view={view}
-                    target={target}
-                    key={item.id}
-                    className={cls.card}
-                />
-            ))}
-            {isLoading && getSkeletons(view)}
-        </HStack>
-    );
-});
+    },
+);

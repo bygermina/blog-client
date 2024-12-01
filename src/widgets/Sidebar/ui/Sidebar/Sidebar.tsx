@@ -1,14 +1,17 @@
 import { memo, useMemo, useState } from 'react';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import cls from './Sidebar.module.scss';
-import { SidebarItem } from '../SidebarItem/SidebarItem';
-import { useSidebarItems } from '../../model/selectors/getSidebarItems';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+
+import { SidebarItem } from '../SidebarItem/SidebarItem';
+import { useSidebarItems } from '../../model/selectors/getSidebarItems';
+
+import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
     className?: string;
@@ -19,7 +22,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     const sidebarItemsList = useSidebarItems();
 
     const onToggle = () => {
-        console.log(collapsed);
         setCollapsed((prev) => !prev);
     };
 

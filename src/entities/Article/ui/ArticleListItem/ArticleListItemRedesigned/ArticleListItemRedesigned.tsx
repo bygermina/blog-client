@@ -1,12 +1,10 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleListItemRedesigned.module.scss';
-import { ArticleListItemProps } from '../ArticleListItem';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIcon from '@/shared/assets/icons/eye.svg';
-import { ArticleTextBlock } from '../../../model/types/article';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
@@ -15,10 +13,15 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+
 import {
     ArticleBlockType,
     ArticleView,
 } from '../../../model/consts/articleConsts';
+import { ArticleListItemProps } from '../ArticleListItem';
+import { ArticleTextBlock } from '../../../model/types/article';
+
+import cls from './ArticleListItemRedesigned.module.scss';
 
 export const ArticleListItemRedesigned = memo((props: ArticleListItemProps) => {
     const { className, article, view, target } = props;
