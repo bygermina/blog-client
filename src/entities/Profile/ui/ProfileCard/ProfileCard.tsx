@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
+
 import { Profile } from '../../model/types/profile';
 import {
     ProfileCardRedesigned,

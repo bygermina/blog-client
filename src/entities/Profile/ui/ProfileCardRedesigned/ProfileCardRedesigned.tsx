@@ -4,8 +4,6 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { Input } from '@/shared/ui/redesigned/Input';
-import { CurrencySelect } from '@/entities/Currency';
-import { CountrySelect } from '@/entities/Country';
 import { ProfileCardProps } from '../ProfileCard/ProfileCard';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -118,7 +116,7 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                             onChange={onChangeAvatar}
                             readonly={readonly}
                         />
-                        <CurrencySelect
+                        {/* <CurrencySelect
                             value={data?.currency}
                             onChange={onChangeCurrency}
                             readonly={readonly}
@@ -127,7 +125,7 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                             value={data?.country}
                             onChange={onChangeCountry}
                             readonly={readonly}
-                        />
+                        /> */}
                     </VStack>
                 </HStack>
             </VStack>

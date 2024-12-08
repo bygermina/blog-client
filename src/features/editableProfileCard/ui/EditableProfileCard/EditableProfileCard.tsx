@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -22,6 +21,7 @@ import { getProfileValidateErrors } from '../../model/selectors/getProfileValida
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
+import { getUserAuthData } from '@/entities/User';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -43,6 +43,8 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const readonly = useSelector(getProfileReadonly);
     const validateErrors = useSelector(getProfileValidateErrors);
 
+    const user = useSelector(getUserAuthData);
+
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t(
             'Серверная ошибка при сохранении',
@@ -55,11 +57,11 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
     };
 
-    useInitialEffect(() => {
-        if (id) {
-            dispatch(fetchProfileData(id));
+    useEffect(() => {
+        if (user?.username) {
+            dispatch(fetchProfileData(user?.username));
         }
-    });
+    }, [dispatch, user?.username]);
 
     const onChangeFirstname = useCallback(
         (value?: string) => {
