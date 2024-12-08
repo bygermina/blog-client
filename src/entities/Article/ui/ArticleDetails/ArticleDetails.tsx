@@ -21,6 +21,7 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetails';
+import { renderArticleBlock } from './renderBlock';
 
 import cls from './ArticleDetails.module.scss';
 
@@ -36,7 +37,7 @@ const reducers: ReducersList = {
 const Redesigned = () => {
     const article = useSelector(getArticleDetailsData);
 
-    console.log(article?.blocks);
+    console.log(888, article?.blocks);
 
     return (
         <>
@@ -55,7 +56,7 @@ const Redesigned = () => {
                 src={article?.img}
                 className={cls.img}
             />
-            {/* {article?.blocks.map(renderArticleBlock)} */}
+            {article?.blocks.map(renderArticleBlock)}
         </>
     );
 };
@@ -82,6 +83,7 @@ export const ArticleDetailsSkeleton = () => {
 export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
 
@@ -105,6 +107,8 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     } else {
         content = <Redesigned />;
     }
+
+    console.log(123, content);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>

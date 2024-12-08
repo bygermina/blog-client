@@ -11,6 +11,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 import {
     ArticleBlockType,
@@ -20,7 +21,6 @@ import { ArticleListItemProps } from '../ArticleListItem';
 import { ArticleTextBlock } from '../../../model/types/article';
 
 import cls from './ArticleListItemRedesigned.module.scss';
-import { Button } from '@/shared/ui/redesigned/Button';
 
 export const ArticleListItemRedesigned = memo(
     ({ className, article, view, target }: ArticleListItemProps) => {
@@ -52,7 +52,7 @@ export const ArticleListItemRedesigned = memo(
         if (view === ArticleView.BIG) {
             const textBlock = article.blocks.find(
                 (block) => block.type === ArticleBlockType.TEXT,
-            ) as ArticleTextBlock;
+            ) as unknown as ArticleTextBlock;
 
             return (
                 <Card
@@ -77,12 +77,10 @@ export const ArticleListItemRedesigned = memo(
                             className={cls.img}
                             alt={article.title}
                         />
-                        {textBlock?.data.paragraphs && (
+                        {textBlock?.data.text && (
                             <Text
                                 className={cls.textBlock}
-                                text={textBlock.data.paragraphs
-                                    .slice(0, 2)
-                                    .join(' ')}
+                                text={textBlock.data.text}
                             />
                         )}
                         <HStack max justify="between">

@@ -1,5 +1,7 @@
 import { OutputBlockData } from '@editorjs/editorjs';
+
 import { User } from '@/entities/User';
+
 import { ArticleBlockType, ArticleType } from '../consts/articleConsts';
 
 export interface ArticleBlockBase {
@@ -23,8 +25,7 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 export interface ArticleTextBlock extends ArticleBlockBase {
     type: ArticleBlockType.TEXT;
     data: {
-        paragraphs: string[];
-        title?: string;
+        text: string;
     };
 }
 
@@ -32,17 +33,7 @@ export type ArticleBlock =
     // | ArticleCodeBlock
     ArticleImageBlock | ArticleTextBlock;
 
-export interface ArticleCreate {
-    title: string;
-    userId?: string;
-    subtitle: string;
-    img?: string;
-    views?: number;
-    createdAt?: string;
-    type: ArticleType[];
-    // blocks: ArticleBlock[];
-    blocks: OutputBlockData<string, any>[];
-}
+export type Block = OutputBlockData<ArticleBlockType, ArticleBlock>;
 
 export interface Article {
     id: string;
@@ -54,6 +45,5 @@ export interface Article {
     views?: number;
     createdAt?: string;
     type: ArticleType[];
-    // blocks: ArticleBlock[];
-    blocks: OutputBlockData<string, any>[];
+    blocks: Block[];
 }

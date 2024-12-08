@@ -1,11 +1,15 @@
-import { ArticleBlock } from '../../model/types/article';
+import {
+    ArticleImageBlock,
+    ArticleTextBlock,
+    Block,
+} from '../../model/types/article';
 import { ArticleBlockType } from '../../model/consts/articleConsts';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 import cls from './ArticleDetails.module.scss';
 
-export const renderArticleBlock = (block: ArticleBlock) => {
+export const renderArticleBlock = (block: Block) => {
     switch (block.type) {
         // case ArticleBlockType.CODE:
         //     return (
@@ -19,7 +23,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
             return (
                 <ArticleImageBlockComponent
                     key={block.id}
-                    block={block}
+                    block={block as unknown as ArticleImageBlock}
                     className={cls.block}
                 />
             );
@@ -28,7 +32,7 @@ export const renderArticleBlock = (block: ArticleBlock) => {
                 <ArticleTextBlockComponent
                     key={block.id}
                     className={cls.block}
-                    block={block}
+                    block={block as unknown as ArticleTextBlock}
                 />
             );
         default:

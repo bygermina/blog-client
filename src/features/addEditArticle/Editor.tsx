@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import EditorJS, { OutputBlockData } from '@editorjs/editorjs';
+import EditorJS from '@editorjs/editorjs';
 import SimpleImage from '@editorjs/image';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
@@ -13,6 +13,7 @@ import {
     createArticle,
     fetchArticleById,
     updateArticle,
+    Block,
 } from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -52,7 +53,7 @@ export const Editor = () => {
     const [title, setTitle] = useState('');
     const [subtitle, setSubTitle] = useState('');
     const [file, setFile] = useState('');
-    const [blocks, setBlocks] = useState<OutputBlockData<string, any>[]>([]);
+    const [blocks, setBlocks] = useState<Block[]>([]);
 
     useEffect(() => {
         if (id) {
@@ -113,7 +114,7 @@ export const Editor = () => {
                     title,
                     subtitle,
                     img: file, // сюда вставить ссылку вместо файла
-                    blocks: outputData.blocks,
+                    blocks: outputData.blocks as Block[],
                 };
 
                 if (user?.id) {

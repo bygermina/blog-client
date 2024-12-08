@@ -6,8 +6,8 @@ export enum ArticleSortField {
 
 export enum ArticleBlockType {
     CODE = 'CODE',
-    IMAGE = 'IMAGE',
-    TEXT = 'TEXT',
+    IMAGE = 'image',
+    TEXT = 'paragraph',
 }
 
 export enum ArticleType {
