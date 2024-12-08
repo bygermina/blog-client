@@ -13,7 +13,7 @@ import {
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { SortOrder } from '@/shared/types/sort';
 import { ArticlesPageSchema } from '../types/articlesPageSchema';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
+import { fetchArticlesList } from '../services/fetchArticlesList';
 
 const articlesAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
@@ -84,12 +84,12 @@ const articlesPageSlice = createSlice({
             })
             .addCase(fetchArticlesList.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.hasMore = action.payload.length >= state.limit;
+                state.hasMore = action.payload.data.length >= state.limit;
 
                 if (action.meta.arg.replace) {
-                    articlesAdapter.setAll(state, action.payload);
+                    articlesAdapter.setAll(state, action.payload.data);
                 } else {
-                    articlesAdapter.addMany(state, action.payload);
+                    articlesAdapter.addMany(state, action.payload.data);
                 }
             })
             .addCase(fetchArticlesList.rejected, (state, action) => {

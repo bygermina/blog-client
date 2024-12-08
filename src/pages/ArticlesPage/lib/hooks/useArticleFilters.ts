@@ -1,5 +1,11 @@
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
+
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+import { SortOrder } from '@/shared/types/sort';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+
 import {
     getArticlesPageOrder,
     getArticlesPageSearch,
@@ -7,12 +13,8 @@ import {
     getArticlesPageType,
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
-import { SortOrder } from '@/shared/types/sort';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
-import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
+import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 
 export function useArticleFilters() {
     const view = useSelector(getArticlesPageView);

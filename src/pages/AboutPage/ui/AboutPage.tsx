@@ -13,6 +13,7 @@ const AboutPage = () => {
                 description={t('About Page')}
                 keywords={t('About Page')}
             />
+            {/* Добавить редактирование с фронта SEO */}
             {t('О сайте')}
         </Page>
     );

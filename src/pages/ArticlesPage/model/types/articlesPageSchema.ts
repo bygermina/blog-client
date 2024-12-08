@@ -24,3 +24,8 @@ export interface ArticlesPageSchema extends EntityState<Article> {
 
     _inited: boolean;
 }
+
+export interface Articles {
+    pages: Number;
+    data: Article[];
+}

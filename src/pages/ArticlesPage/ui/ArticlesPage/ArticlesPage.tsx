@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
@@ -64,7 +63,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                             keywords={t('Articles keywords')}
                         />
                         <ArticleInfiniteList className={cls.list} />
-                        <ArticlePageGreeting />
+                        {/* <ArticlePageGreeting /> */}
                     </Page>
                 }
             />

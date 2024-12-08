@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
@@ -13,9 +14,10 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { getRouteArticleCreate } from '@/shared/const/router';
+import { getUserAuthData } from '@/entities/User';
 
 import cls from './ArticlesFilters.module.scss';
-import { getRouteArticleCreate } from '@/shared/const/router';
 
 interface ArticlesFiltersProps {
     className?: string;
@@ -43,6 +45,7 @@ export const ArticlesFilters = memo(
     }: ArticlesFiltersProps) => {
         const { t } = useTranslation();
         const navigate = useNavigate();
+        const isAuth = useSelector(getUserAuthData);
 
         return (
             <Card
@@ -68,13 +71,15 @@ export const ArticlesFilters = memo(
                         onChangeOrder={onChangeOrder}
                         onChangeSort={onChangeSort}
                     />
-                    <Button
-                        onClick={() => {
-                            navigate(getRouteArticleCreate());
-                        }}
-                    >
-                        {t('Создать статью')}
-                    </Button>
+                    {isAuth && (
+                        <Button
+                            onClick={() => {
+                                navigate(getRouteArticleCreate());
+                            }}
+                        >
+                            {t('Создать статью')}
+                        </Button>
+                    )}
                 </VStack>
             </Card>
         );

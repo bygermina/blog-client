@@ -23,6 +23,7 @@ const ArticleEditPage = memo(({ className }: ArticleEditPageProps) => {
                 ? t('Редактирование статьи с ID = ') + id
                 : t('Создание новой статьи')}
             <Editor />
+            {/* Добавить редактирование с фронта SEO title, description, keywords */}
         </Page>
     );
 });
