@@ -1,3 +1,4 @@
+import { OutputBlockData } from '@editorjs/editorjs';
 import { User } from '@/entities/User';
 import { ArticleBlockType, ArticleType } from '../consts/articleConsts';
 
@@ -31,14 +32,28 @@ export type ArticleBlock =
     // | ArticleCodeBlock
     ArticleImageBlock | ArticleTextBlock;
 
-export interface Article {
-    id: string;
+export interface ArticleCreate {
     title: string;
-    user: User;
+    userId?: string;
     subtitle: string;
     img?: string;
     views?: number;
     createdAt?: string;
     type: ArticleType[];
-    blocks: ArticleBlock[];
+    // blocks: ArticleBlock[];
+    blocks: OutputBlockData<string, any>[];
+}
+
+export interface Article {
+    id: string;
+    title: string;
+    userId?: string;
+    user?: User;
+    subtitle: string;
+    img?: string;
+    views?: number;
+    createdAt?: string;
+    type: ArticleType[];
+    // blocks: ArticleBlock[];
+    blocks: OutputBlockData<string, any>[];
 }

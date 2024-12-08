@@ -9,10 +9,13 @@ export const updateArticle = createAsyncThunk<
     Article,
     ThunkConfig<string>
 >('articleDetails/updateArticle', async (article, thunkApi) => {
-    const { extra, dispatch, rejectWithValue } = thunkApi;
+    const { extra, rejectWithValue } = thunkApi;
 
     try {
-        const response = await extra.api.post<Article>('/articles', article);
+        const response = await extra.api.patch<Article>(
+            `/articles/${article.id}`,
+            article,
+        );
 
         if (!response.data) {
             throw new Error();

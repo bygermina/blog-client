@@ -21,7 +21,6 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetails';
-import { renderArticleBlock } from './renderBlock';
 
 import cls from './ArticleDetails.module.scss';
 
@@ -36,6 +35,8 @@ const reducers: ReducersList = {
 
 const Redesigned = () => {
     const article = useSelector(getArticleDetailsData);
+
+    console.log(article?.blocks);
 
     return (
         <>
@@ -54,7 +55,7 @@ const Redesigned = () => {
                 src={article?.img}
                 className={cls.img}
             />
-            {article?.blocks.map(renderArticleBlock)}
+            {/* {article?.blocks.map(renderArticleBlock)} */}
         </>
     );
 };

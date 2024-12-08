@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import EditorJS from '@editorjs/editorjs';
+import EditorJS, { OutputBlockData } from '@editorjs/editorjs';
 import SimpleImage from '@editorjs/image';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
@@ -43,6 +43,8 @@ export const Editor = () => {
     const { id } = useParams<{ id: string }>();
     const user = useSelector(getUserAuthData);
 
+    // console.log(user);
+
     const dispatch = useAppDispatch();
 
     const editorInstance = useRef<EditorJS | null>(null);
@@ -50,7 +52,7 @@ export const Editor = () => {
     const [title, setTitle] = useState('');
     const [subtitle, setSubTitle] = useState('');
     const [file, setFile] = useState('');
-    const [blocks, setBlocks] = useState([]);
+    const [blocks, setBlocks] = useState<OutputBlockData<string, any>[]>([]);
 
     useEffect(() => {
         if (id) {
@@ -61,7 +63,6 @@ export const Editor = () => {
                     setTitle(article.title);
                     setSubTitle(article.subtitle);
                     setFile(article.img ?? '');
-                    // @ts-ignore
                     setBlocks(article.blocks);
                 }
             });
@@ -69,28 +70,36 @@ export const Editor = () => {
     }, [dispatch, id]);
 
     useEffect(() => {
-        editorInstance.current = new EditorJS({
-            holder: 'editorjs',
-            placeholder: t('Добавьте текст..'),
-            tools: {
-                image: {
-                    class: SimpleImage,
-                    config: {
-                        endpoints: {
-                            byFile: 'http://localhost:3050/uploadFile', // upload endpoint
-                            byUrl: 'http://localhost:3050/fetchUrl', // get by URL
+        if (!editorInstance.current) {
+            editorInstance.current = new EditorJS({
+                holder: 'editorjs',
+                placeholder: t('Добавьте текст..'),
+                tools: {
+                    image: {
+                        class: SimpleImage,
+                        config: {
+                            endpoints: {
+                                byFile: 'http://localhost:3050/uploadFile', // upload endpoint
+                                byUrl: 'http://localhost:3050/fetchUrl', // get by URL
+                            },
                         },
                     },
                 },
-            },
-            data: {
-                blocks: id ? blocks : [],
-            },
-        });
+                data: {
+                    blocks: id ? blocks : [],
+                },
+            });
+        }
 
         return () => {
             if (editorInstance.current) {
                 editorInstance.current = null;
+            }
+
+            const editor = document.querySelector('#editorjs');
+
+            if (editor) {
+                editor.innerHTML = '';
             }
         };
     }, [blocks, id, t]);
@@ -107,24 +116,22 @@ export const Editor = () => {
                     blocks: outputData.blocks,
                 };
 
-                // @ts-ignore
-                if (user.user?.id) {
+                if (user?.id) {
                     if (id) {
                         dispatch(
                             updateArticle({
                                 id,
                                 ...article,
-                                // @ts-ignore
-                                userId: user.user?.id,
+                                userId: user.id,
                                 type: [ArticleType.ALL],
                             }),
                         );
                     } else {
                         dispatch(
                             createArticle({
+                                id: '',
                                 ...article,
-                                // @ts-ignore
-                                userId: user.user?.id,
+                                userId: user.id,
                                 type: [ArticleType.ALL],
                             }),
                         );
@@ -136,8 +143,7 @@ export const Editor = () => {
                 console.error('Saving failed: ', error);
             }
         }
-        // @ts-ignore
-    }, [dispatch, file, id, subtitle, title, user.user?.id]);
+    }, [dispatch, file, id, subtitle, title, user?.id]);
 
     return (
         <div>

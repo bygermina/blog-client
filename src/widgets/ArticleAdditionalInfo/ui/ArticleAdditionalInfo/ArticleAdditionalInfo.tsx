@@ -4,22 +4,26 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { User } from '@/entities/User';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { Text } from '@/shared/ui/redesigned/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
 
 import cls from './ArticleAdditionalInfo.module.scss';
 
 interface ArticleAdditionalInfoProps {
     className?: string;
-    author: User;
+    author?: User;
     createdAt?: string;
     views?: number;
     onEdit: () => void;
 }
 
 export const ArticleAdditionalInfo = memo(
-    (props: ArticleAdditionalInfoProps) => {
-        const { className, author, createdAt, views, onEdit } = props;
+    ({
+        className,
+        author,
+        createdAt,
+        views,
+        onEdit,
+    }: ArticleAdditionalInfoProps) => {
         const { t } = useTranslation();
 
         return (
@@ -35,7 +39,7 @@ export const ArticleAdditionalInfo = memo(
                     <Text text={createdAt} />
                 </HStack> */}
                 <Button onClick={onEdit}>{t('Редактировать')}</Button>
-                <Text text={t('{{count}} просмотров', { count: views })} />
+                {/* <Text text={t('{{count}} просмотров', { count: views })} /> */}
             </VStack>
         );
     },
