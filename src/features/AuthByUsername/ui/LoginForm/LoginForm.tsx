@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { memo, useCallback, useState } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-
 import { Text } from '@/shared/ui/redesigned/Text';
 import {
     DynamicModuleLoader,
