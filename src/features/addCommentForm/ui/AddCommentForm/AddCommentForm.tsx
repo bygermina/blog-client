@@ -66,6 +66,7 @@ const AddCommentForm = memo(
                         )}
                     >
                         <Input
+                            type="text"
                             className={cls.input}
                             placeholder={t('Введите текст комментария')}
                             value={text}

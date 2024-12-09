@@ -1,4 +1,5 @@
 import React, {
+    HTMLInputTypeAttribute,
     InputHTMLAttributes,
     memo,
     ReactNode,
@@ -6,10 +7,13 @@ import React, {
     useRef,
     useState,
 } from 'react';
+
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import cls from './Input.module.scss';
+
 import { HStack } from '../Stack';
 import { Text } from '../Text';
+
+import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -18,11 +22,10 @@ type HTMLInputProps = Omit<
 
 type InputSize = 's' | 'm' | 'l';
 
-interface InputProps extends HTMLInputProps {
+interface BaseInput extends Omit<HTMLInputProps, 'type' | 'onChange'> {
     className?: string;
     value?: string | number;
     label?: string;
-    onChange?: (value: string) => void;
     autofocus?: boolean;
     readonly?: boolean;
     addonLeft?: ReactNode;
@@ -30,7 +33,17 @@ interface InputProps extends HTMLInputProps {
     size?: InputSize;
 }
 
-export const Input = memo((props: InputProps) => {
+interface FileInputProps extends BaseInput {
+    type: 'file';
+    onChange?: (value: FormData) => void;
+}
+
+interface InputProps extends BaseInput {
+    type: Exclude<HTMLInputTypeAttribute, 'file'>;
+    onChange?: (value: string) => void;
+}
+
+export const Input = memo((props: InputProps | FileInputProps) => {
     const {
         className,
         value,
@@ -56,7 +69,18 @@ export const Input = memo((props: InputProps) => {
     }, [autofocus]);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.value);
+        if (type === 'file') {
+            const file = e.target.files?.[0];
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('image', file);
+
+                (onChange as (value: FormData) => void)?.(formData);
+            }
+        } else {
+            (onChange as (value: string) => void)?.(e.target.value);
+        }
     };
 
     const onBlur = () => {
@@ -83,6 +107,7 @@ export const Input = memo((props: InputProps) => {
         >
             <div className={cls.addonLeft}>{addonLeft}</div>
             <input
+                {...otherProps}
                 ref={ref}
                 type={type}
                 value={value}
@@ -92,7 +117,6 @@ export const Input = memo((props: InputProps) => {
                 onBlur={onBlur}
                 readOnly={readonly}
                 placeholder={placeholder}
-                {...otherProps}
             />
             <div className={cls.addonRight}>{addonRight}</div>
         </div>

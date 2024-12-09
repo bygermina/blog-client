@@ -17,6 +17,9 @@ import {
 } from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { uploadImage } from '../model/services/uploadFile';
+
+import cls from './Editor.module.scss';
 
 // const blocks = [
 //     {
@@ -44,15 +47,13 @@ export const Editor = () => {
     const { id } = useParams<{ id: string }>();
     const user = useSelector(getUserAuthData);
 
-    // console.log(user);
-
     const dispatch = useAppDispatch();
 
     const editorInstance = useRef<EditorJS | null>(null);
 
     const [title, setTitle] = useState('');
     const [subtitle, setSubTitle] = useState('');
-    const [file, setFile] = useState('');
+    const [url, setUrl] = useState('');
     const [blocks, setBlocks] = useState<Block[]>([]);
 
     useEffect(() => {
@@ -63,7 +64,7 @@ export const Editor = () => {
 
                     setTitle(article.title);
                     setSubTitle(article.subtitle);
-                    setFile(article.img ?? '');
+                    setUrl(article.img ?? '');
                     setBlocks(article.blocks);
                 }
             });
@@ -110,62 +111,64 @@ export const Editor = () => {
             try {
                 const outputData = await editorInstance.current.save();
 
-                const article = {
-                    title,
-                    subtitle,
-                    img: file, // сюда вставить ссылку вместо файла
-                    blocks: outputData.blocks as Block[],
-                };
-
                 if (user?.id) {
-                    if (id) {
-                        dispatch(
-                            updateArticle({
-                                id,
-                                ...article,
-                                userId: user.id,
-                                type: [ArticleType.ALL],
-                            }),
-                        );
-                    } else {
-                        dispatch(
-                            createArticle({
-                                id: '',
-                                ...article,
-                                userId: user.id,
-                                type: [ArticleType.ALL],
-                            }),
-                        );
-                    }
-                }
+                    const article = {
+                        id: id ?? '',
+                        title,
+                        subtitle,
+                        img: url,
+                        blocks: outputData.blocks as Block[],
+                        userId: user?.id,
+                        type: [ArticleType.ALL],
+                    };
 
-                console.log('Article data: ', outputData);
+                    const action = id ? updateArticle : createArticle;
+
+                    dispatch(action(article));
+                }
             } catch (error) {
                 console.error('Saving failed: ', error);
             }
         }
-    }, [dispatch, file, id, subtitle, title, user?.id]);
+    }, [dispatch, id, subtitle, title, url, user?.id]);
+
+    const handleFileChange = async (formData: FormData) => {
+        const fileName = 'file';
+
+        const request = await dispatch(
+            uploadImage({ data: formData, fileName }),
+        );
+
+        // TODO fix this
+        if (request.meta.requestStatus === 'fulfilled' && request.payload) {
+            setUrl(request.payload);
+        }
+    };
 
     return (
         <div>
             <Input
+                type="text"
                 label={t('Название')}
                 placeholder={t('Введите название')}
                 value={title}
                 onChange={setTitle}
+                className={cls.input}
             />
             <Input
+                type="text"
                 label={t('Подназвание')}
                 placeholder={t('Введите подназвание')}
                 value={subtitle}
                 onChange={setSubTitle}
+                className={cls.input}
             />
             <Input
                 label={t('Изображение')}
                 placeholder={t('изображение')}
-                value={file}
-                onChange={setFile}
+                onChange={handleFileChange}
                 type="file"
+                className={cls.input}
             />
             <div id="editorjs" />
             <Button onClick={handleSave}>{t('Сохранить')}</Button>

@@ -19,9 +19,7 @@ const ArticleEditPage = memo(({ className }: ArticleEditPageProps) => {
 
     return (
         <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
-            {isEdit
-                ? t('Редактирование статьи с ID = ') + id
-                : t('Создание новой статьи')}
+            {isEdit ? t('Редактирование статьи') : t('Создание новой статьи')}
             <Editor />
             {/* Добавить редактирование с фронта SEO title, description, keywords */}
         </Page>

@@ -62,6 +62,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
         <>
             <Text title={feedbackTitle} />
             <Input
+                type="text"
                 data-testid="RatingCard.Input"
                 value={feedback}
                 onChange={setFeedback}

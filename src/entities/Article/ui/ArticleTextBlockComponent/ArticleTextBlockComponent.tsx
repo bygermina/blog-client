@@ -17,8 +17,6 @@ export const ArticleTextBlockComponent = memo(
     ({ className, block }: ArticleTextBlockComponentProps) => {
         const { t } = useTranslation();
 
-        console.log(333, block.data.text);
-
         return (
             <div
                 className={classNames(cls.ArticleTextBlockComponent, {}, [

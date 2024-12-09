@@ -77,6 +77,7 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                 <HStack gap="24" max>
                     <VStack gap="16" max>
                         <Input
+                            type="text"
                             value={data?.first}
                             label={t('Имя')}
                             onChange={onChangeFirstname}
@@ -84,6 +85,7 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                             data-testid="ProfileCard.firstname"
                         />
                         <Input
+                            type="text"
                             value={data?.lastname}
                             label={t('Фамилия')}
                             onChange={onChangeLastname}
@@ -91,12 +93,14 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                             data-testid="ProfileCard.lastname"
                         />
                         <Input
+                            type="text"
                             value={data?.age}
                             label={t('Возраст')}
                             onChange={onChangeAge}
                             readonly={readonly}
                         />
                         <Input
+                            type="text"
                             value={data?.city}
                             label={t('Город')}
                             onChange={onChangeCity}
@@ -105,12 +109,14 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                     </VStack>
                     <VStack gap="16" max>
                         <Input
+                            type="text"
                             value={data?.username}
                             label={t('Имя пользователя')}
                             onChange={onChangeUsername}
                             readonly={readonly}
                         />
                         <Input
+                            type="text"
                             value={data?.avatar}
                             label={t('Cсылка на аватар')}
                             onChange={onChangeAvatar}

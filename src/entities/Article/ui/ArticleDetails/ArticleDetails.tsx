@@ -37,8 +37,6 @@ const reducers: ReducersList = {
 const Redesigned = () => {
     const article = useSelector(getArticleDetailsData);
 
-    console.log(888, article?.blocks);
-
     return (
         <>
             {/* Добавить редактирование с фронта SEO */}
@@ -107,8 +105,6 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     } else {
         content = <Redesigned />;
     }
-
-    console.log(123, content);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>

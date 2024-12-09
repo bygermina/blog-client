@@ -1,14 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Card } from '@/shared/ui/deprecated/Card';
-import { Input } from '@/shared/ui/deprecated/Input';
-import cls from './ArticlesPageFilters.module.scss';
 
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { Input } from '@/shared/ui/redesigned/Input';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
+
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
+
+import cls from './ArticlesPageFilters.module.scss';
 
 interface ArticlesPageFiltersProps {
     className?: string;
@@ -43,6 +45,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
             </div>
             <Card className={cls.search}>
                 <Input
+                    type="text"
                     onChange={onChangeSearch}
                     value={search}
                     placeholder={t('Поиск')}
