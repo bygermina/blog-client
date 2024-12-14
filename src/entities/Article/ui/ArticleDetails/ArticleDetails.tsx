@@ -51,7 +51,7 @@ const Redesigned = () => {
                         border="16px"
                     />
                 }
-                src={article?.img}
+                src={`${__API__}/${article?.img}`}
                 className={cls.img}
             />
             {article?.blocks.map(renderArticleBlock)}
