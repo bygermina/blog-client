@@ -24,7 +24,6 @@ export const userSlice = createSlice({
             state.authData = payload;
             setFeatureFlags(payload.features);
 
-            // console.log(payload);
             // @ts-ignore
             localStorage.setItem(USER_LOCALSTORAGE_KEY, payload.token);
             localStorage.setItem(
@@ -49,9 +48,9 @@ export const userSlice = createSlice({
         builder.addCase(
             initAuthData.fulfilled,
             (state, { payload }: PayloadAction<User>) => {
-                state.authData = payload;
-                setFeatureFlags(payload.features);
-                state._inited = true;
+                // state.authData = payload;
+                // setFeatureFlags(payload.features);
+                // state._inited = true;
             },
         );
         builder.addCase(initAuthData.rejected, (state) => {

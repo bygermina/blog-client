@@ -1,10 +1,12 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { Profile } from '@/entities/Profile';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { $api } from '@/shared/api/api';
+
 import { profileReducer } from '../../model/slice/profileSlice';
 import { EditableProfileCard } from './EditableProfileCard';
 
@@ -37,7 +39,7 @@ const options = {
 
 describe('features/EditableProfileCard', () => {
     test('Режим рид онли должен переключиться', async () => {
-        componentRender(<EditableProfileCard id="1" />, options);
+        componentRender(<EditableProfileCard />, options);
         await userEvent.click(
             screen.getByTestId('EditableProfileCardHeader.EditButton'),
         );
@@ -47,7 +49,7 @@ describe('features/EditableProfileCard', () => {
     });
 
     test('При отмене значения должны обнуляться', async () => {
-        componentRender(<EditableProfileCard id="1" />, options);
+        componentRender(<EditableProfileCard />, options);
         await userEvent.click(
             screen.getByTestId('EditableProfileCardHeader.EditButton'),
         );
@@ -78,7 +80,7 @@ describe('features/EditableProfileCard', () => {
     });
 
     test('Должна появиться ошибка', async () => {
-        componentRender(<EditableProfileCard id="1" />, options);
+        componentRender(<EditableProfileCard />, options);
         await userEvent.click(
             screen.getByTestId('EditableProfileCardHeader.EditButton'),
         );
@@ -96,7 +98,7 @@ describe('features/EditableProfileCard', () => {
 
     test('Если нет ошибок валидации, то на сервер должен уйти PUT запрос', async () => {
         const mockPutReq = jest.spyOn($api, 'put');
-        componentRender(<EditableProfileCard id="1" />, options);
+        componentRender(<EditableProfileCard />, options);
         await userEvent.click(
             screen.getByTestId('EditableProfileCardHeader.EditButton'),
         );

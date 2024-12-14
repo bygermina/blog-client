@@ -12,6 +12,11 @@ export interface User {
     jsonSettings?: JsonSettings;
 }
 
+export interface UserInfo {
+    user: User;
+    token: string;
+}
+
 export interface UserSchema {
     authData?: User;
 

@@ -24,6 +24,7 @@ import { loginByUsername } from '../../model/services/loginByUsername/loginByUse
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 
 import cls from './LoginForm.module.scss';
+import { getUserInfo } from '@/entities/User';
 
 export interface LoginFormProps {
     className?: string;
@@ -70,6 +71,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const onLoginClick = useCallback(async () => {
         const result = await dispatch(loginByUsername({ username, password }));
         if (result.meta.requestStatus === 'fulfilled') {
+            dispatch(getUserInfo());
             onSuccess();
             forceUpdate();
         }

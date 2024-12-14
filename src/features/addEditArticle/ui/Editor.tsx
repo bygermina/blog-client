@@ -17,6 +17,7 @@ import {
 } from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
 import { uploadImage } from '../model/services/uploadFile';
 
 import cls from './Editor.module.scss';
@@ -82,7 +83,7 @@ export const Editor = () => {
                         config: {
                             endpoints: {
                                 byFile: 'http://localhost:3050/uploadFile', // upload endpoint
-                                byUrl: 'http://localhost:3050/fetchUrl', // get by URL
+                                byUrl: `http://localhost:3050/${1}`, // get by URL
                             },
                         },
                     },
