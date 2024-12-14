@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -14,39 +14,63 @@ import {
     fetchArticleById,
     updateArticle,
     Block,
+    ArticleBlockType,
 } from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 import { uploadImage } from '../model/services/uploadFile';
 
 import cls from './Editor.module.scss';
 
-// const blocks = [
-//     {
-//         type: 'paragraph',
-//         data: {
-//             text: 'This is a sample paragraph. You can edit this text to see how the editor works.',
-//         },
-//     },
-//     {
-//         type: 'image',
-//         data: {
-//             file: {
-//                 url: 'https://example.com/sample-image.jpg',
-//             },
-//             caption: 'Sample Image',
-//             withBorder: true,
-//             withBackground: false,
-//             stretched: false,
-//         },
-//     },
-// ];
+const processBlocks = (blocks: Block[]) => {
+    return blocks.map((block) => {
+        if (block.type === ArticleBlockType.IMAGE) {
+            return {
+                ...block,
+                data: {
+                    ...block.data,
+                    file: {
+                        // @ts-ignore
+                        ...block.data.file,
+                        // @ts-ignore
+                        url: `${__API__}${block.data.file.url}`,
+                    },
+                },
+            };
+        }
+        return block;
+    });
+};
+
+const cleanImagePaths = (blocks: Block[]) => {
+    return blocks.map((block) => {
+        // @ts-ignore
+        if (block.type === 'image' && block.data.file?.url) {
+            return {
+                ...block,
+                data: {
+                    ...block.data,
+                    file: {
+                        // @ts-ignore
+                        ...block.data.file,
+                        // @ts-ignore
+                        url: block.data.file.url.replace(__API__, ''),
+                    },
+                },
+            };
+        }
+        return block;
+    });
+};
 
 export const Editor = () => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     const user = useSelector(getUserAuthData);
+
+    const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
 
@@ -66,7 +90,8 @@ export const Editor = () => {
                     setTitle(article.title);
                     setSubTitle(article.subtitle);
                     setUrl(article.img ?? '');
-                    setBlocks(article.blocks);
+
+                    setBlocks(processBlocks(article.blocks));
                 }
             });
         }
@@ -82,8 +107,12 @@ export const Editor = () => {
                         class: SimpleImage,
                         config: {
                             endpoints: {
-                                byFile: 'http://localhost:3050/uploadFile', // upload endpoint
-                                byUrl: `http://localhost:3050/${1}`, // get by URL
+                                byFile: 'http://localhost:3050/editor-images',
+                            },
+                            additionalRequestHeaders: {
+                                Authorization: localStorage.getItem(
+                                    USER_LOCALSTORAGE_KEY,
+                                ),
                             },
                         },
                     },
@@ -118,7 +147,7 @@ export const Editor = () => {
                         title,
                         subtitle,
                         img: url,
-                        blocks: outputData.blocks as Block[],
+                        blocks: cleanImagePaths(outputData.blocks as Block[]),
                         userId: user?.id,
                         type: [ArticleType.ALL],
                     };
@@ -126,19 +155,17 @@ export const Editor = () => {
                     const action = id ? updateArticle : createArticle;
 
                     dispatch(action(article));
+
+                    navigate(`/articles/${id}`);
                 }
             } catch (error) {
                 console.error('Saving failed: ', error);
             }
         }
-    }, [dispatch, id, subtitle, title, url, user?.id]);
+    }, [dispatch, id, navigate, subtitle, title, url, user?.id]);
 
     const handleFileChange = async (formData: FormData) => {
-        const fileName = 'file';
-
-        const request = await dispatch(
-            uploadImage({ data: formData, fileName }),
-        );
+        const request = await dispatch(uploadImage(formData));
 
         // TODO fix this
         if (request.meta.requestStatus === 'fulfilled' && request.payload) {
@@ -164,13 +191,21 @@ export const Editor = () => {
                 onChange={setSubTitle}
                 className={cls.input}
             />
-            <Input
-                label={t('Изображение')}
-                placeholder={t('изображение')}
-                onChange={handleFileChange}
-                type="file"
-                className={cls.input}
-            />
+            <div>
+                <img
+                    src={`${__API__}/${url}`}
+                    width={200}
+                    alt="article"
+                    className={cls.image}
+                />
+                <Input
+                    label={t('Изображение')}
+                    placeholder={t('изображение')}
+                    onChange={handleFileChange}
+                    type="file"
+                    className={cls.input}
+                />
+            </div>
             <div id="editorjs" />
             <Button onClick={handleSave}>{t('Сохранить')}</Button>
         </div>

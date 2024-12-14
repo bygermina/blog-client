@@ -17,8 +17,10 @@ export interface ArticleBlockBase {
 export interface ArticleImageBlock extends ArticleBlockBase {
     type: ArticleBlockType.IMAGE;
     data: {
-        src: string;
         title: string;
+        file: {
+            url: string;
+        };
     };
 }
 
@@ -33,7 +35,7 @@ export type ArticleBlock =
     // | ArticleCodeBlock
     ArticleImageBlock | ArticleTextBlock;
 
-export type Block = OutputBlockData<ArticleBlockType, ArticleBlock>;
+export type Block = OutputBlockData<ArticleBlockType, ArticleBlock['data']>;
 
 export interface Article {
     id: string;

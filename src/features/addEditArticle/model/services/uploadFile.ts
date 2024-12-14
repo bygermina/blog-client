@@ -4,28 +4,21 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 export const uploadImage = createAsyncThunk<
     string,
-    { data: FormData; fileName: string },
+    FormData,
     ThunkConfig<string>
->('image/upload', async ({ data, fileName }, thunkApi) => {
+>('image/upload', async (data, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 
     try {
-        const response = await extra.api.post<string>(
-            `/images/${fileName}`,
-            data,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+        const response = await extra.api.post<string>(`/images`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
             },
-        );
+        });
 
         if (!response.data) {
             throw new Error();
         }
-
-        // const data = await response.data.json();
-        // setFile(data.url); // Assuming the backend returns the URL of the uploaded file
 
         return response.data;
     } catch (e) {
