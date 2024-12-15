@@ -23,6 +23,7 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { uploadImage } from '../model/services/uploadFile';
 
 import cls from './Editor.module.scss';
+import { $api } from '@/shared/api/api';
 
 const processBlocks = (blocks: Block[]) => {
     return blocks.map((block) => {
@@ -35,7 +36,7 @@ const processBlocks = (blocks: Block[]) => {
                         // @ts-ignore
                         ...block.data.file,
                         // @ts-ignore
-                        url: `${__API__}${block.data.file.url}`,
+                        url: `${__API__}/${block.data.file.url}`,
                     },
                 },
             };
@@ -108,11 +109,34 @@ export const Editor = () => {
                         config: {
                             endpoints: {
                                 byFile: 'http://localhost:3050/editor-images',
+                                // byUrl: 'http://localhost:3050/',
                             },
                             additionalRequestHeaders: {
                                 Authorization: localStorage.getItem(
                                     USER_LOCALSTORAGE_KEY,
                                 ),
+                            },
+                            uploader: {
+                                uploadByFile(file: File) {
+                                    const formData = new FormData();
+                                    formData.append('image', file);
+
+                                    return $api
+                                        .post(`/editor-images`, formData, {
+                                            headers: {
+                                                'Content-Type':
+                                                    'multipart/form-data',
+                                            },
+                                        })
+                                        .then((result) => {
+                                            return {
+                                                success: 1,
+                                                file: {
+                                                    url: `${__API__}/${result.data.file.url}`,
+                                                },
+                                            };
+                                        });
+                                },
                             },
                         },
                     },
@@ -194,7 +218,6 @@ export const Editor = () => {
             <div>
                 <img
                     src={`${__API__}/${url}`}
-                    width={200}
                     alt="article"
                     className={cls.image}
                 />

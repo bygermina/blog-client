@@ -26,8 +26,6 @@ export const ArticleListItemRedesigned = memo(
     ({ className, article, view, target }: ArticleListItemProps) => {
         const { t } = useTranslation();
 
-        console.log(article);
-
         if (!article.id) {
             return null;
         }
@@ -73,7 +71,7 @@ export const ArticleListItemRedesigned = memo(
                         <Text title={article.subtitle} size="s" />
                         <AppImage
                             fallback={<Skeleton width="100%" height={250} />}
-                            src={article.img}
+                            src={`${__API__}/${article.img}`}
                             className={cls.img}
                             alt={article.title}
                         />
