@@ -36,7 +36,7 @@ const processBlocks = (blocks: Block[]) => {
                         // @ts-ignore
                         ...block.data.file,
                         // @ts-ignore
-                        url: `${__API__}/${block.data.file.url}`,
+                        url: `${__API__}${block.data.file.url}`,
                     },
                 },
             };
