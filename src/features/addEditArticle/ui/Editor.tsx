@@ -19,11 +19,11 @@ import {
 import { getUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
+import { $api } from '@/shared/api/api';
 
 import { uploadImage } from '../model/services/uploadFile';
 
 import cls from './Editor.module.scss';
-import { $api } from '@/shared/api/api';
 
 const processBlocks = (blocks: Block[]) => {
     return blocks.map((block) => {
@@ -36,7 +36,7 @@ const processBlocks = (blocks: Block[]) => {
                         // @ts-ignore
                         ...block.data.file,
                         // @ts-ignore
-                        url: `${__API__}${block.data.file.url}`,
+                        url: `${__API__}/${block.data.file.url}`,
                     },
                 },
             };
@@ -57,7 +57,7 @@ const cleanImagePaths = (blocks: Block[]) => {
                         // @ts-ignore
                         ...block.data.file,
                         // @ts-ignore
-                        url: block.data.file.url.replace(__API__, ''),
+                        url: block.data.file.url.replace(`${__API__}/`, ''),
                     },
                 },
             };
@@ -109,7 +109,6 @@ export const Editor = () => {
                         config: {
                             endpoints: {
                                 byFile: 'http://localhost:3050/editor-images',
-                                // byUrl: 'http://localhost:3050/',
                             },
                             additionalRequestHeaders: {
                                 Authorization: localStorage.getItem(
@@ -117,7 +116,7 @@ export const Editor = () => {
                                 ),
                             },
                             uploader: {
-                                uploadByFile(file: File) {
+                                async uploadByFile(file: File) {
                                     const formData = new FormData();
                                     formData.append('image', file);
 
@@ -189,7 +188,7 @@ export const Editor = () => {
     }, [dispatch, id, navigate, subtitle, title, url, user?.id]);
 
     const handleFileChange = async (formData: FormData) => {
-        const request = await dispatch(uploadImage(formData));
+        const request = await dispatch(uploadImage({ data: formData, url }));
 
         // TODO fix this
         if (request.meta.requestStatus === 'fulfilled' && request.payload) {

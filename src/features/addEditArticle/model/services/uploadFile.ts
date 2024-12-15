@@ -4,17 +4,21 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 export const uploadImage = createAsyncThunk<
     string,
-    FormData,
+    { data: FormData; url: string },
     ThunkConfig<string>
->('image/upload', async (data, thunkApi) => {
+>('image/upload', async ({ data, url }, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 
     try {
-        const response = await extra.api.post<string>(`/images`, data, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
+        const response = await extra.api.post<string>(
+            `/images?url=${url}`,
+            data,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             },
-        });
+        );
 
         if (!response.data) {
             throw new Error();
@@ -22,7 +26,6 @@ export const uploadImage = createAsyncThunk<
 
         return response.data;
     } catch (e) {
-        // console.log(e);
         return rejectWithValue('error');
     }
 });

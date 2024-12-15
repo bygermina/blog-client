@@ -24,7 +24,7 @@ export const ArticleImageBlockComponent = memo(
                 ])}
             >
                 <img
-                    src={`${__API__}${block.data.file.url}`}
+                    src={`${__API__}/${block.data.file.url}`}
                     alt={block.data.title}
                     className={cls.img}
                 />
