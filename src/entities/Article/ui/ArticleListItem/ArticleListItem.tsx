@@ -9,6 +9,7 @@ export interface ArticleListItemProps {
     article: Article;
     view: ArticleView;
     target?: HTMLAttributeAnchorTarget;
+    search?: string;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {

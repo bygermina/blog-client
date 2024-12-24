@@ -4,6 +4,8 @@ import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack } from '@/shared/ui/redesigned/Stack';
+// @ts-ignore
+// eslint-disable-next-line ulbi-tv-plugin/layer-imports
 
 import { ArticleView } from '../../model/consts/articleConsts';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
@@ -18,6 +20,7 @@ interface ArticleListProps {
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
     view?: ArticleView;
+    search?: string;
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -38,6 +41,7 @@ export const ArticleList = memo(
         view = ArticleView.SMALL,
         isLoading,
         target,
+        search,
     }: ArticleListProps) => {
         const { t } = useTranslation();
 
@@ -68,6 +72,7 @@ export const ArticleList = memo(
                         target={target}
                         key={item.id}
                         className={cls.card}
+                        search={search}
                     />
                 ))}
                 {isLoading && getSkeletons(view)}

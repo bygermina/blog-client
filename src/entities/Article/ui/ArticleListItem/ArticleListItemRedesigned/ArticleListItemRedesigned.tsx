@@ -22,8 +22,29 @@ import { ArticleTextBlock } from '../../../model/types/article';
 
 import cls from './ArticleListItemRedesigned.module.scss';
 
+const highlightText = (text: string, searchTerm?: string) => {
+    if (!searchTerm) return text;
+
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    const parts = text.split(regex);
+
+    return (
+        <>
+            {parts.map((part, index) =>
+                regex.test(part) ? (
+                    <span key={index} style={{ backgroundColor: 'yellow' }}>
+                        {part}
+                    </span>
+                ) : (
+                    part
+                ),
+            )}
+        </>
+    );
+};
+
 export const ArticleListItemRedesigned = memo(
-    ({ className, article, view, target }: ArticleListItemProps) => {
+    ({ className, article, view, target, search }: ArticleListItemProps) => {
         const { t } = useTranslation();
 
         if (!article.id) {
@@ -67,8 +88,14 @@ export const ArticleListItemRedesigned = memo(
                             {/* {userInfo} */}
                             <Text text={article.createdAt} />
                         </HStack>
-                        <Text title={article.title} bold />
-                        <Text title={article.subtitle} size="s" />
+                        <Text
+                            title={highlightText(article.title, search)}
+                            bold
+                        />
+                        <Text
+                            title={highlightText(article.subtitle, search)}
+                            size="s"
+                        />
                         <AppImage
                             fallback={<Skeleton width="100%" height={250} />}
                             src={`${__API__}/${article.img}`}
@@ -78,7 +105,10 @@ export const ArticleListItemRedesigned = memo(
                         {textBlock?.data.text && (
                             <Text
                                 className={cls.textBlock}
-                                text={textBlock.data.text}
+                                text={highlightText(
+                                    textBlock.data.text,
+                                    search,
+                                )}
                             />
                         )}
                         <HStack max justify="between">
