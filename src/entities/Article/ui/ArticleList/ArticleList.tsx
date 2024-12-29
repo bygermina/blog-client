@@ -38,7 +38,7 @@ export const ArticleList = memo(
     ({
         className,
         articles,
-        view = ArticleView.SMALL,
+        view = ArticleView.BIG,
         isLoading,
         target,
         search,
