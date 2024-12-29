@@ -148,5 +148,5 @@ jobs:
 
                   pm2 flush
 
-                  pm2 restart all --update-env || pm2 start webpack  --name 'my-blog-client' --env mode=production --update-env
+                  pm2 restart all --update-env || pm2 start server.js  --name 'my-blog-client' --env mode=production --update-env
                   EOF
