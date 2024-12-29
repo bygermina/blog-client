@@ -108,7 +108,7 @@ export const Editor = () => {
                         class: SimpleImage,
                         config: {
                             endpoints: {
-                                byFile: 'http://localhost:3050/editor-images',
+                                byFile: `${__API__}/editor-images`,
                             },
                             additionalRequestHeaders: {
                                 Authorization: localStorage.getItem(
