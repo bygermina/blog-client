@@ -1,6 +1,6 @@
 export enum AppRoutes {
     MAIN = 'main',
-    SETTINGS = 'settings',
+    // SETTINGS = 'settings',
     ABOUT = 'about',
     PROFILE = 'profile',
     ARTICLES = 'articles',
@@ -26,7 +26,7 @@ export const getRouteForbidden = () => '/forbidden';
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: AppRoutes.MAIN,
-    [getRouteSettings()]: AppRoutes.SETTINGS,
+    // [getRouteSettings()]: AppRoutes.SETTINGS,
     [getRouteAbout()]: AppRoutes.ABOUT,
     [getRouteProfile(':id')]: AppRoutes.PROFILE,
     [getRouteArticles()]: AppRoutes.ARTICLES,

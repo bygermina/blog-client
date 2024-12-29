@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { User, userActions } from '@/entities/User';
+import { User } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 interface registerByUsernameProps {
@@ -22,7 +22,6 @@ export const registerByUsername = createAsyncThunk<
             throw new Error();
         }
 
-        dispatch(userActions.setAuthData(response.data));
         return response.data;
     } catch (e) {
         console.log(e);

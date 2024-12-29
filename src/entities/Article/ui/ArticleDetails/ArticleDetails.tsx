@@ -24,6 +24,7 @@ import {
 import { renderArticleBlock } from './renderBlock';
 
 import cls from './ArticleDetails.module.scss';
+import { Html } from '@/shared/ui/redesigned/Html/Html';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -41,8 +42,8 @@ const Redesigned = () => {
         <>
             {/* Добавить редактирование с фронта SEO */}
             <InfoSEO title={article?.title} description={article?.subtitle} />
-            <Text title={article?.title} size="l" bold />
-            <Text title={article?.subtitle} />
+            <Html title={article?.title} size="l" bold />
+            <Html title={article?.subtitle} />
             <AppImage
                 fallback={
                     <SkeletonRedesigned

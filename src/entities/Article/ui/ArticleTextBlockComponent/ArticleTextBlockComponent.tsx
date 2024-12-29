@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text } from '@/shared/ui/redesigned/Text';
+import { Html } from '@/shared/ui/redesigned/Html/Html';
 
 import { ArticleTextBlock } from '../../model/types/article';
 
@@ -23,7 +23,7 @@ export const ArticleTextBlockComponent = memo(
                     className,
                 ])}
             >
-                <Text title={block.data.text} className={cls.title} />
+                <Html title={block.data.text} className={cls.title} />
                 {/* {block.data.text.map((paragraph, index) => (
                     <Text
                         key={paragraph}

@@ -21,26 +21,21 @@ import { ArticleListItemProps } from '../ArticleListItem';
 import { ArticleTextBlock } from '../../../model/types/article';
 
 import cls from './ArticleListItemRedesigned.module.scss';
+import { Html } from '@/shared/ui/redesigned/Html/Html';
 
-const highlightText = (text: string, searchTerm?: string) => {
+const highlightText = (text: string, searchTerm?: string): string => {
     if (!searchTerm) return text;
 
     const regex = new RegExp(`(${searchTerm})`, 'gi');
     const parts = text.split(regex);
 
-    return (
-        <>
-            {parts.map((part, index) =>
-                regex.test(part) ? (
-                    <span key={index} style={{ backgroundColor: 'yellow' }}>
-                        {part}
-                    </span>
-                ) : (
-                    part
-                ),
-            )}
-        </>
-    );
+    return parts
+        .map((part) =>
+            regex.test(part)
+                ? `<span style="background-color: yellow;">${part}</span>`
+                : part,
+        )
+        .join('');
 };
 
 export const ArticleListItemRedesigned = memo(
@@ -88,11 +83,11 @@ export const ArticleListItemRedesigned = memo(
                             {/* {userInfo} */}
                             <Text text={article.createdAt} />
                         </HStack>
-                        <Text
+                        <Html
                             title={highlightText(article.title, search)}
                             bold
                         />
-                        <Text
+                        <Html
                             title={highlightText(article.subtitle, search)}
                             size="s"
                         />
@@ -103,7 +98,7 @@ export const ArticleListItemRedesigned = memo(
                             alt={article.title}
                         />
                         {textBlock?.data.text && (
-                            <Text
+                            <Html
                                 className={cls.textBlock}
                                 text={highlightText(
                                     textBlock.data.text,

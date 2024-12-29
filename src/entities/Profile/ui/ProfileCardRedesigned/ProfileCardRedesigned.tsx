@@ -113,7 +113,7 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                             value={data?.username}
                             label={t('Имя пользователя')}
                             onChange={onChangeUsername}
-                            readonly={readonly}
+                            readonly
                         />
                         <Input
                             type="text"

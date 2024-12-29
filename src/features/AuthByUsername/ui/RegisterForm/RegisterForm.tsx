@@ -14,9 +14,9 @@ import { VStack } from '@/shared/ui/redesigned/Stack';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 
 import { loginReducer } from '../../model/slice/loginSlice';
+import { registerByUsername } from '../../model/services/register/register';
 
 import cls from './LoginForm.module.scss';
-import { registerByUsername } from '../../model/services/register/register';
 
 export interface LoginFormProps {
     className?: string;
@@ -39,6 +39,7 @@ const RegisterForm = memo(({ className, onSuccess }: LoginFormProps) => {
         const result = await dispatch(
             registerByUsername({ username, password }),
         );
+
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
             forceUpdate();
