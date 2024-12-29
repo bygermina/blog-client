@@ -99,13 +99,13 @@ export const ProfileCardRedesigned = memo((props: ProfileCardProps) => {
                             onChange={onChangeAge}
                             readonly={readonly}
                         />
-                        <Input
+                        {/* <Input
                             type="text"
                             value={data?.city}
                             label={t('Город')}
                             onChange={onChangeCity}
                             readonly={readonly}
-                        />
+                        /> */}
                     </VStack>
                     <VStack gap="16" max>
                         <Input

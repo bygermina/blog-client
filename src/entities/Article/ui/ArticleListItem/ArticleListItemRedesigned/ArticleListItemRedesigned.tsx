@@ -136,7 +136,7 @@ export const ArticleListItemRedesigned = memo(
                     <AppImage
                         fallback={<Skeleton width="100%" height={200} />}
                         alt={article.title}
-                        src={article.img}
+                        src={`${__API__}/${article.img}`}
                         className={cls.img}
                     />
                     <VStack className={cls.info} gap="4">
