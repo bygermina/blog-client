@@ -145,8 +145,9 @@ jobs:
 
                   git pull https://${{ secrets.TOKEN }}@github.com/bygermina/blog-client.git main
                   npm install
+                  npm run build
 
                   pm2 flush
 
-                  pm2 restart all --update-env || pm2 start server.js  --name 'my-blog-client' --env mode=production --update-env
+                  pm2 restart all --update-env || pm2 start server.js  --name 'my-blog-client' --update-env
                   EOF
