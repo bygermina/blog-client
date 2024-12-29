@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { ArticleList } from '@/entities/Article';
+import { ArticleList, ArticleView } from '@/entities/Article';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { getArticles } from '../../model/slices/articlesPageSlice';
@@ -34,7 +34,8 @@ export const ArticleInfiniteList = memo(
         return (
             <ArticleList
                 isLoading={isLoading}
-                view={view}
+                // view={view}
+                view={ArticleView.BIG}
                 articles={articles}
                 search={search}
                 className={className}
