@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -29,6 +29,12 @@ const reducers: ReducersList = {
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     const { id } = useParams<{ id: string }>();
+
+    useEffect(() => {
+        if (id) {
+            window.scrollTo(0, 0);
+        }
+    }, [id]);
 
     if (!id) {
         return null;

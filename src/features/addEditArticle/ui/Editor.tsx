@@ -177,9 +177,14 @@ export const Editor = () => {
 
                     const action = id ? updateArticle : createArticle;
 
-                    dispatch(action(article));
+                    const result = await dispatch(action(article));
 
-                    navigate(`/articles/${id}`);
+                    // @ts-ignore
+                    const _id = id ?? result.payload?.id;
+
+                    if (_id) {
+                        navigate(`/articles/${_id}`);
+                    }
                 }
             } catch (error) {
                 console.error('Saving failed: ', error);
