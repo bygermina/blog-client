@@ -118,3 +118,8 @@ export const createSitemap = async () => {
 
     fs.writeFileSync(sitemapPath, sitemapContent, 'utf8');
 };
+
+createSitemap().catch((error) => {
+    console.error('Error generating sitemap:', error);
+    process.exit(1);
+});
