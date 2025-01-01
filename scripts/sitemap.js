@@ -10,6 +10,7 @@ const routes = {
 };
 
 const BASE_URL = 'http://206.189.60.138:3000';
+const API_URL = 'http://164.90.215.222';
 
 const generateWrapperSitemap = async (generateContent) => {
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -85,7 +86,9 @@ const generateStaticPagesSitemap = async () => {
 
 const generateArticlesSitemap = async () => {
     try {
-        const result = await fetch('/articles-sitemap', { method: 'GET' });
+        const result = await fetch(`${API_URL}/articles-sitemap`, {
+            method: 'GET',
+        });
         const articles = await result.json();
 
         let xml = '';
@@ -111,7 +114,7 @@ const generateContent = [generateStaticPagesSitemap, generateArticlesSitemap];
 
 export const createSitemap = async () => {
     const sitemapContent = await generateWrapperSitemap(generateContent);
-    const absoluteSitemapPath = 'sitemap.xml';
+    const absoluteSitemapPath = '../public/sitemap.xml';
 
     fs.writeFileSync(absoluteSitemapPath, sitemapContent, 'utf8');
 };
