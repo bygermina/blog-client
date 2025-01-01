@@ -1,4 +1,3 @@
-import path from 'path';
 import fs from 'fs';
 
 const routes = {
@@ -112,9 +111,9 @@ const generateContent = [generateStaticPagesSitemap, generateArticlesSitemap];
 
 export const createSitemap = async () => {
     const sitemapContent = await generateWrapperSitemap(generateContent);
-    const sitemapPath = path.join(__dirname, 'sitemap.xml');
+    const absoluteSitemapPath = '/root/blog-client/scripts/sitemap.xml';
 
-    fs.writeFileSync(sitemapPath, sitemapContent, 'utf8');
+    fs.writeFileSync(absoluteSitemapPath, sitemapContent, 'utf8');
 };
 
 createSitemap().catch((error) => {
