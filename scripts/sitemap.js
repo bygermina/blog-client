@@ -1,20 +1,18 @@
 import path from 'path';
 import fs from 'fs';
 
-const enum AppRoutes {
-    MAIN = 'main',
-    ABOUT = 'about',
-    ARTICLES = 'articles',
-    ARTICLE_DETAILS = 'article_details',
-    FORBIDDEN = 'forbidden',
-    NOT_FOUND = 'not_found',
-}
+const routes = {
+    MAIN: 'main',
+    ABOUT: 'about',
+    ARTICLES: 'articles',
+    ARTICLE_DETAILS: 'article_details',
+    FORBIDDEN: 'forbidden',
+    NOT_FOUND: 'not_found',
+};
 
 const BASE_URL = 'http://206.189.60.138:3000';
 
-const generateWrapperSitemap = async (
-    generateContent: (() => Promise<string>)[],
-) => {
+const generateWrapperSitemap = async (generateContent) => {
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
@@ -35,35 +33,35 @@ const generateStaticPagesSitemap = async () => {
     // TODO save this info from pages and get this from backend
     const urls = [
         {
-            loc: AppRoutes.MAIN,
+            loc: routes.MAIN,
             changefreq: 'monthly',
             priority: 1.0,
             title: 'main',
             description: 'description main',
         },
         {
-            loc: AppRoutes.ABOUT,
+            loc: routes.ABOUT,
             changefreq: 'monthly',
             priority: 0.8,
             title: 'about',
             description: 'description about',
         },
         {
-            loc: AppRoutes.ARTICLES,
+            loc: routes.ARTICLES,
             changefreq: 'monthly',
             priority: 0.5,
             title: 'articles',
             description: 'description articles',
         },
         {
-            loc: AppRoutes.FORBIDDEN,
+            loc: routes.FORBIDDEN,
             changefreq: 'monthly',
             priority: 0.1,
             title: 'forbidden',
             description: 'description forbidden',
         },
         {
-            loc: AppRoutes.NOT_FOUND,
+            loc: routes.NOT_FOUND,
             changefreq: 'monthly',
             priority: 0.1,
             title: 'not_found',
