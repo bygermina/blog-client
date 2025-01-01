@@ -106,6 +106,8 @@ const generateArticlesSitemap = async () => {
     } catch (error) {
         // TODO log error
 
+        console.error('Error generating sitemap:', error);
+
         return '';
     }
 };
