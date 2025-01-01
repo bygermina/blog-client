@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const routes = {
     MAIN: 'main',
@@ -111,7 +111,7 @@ const generateContent = [generateStaticPagesSitemap, generateArticlesSitemap];
 
 export const createSitemap = async () => {
     const sitemapContent = await generateWrapperSitemap(generateContent);
-    const absoluteSitemapPath = '/root/blog-client/scripts/sitemap.xml';
+    const absoluteSitemapPath = 'sitemap.xml';
 
     fs.writeFileSync(absoluteSitemapPath, sitemapContent, 'utf8');
 };
