@@ -114,7 +114,7 @@ const generateContent = [generateStaticPagesSitemap, generateArticlesSitemap];
 
 export const createSitemap = async () => {
     const sitemapContent = await generateWrapperSitemap(generateContent);
-    const absoluteSitemapPath = '../public/sitemap.xml';
+    const absoluteSitemapPath = '/root/blog-client/public/sitemap.xml';
 
     fs.writeFileSync(absoluteSitemapPath, sitemapContent, 'utf8');
 };
