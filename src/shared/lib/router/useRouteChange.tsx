@@ -1,10 +1,11 @@
 import { matchPath, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
 import { AppRouteByPathPattern, AppRoutes } from '@/shared/const/router';
 
 export function useRouteChange() {
     const location = useLocation();
-    const [appRoute, setAppRoute] = useState<AppRoutes>(AppRoutes.MAIN);
+    const [appRoute, setAppRoute] = useState<AppRoutes>('main');
 
     useEffect(() => {
         Object.entries(AppRouteByPathPattern).forEach(([pattern, route]) => {

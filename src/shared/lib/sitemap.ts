@@ -1,11 +1,4 @@
-const enum AppRoutes {
-    MAIN = 'main',
-    ABOUT = 'about',
-    ARTICLES = 'articles',
-    ARTICLE_DETAILS = 'article_details',
-    FORBIDDEN = 'forbidden',
-    NOT_FOUND = 'not_found',
-}
+import { AppRoutes } from '../const/router';
 
 const BASE_URL = 'http://206.189.60.138:3000';
 
@@ -30,37 +23,43 @@ export const generateWrapperSitemap = async (
 
 const generateStaticPagesSitemap = async () => {
     // TODO save this info from pages and get this from backend
-    const urls = [
+    const urls: {
+        loc: AppRoutes;
+        changefreq: string;
+        priority: number;
+        title: string;
+        description: string;
+    }[] = [
         {
-            loc: AppRoutes.MAIN,
+            loc: 'main',
             changefreq: 'monthly',
             priority: 1.0,
             title: 'main',
             description: 'description main',
         },
         {
-            loc: AppRoutes.ABOUT,
+            loc: 'about',
             changefreq: 'monthly',
             priority: 0.8,
             title: 'about',
             description: 'description about',
         },
         {
-            loc: AppRoutes.ARTICLES,
+            loc: 'articles',
             changefreq: 'monthly',
             priority: 0.5,
             title: 'articles',
             description: 'description articles list',
         },
         {
-            loc: AppRoutes.FORBIDDEN,
+            loc: 'forbidden',
             changefreq: 'monthly',
             priority: 0.1,
             title: 'forbidden',
             description: 'description forbidden',
         },
         {
-            loc: AppRoutes.NOT_FOUND,
+            loc: 'not_found',
             changefreq: 'monthly',
             priority: 0.1,
             title: 'not_found',
