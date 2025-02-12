@@ -7,8 +7,7 @@ import React, {
     useRef,
     useState,
 } from 'react';
-
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
 
 import { HStack } from '../Stack';
 import { Text } from '../Text';
@@ -91,19 +90,19 @@ export const Input = memo((props: InputProps | FileInputProps) => {
         setIsFocused(true);
     };
 
-    const mods: Mods = {
-        [cls.readonly]: readonly,
-        [cls.focused]: isFocused,
-        [cls.withAddonLeft]: Boolean(addonLeft),
-        [cls.withAddonRight]: Boolean(addonRight),
-    };
-
     const input = (
         <div
-            className={classNames(cls.InputWrapper, mods, [
+            className={clsx(
+                cls.InputWrapper,
+                {
+                    [cls.readonly]: readonly,
+                    [cls.focused]: isFocused,
+                    [cls.withAddonLeft]: Boolean(addonLeft),
+                    [cls.withAddonRight]: Boolean(addonRight),
+                },
                 className,
                 cls[size],
-            ])}
+            )}
         >
             <div className={cls.addonLeft}>{addonLeft}</div>
             <input

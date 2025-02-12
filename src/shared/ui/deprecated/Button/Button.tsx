@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Button.module.scss';
 
 export enum ButtonTheme {
@@ -61,18 +62,20 @@ export const Button = memo((props: ButtonProps) => {
         ...otherProps
     } = props;
 
-    const mods: Mods = {
-        [cls[theme]]: true,
-        [cls.square]: square,
-        [cls[size]]: true,
-        [cls.disabled]: disabled,
-        [cls.fullWidth]: fullWidth,
-    };
-
     return (
         <button
             type="button"
-            className={classNames(cls.Button, mods, [className])}
+            className={clsx(
+                cls.Button,
+                cls[theme],
+                cls[size],
+                {
+                    [cls.square]: square,
+                    [cls.disabled]: disabled,
+                    [cls.fullWidth]: fullWidth,
+                },
+                className,
+            )}
             disabled={disabled}
             {...otherProps}
         >

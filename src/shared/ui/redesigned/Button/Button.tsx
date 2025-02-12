@@ -4,7 +4,8 @@ import {
     forwardRef,
     ReactNode,
 } from 'react';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Button.module.scss';
 
 export type ButtonVariant = 'clear' | 'outline' | 'filled';
@@ -61,22 +62,23 @@ export const Button = forwardRef(
             ...otherProps
         } = props;
 
-        const mods: Mods = {
-            [cls.square]: square,
-            [cls.disabled]: disabled,
-            [cls.fullWidth]: fullWidth,
-            [cls.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
-        };
-
         return (
             <button
                 type="button"
-                className={classNames(cls.Button, mods, [
+                className={clsx(
+                    cls.Button,
+                    {
+                        [cls.square]: square,
+                        [cls.disabled]: disabled,
+                        [cls.fullWidth]: fullWidth,
+                        [cls.withAddon]:
+                            Boolean(addonLeft) || Boolean(addonRight),
+                    },
                     className,
                     cls[variant],
                     cls[size],
                     cls[color],
-                ])}
+                )}
                 disabled={disabled}
                 {...otherProps}
                 ref={ref}

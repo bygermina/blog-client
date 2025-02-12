@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -42,11 +41,7 @@ export const EditableProfileCardHeader = memo(
 
         return (
             <Card padding="24" fullWidth border="partial">
-                <HStack
-                    max
-                    justify="between"
-                    className={classNames('', {}, [className])}
-                >
+                <HStack max justify="between" className={className}>
                     <Text title={t('Профиль')} />
                     {canEdit && (
                         <div>

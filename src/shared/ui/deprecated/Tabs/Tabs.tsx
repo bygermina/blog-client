@@ -1,5 +1,6 @@
 import { memo, ReactNode, useCallback } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import { Card, CardTheme } from '../Card/Card';
 import cls from './Tabs.module.scss';
 
@@ -30,7 +31,7 @@ export const Tabs = memo((props: TabsProps) => {
     );
 
     return (
-        <div className={classNames(cls.Tabs, {}, [className])}>
+        <div className={clsx(cls.Tabs, className)}>
             {tabs.map((tab) => (
                 <Card
                     theme={

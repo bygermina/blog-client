@@ -1,6 +1,6 @@
 import { memo } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card as CardRedesigned } from '@/shared/ui/redesigned/Card';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 
@@ -44,12 +44,7 @@ export const ArticleListItemSkeleton = memo(
                 </>
             );
             return (
-                <div
-                    className={classNames(mainClass, {}, [
-                        className,
-                        cls[view],
-                    ])}
-                >
+                <div className={clsx(mainClass, className, cls[view])}>
                     <CardRedesigned border="round" className={cls.card}>
                         {cardContent}
                     </CardRedesigned>
@@ -73,7 +68,7 @@ export const ArticleListItemSkeleton = memo(
         );
 
         return (
-            <div className={classNames(mainClass, {}, [className, cls[view]])}>
+            <div className={clsx(mainClass, className, cls[view])}>
                 <CardRedesigned border="round" className={cls.card}>
                     {cardContent}
                 </CardRedesigned>

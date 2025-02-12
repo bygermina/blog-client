@@ -5,7 +5,8 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<
@@ -66,12 +67,12 @@ export const Input = memo((props: InputProps) => {
         setCaretPosition(e?.target?.selectionStart || 0);
     };
 
-    const mods: Mods = {
-        [cls.readonly]: readonly,
-    };
-
     return (
-        <div className={classNames(cls.InputWrapper, {}, [className])}>
+        <div
+            className={clsx(cls.InputWrapper, className, {
+                [cls.readonly]: readonly,
+            })}
+        >
             {placeholder && (
                 <div className={cls.placeholder}>{`${placeholder}>`}</div>
             )}

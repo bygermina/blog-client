@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Icon.module.scss';
 
 type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick'>;
@@ -32,7 +33,7 @@ export const Icon = memo((props: IconProps) => {
 
     const icon = (
         <Svg
-            className={classNames(cls.Icon, {}, [className])}
+            className={clsx(cls.Icon, className)}
             width={width}
             height={height}
             {...otherProps}

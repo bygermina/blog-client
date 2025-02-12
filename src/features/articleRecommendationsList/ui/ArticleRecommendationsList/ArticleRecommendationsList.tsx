@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { ArticleList } from '@/entities/Article';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -30,7 +29,7 @@ export const ArticleRecommendationsList = memo(
             <VStack
                 data-testid="ArticleRecommendationsList"
                 gap="8"
-                className={classNames('', {}, [className])}
+                className={className}
             >
                 <Text size="l" title={t('Рекомендуем')} />
                 <ArticleList articles={articles} target="_blank" />

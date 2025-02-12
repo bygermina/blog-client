@@ -3,7 +3,6 @@ import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { Text } from '@/shared/ui/redesigned/Text';
@@ -128,11 +127,7 @@ export const EditableProfileCard = memo(
 
         return (
             <DynamicModuleLoader reducers={reducers}>
-                <VStack
-                    gap="16"
-                    max
-                    className={classNames('', {}, [className])}
-                >
+                <VStack gap="16" max className={className}>
                     <EditableProfileCardHeader />
                     {validateErrors?.length &&
                         validateErrors.map((err) => (

@@ -1,5 +1,6 @@
 import { memo, useState } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './StarRating.module.scss';
 import StarIcon from '@/shared/assets/icons/star.svg';
 import { Icon } from '../../redesigned/Icon';
@@ -43,10 +44,10 @@ export const StarRating = memo((props: StarRatingProps) => {
     };
 
     return (
-        <div className={classNames(cls.StarRatingRedesigned, {}, [className])}>
+        <div className={clsx(cls.StarRatingRedesigned, className)}>
             {stars.map((starNumber) => {
                 const commonProps = {
-                    className: classNames(
+                    className: clsx(
                         cls.starIcon,
                         { [cls.selected]: isSelected },
                         [

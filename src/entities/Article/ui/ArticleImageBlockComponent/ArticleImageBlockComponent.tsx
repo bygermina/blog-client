@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ArticleImageBlock } from '../../model/types/article';
@@ -18,11 +18,7 @@ export const ArticleImageBlockComponent = memo(
         const { t } = useTranslation();
 
         return (
-            <div
-                className={classNames(cls.ArticleImageBlockComponent, {}, [
-                    className,
-                ])}
-            >
+            <div className={clsx(cls.ArticleImageBlockComponent, className)}>
                 <img
                     src={`${__API__}/${block.data.file.url}`}
                     alt={block.data.title}

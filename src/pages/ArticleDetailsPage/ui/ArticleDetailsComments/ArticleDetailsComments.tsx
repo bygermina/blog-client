@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { AddCommentForm } from '@/features/addCommentForm';
 import { CommentList } from '@/entities/Comment';
@@ -40,7 +39,7 @@ export const ArticleDetailsComments = memo(
         });
 
         return (
-            <VStack gap="16" max className={classNames('', {}, [className])}>
+            <VStack gap="16" max className={className}>
                 <Text size="l" title={t('Комментарии')} />
                 <Suspense fallback={<Skeleton />}>
                     <AddCommentForm onSendComment={onSendComment} />

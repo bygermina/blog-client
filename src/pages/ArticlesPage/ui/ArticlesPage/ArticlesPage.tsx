@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import clsx from 'clsx';
 
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -52,9 +52,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
                     <Page
                         data-testid="ArticlesPage"
                         onScrollEnd={onLoadNextPart}
-                        className={classNames(cls.ArticlesPageRedesigned, {}, [
-                            className,
-                        ])}
+                        className={clsx(cls.ArticlesPageRedesigned, className)}
                     >
                         <InfoSEO
                             title={t('Articles page')}

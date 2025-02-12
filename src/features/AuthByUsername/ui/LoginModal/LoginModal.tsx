@@ -1,7 +1,6 @@
 import { PropsWithChildren, Suspense } from 'react';
 
 import { Modal } from '@/shared/ui/redesigned/Modal';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Loader } from '@/shared/ui/deprecated/Loader';
 
 interface LoginModalProps {
@@ -16,12 +15,7 @@ export const LoginModal = ({
     onClose,
     children,
 }: PropsWithChildren<LoginModalProps>) => (
-    <Modal
-        className={classNames('', {}, [className])}
-        isOpen={isOpen}
-        onClose={onClose}
-        lazy
-    >
+    <Modal className={className} isOpen={isOpen} onClose={onClose} lazy>
         <Suspense fallback={<Loader />}>{children}</Suspense>
     </Modal>
 );

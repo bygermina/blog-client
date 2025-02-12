@@ -1,6 +1,5 @@
 import { memo } from 'react';
-
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
 
 import cls from './Text.module.scss';
 
@@ -58,7 +57,7 @@ export const Html = memo(
 
         return (
             <div
-                className={classNames(
+                className={clsx(
                     cls.Text,
                     { [cls.bold]: bold },
                     additionalClasses,

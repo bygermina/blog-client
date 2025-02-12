@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
 
 import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { NotificationList } from '@/entities/Notification';
@@ -33,9 +33,7 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
         <div>
             <BrowserView>
                 <Popover
-                    className={classNames(cls.NotificationButton, {}, [
-                        className,
-                    ])}
+                    className={clsx(cls.NotificationButton, className)}
                     direction="bottom left"
                     trigger={trigger}
                 >

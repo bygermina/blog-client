@@ -1,5 +1,6 @@
 import { HTMLAttributes, memo, ReactNode } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Card.module.scss';
 
 export enum CardTheme {
@@ -29,10 +30,12 @@ export const Card = memo((props: CardProps) => {
 
     return (
         <div
-            className={classNames(cls.Card, { [cls.max]: max }, [
+            className={clsx(
+                cls.Card,
+                { [cls.max]: max },
                 className,
                 cls[theme],
-            ])}
+            )}
             {...otherProps}
         >
             {children}

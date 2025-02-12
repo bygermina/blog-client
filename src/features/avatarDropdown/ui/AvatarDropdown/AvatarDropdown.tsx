@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { classNames } from '@/shared/lib/classNames/classNames';
+
 import {
     getUserAuthData,
     isUserAdmin,
@@ -60,7 +60,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
     return (
         <Dropdown
             direction="bottom left"
-            className={classNames('', {}, [className])}
+            className={className}
             items={items}
             trigger={<Avatar size={40} src={authData.avatar} />}
         />

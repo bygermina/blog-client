@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { memo, useCallback, useState } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import {
     DynamicModuleLoader,
@@ -80,10 +80,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-            <VStack
-                gap="16"
-                className={classNames(cls.LoginForm, {}, [className])}
-            >
+            <VStack gap="16" className={clsx(cls.LoginForm, className)}>
                 <Text title={t('Форма авторизации')} />
                 {error && (
                     <Text

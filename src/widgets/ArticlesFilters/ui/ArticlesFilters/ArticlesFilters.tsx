@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
@@ -48,10 +48,7 @@ export const ArticlesFilters = memo(
         const isAuth = useSelector(getUserAuthData);
 
         return (
-            <Card
-                className={classNames(cls.ArticlesFilters, {}, [className])}
-                padding="24"
-            >
+            <Card className={clsx(cls.ArticlesFilters, className)} padding="24">
                 <VStack gap="32">
                     <Input
                         type="text"

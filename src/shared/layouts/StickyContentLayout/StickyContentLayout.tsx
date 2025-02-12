@@ -1,6 +1,5 @@
 import { memo, ReactElement } from 'react';
-
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
 
 import cls from './StickyContentLayout.module.scss';
 
@@ -14,7 +13,7 @@ interface StickyContentLayoutProps {
 export const StickyContentLayout = memo(
     ({ className, content, left, right }: StickyContentLayoutProps) => {
         return (
-            <div className={classNames(cls.MainLayout, {}, [className])}>
+            <div className={clsx(cls.MainLayout, className)}>
                 {/* {left && <div className={cls.left}>{left}</div>} */}
                 <div className={cls.content}>{content}</div>
                 {right && <div className={cls.right}>{right}</div>}

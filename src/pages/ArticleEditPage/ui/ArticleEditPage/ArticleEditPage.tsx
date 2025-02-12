@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
 import { Page } from '@/widgets/Page';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Editor } from '@/features/addEditArticle';
 
 import cls from './ArticleEditPage.module.scss';
@@ -18,7 +18,7 @@ const ArticleEditPage = memo(({ className }: ArticleEditPageProps) => {
     const isEdit = Boolean(id);
 
     return (
-        <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
+        <Page className={clsx(cls.ArticleEditPage, className)}>
             {isEdit ? t('Редактирование статьи') : t('Создание новой статьи')}
             <Editor />
             {/* Добавить редактирование с фронта SEO title, description, keywords */}

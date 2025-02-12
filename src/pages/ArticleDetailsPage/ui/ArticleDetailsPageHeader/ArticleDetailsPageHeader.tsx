@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { Button } from '@/shared/ui/redesigned/Button';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { getArticleDetailsData } from '@/entities/Article';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
@@ -33,11 +32,7 @@ export const ArticleDetailsPageHeader = memo(
         }, [article, navigate]);
 
         return (
-            <HStack
-                max
-                justify="between"
-                className={classNames('', {}, [className])}
-            >
+            <HStack max justify="between" className={className}>
                 <Button variant="outline" onClick={onBackToList}>
                     {t('Назад к списку')}
                 </Button>

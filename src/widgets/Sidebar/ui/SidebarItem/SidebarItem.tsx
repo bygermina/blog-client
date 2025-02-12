@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { getUserAuthData } from '@/entities/User';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -27,7 +27,7 @@ export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
     return (
         <AppLink
             to={item.path}
-            className={classNames(cls.itemRedesigned, {
+            className={clsx(cls.itemRedesigned, {
                 [cls.collapsedRedesigned]: collapsed,
             })}
             activeClassName={cls.active}

@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -44,11 +44,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <StickyContentLayout
                 content={
-                    <Page
-                        className={classNames(cls.ArticleDetailsPage, {}, [
-                            className,
-                        ])}
-                    >
+                    <Page className={clsx(cls.ArticleDetailsPage, className)}>
                         <VStack gap="16" max>
                             <DetailsContainer />
                             <ArticleRating articleId={id} />

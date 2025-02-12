@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useMemo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+
 import { TabItem } from '@/shared/ui/deprecated/Tabs';
 import { ArticleType } from '@/entities/Article';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
@@ -50,7 +50,7 @@ export const ArticleTypeTabs = memo((props: ArticleTypeTabsProps) => {
             tabs={typeTabs}
             value={value}
             onTabClick={onTabClick}
-            className={classNames('', {}, [className])}
+            className={className}
         />
     );
 });

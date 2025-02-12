@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { User } from '@/entities/User';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
@@ -29,9 +29,7 @@ export const ArticleAdditionalInfo = memo(
         return (
             <VStack
                 gap="32"
-                className={classNames(cls.ArticleAdditionalInfo, {}, [
-                    className,
-                ])}
+                className={clsx(cls.ArticleAdditionalInfo, className)}
             >
                 {/* <HStack gap="8">
                     <Avatar src={author?.avatar} size={32} />

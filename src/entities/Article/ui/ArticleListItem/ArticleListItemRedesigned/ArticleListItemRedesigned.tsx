@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import EyeIcon from '@/shared/assets/icons/eye.svg';
@@ -73,10 +73,7 @@ export const ArticleListItemRedesigned = memo(
                     padding="24"
                     max
                     data-testid="ArticleListItem"
-                    className={classNames(cls.ArticleListItem, {}, [
-                        className,
-                        cls[view],
-                    ])}
+                    className={clsx(cls.ArticleListItem, className, cls[view])}
                 >
                     <VStack max gap="16">
                         <HStack gap="8" max>
@@ -127,10 +124,7 @@ export const ArticleListItemRedesigned = memo(
                 data-testid="ArticleListItem"
                 target={target}
                 to={getRouteArticleDetails(article.id)}
-                className={classNames(cls.ArticleListItem, {}, [
-                    className,
-                    cls[view],
-                ])}
+                className={clsx(cls.ArticleListItem, className, cls[view])}
             >
                 <Card className={cls.card} border="partial" padding="0">
                     <AppImage

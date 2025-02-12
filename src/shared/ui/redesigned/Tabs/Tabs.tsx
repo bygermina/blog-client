@@ -1,5 +1,6 @@
 import { memo, ReactNode, useCallback } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import { Card } from '../Card/Card';
 import cls from './Tabs.module.scss';
 import { Flex, FlexDirection } from '../Stack/Flex/Flex';
@@ -32,14 +33,14 @@ export const Tabs = memo((props: TabsProps) => {
             direction={direction}
             gap="8"
             align="start"
-            className={classNames(cls.Tabs, {}, [className])}
+            className={clsx(cls.Tabs, className)}
         >
             {tabs.map((tab) => {
                 const isSelected = tab.value === value;
                 return (
                     <Card
                         variant={isSelected ? 'light' : 'normal'}
-                        className={classNames(cls.tab, {
+                        className={clsx(cls.tab, {
                             [cls.selected]: isSelected,
                         })}
                         key={tab.value}

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Html } from '@/shared/ui/redesigned/Html/Html';
 
 import { ArticleTextBlock } from '../../model/types/article';
@@ -18,11 +18,7 @@ export const ArticleTextBlockComponent = memo(
         const { t } = useTranslation();
 
         return (
-            <div
-                className={classNames(cls.ArticleTextBlockComponent, {}, [
-                    className,
-                ])}
-            >
+            <div className={clsx(cls.ArticleTextBlockComponent, className)}>
                 <Html title={block.data.text} className={cls.title} />
                 {/* {block.data.text.map((paragraph, index) => (
                     <Text

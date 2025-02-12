@@ -1,6 +1,6 @@
 import { memo } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Card } from '@/shared/ui/redesigned/Card';
 
@@ -17,7 +17,7 @@ export const NotificationItem = memo((props: NotificationItemProps) => {
     const { className, item } = props;
 
     const content = (
-        <Card className={classNames(cls.NotificationItem, {}, [className])}>
+        <Card className={clsx(cls.NotificationItem, className)}>
             <Text title={item.title} text={item.description} />
         </Card>
     );

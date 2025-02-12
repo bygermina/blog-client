@@ -1,7 +1,7 @@
 import { memo, Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { getUserInited, getUserInfo } from '@/entities/User';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
@@ -28,14 +28,14 @@ const App = memo(() => {
 
     if (!inited) {
         return (
-            <div id="app" className={classNames('app_redesigned', {}, [theme])}>
+            <div id="app" className={clsx('app_redesigned', {}, [theme])}>
                 <AppLoaderLayout />{' '}
             </div>
         );
     }
 
     return (
-        <div id="app" className={classNames('app_redesigned', {}, [theme])}>
+        <div id="app" className={clsx('app_redesigned', theme)}>
             <Suspense fallback="">
                 <MainLayout
                     header={<Navbar />}

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 // @ts-ignore
@@ -47,12 +47,7 @@ export const ArticleList = memo(
 
         if (!isLoading && !articles.length) {
             return (
-                <div
-                    className={classNames(cls.ArticleList, {}, [
-                        className,
-                        cls[view],
-                    ])}
-                >
+                <div className={clsx(cls.ArticleList, className, cls[view])}>
                     <Text size="l" title={t('Статьи не найдены')} />
                 </div>
             );
@@ -62,7 +57,7 @@ export const ArticleList = memo(
             <HStack
                 wrap="wrap"
                 gap="16"
-                className={classNames(cls.ArticleListRedesigned, {}, [])}
+                className={clsx(cls.ArticleListRedesigned)}
                 data-testid="ArticleList"
             >
                 {articles.map((item) => (

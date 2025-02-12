@@ -1,5 +1,6 @@
 import { memo } from 'react';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Text.module.scss';
 
 export enum TextTheme {
@@ -56,14 +57,16 @@ export const Text = memo((props: TextProps) => {
 
     const HeaderTag = mapSizeToHeaderTag[size];
 
-    const mods: Mods = {
-        [cls[theme]]: true,
-        [cls[align]]: true,
-        [cls[size]]: true,
-    };
-
     return (
-        <div className={classNames(cls.Text, mods, [className])}>
+        <div
+            className={clsx(
+                cls.Text,
+                cls[theme],
+                cls[align],
+                cls[size],
+                className,
+            )}
+        >
             {title && (
                 <HeaderTag
                     className={cls.title}

@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
@@ -112,7 +112,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
             <VStack
                 gap="16"
                 max
-                className={classNames(cls.ArticleDetails, {}, [className])}
+                className={clsx(cls.ArticleDetails, {}, [className])}
             >
                 {content}
             </VStack>

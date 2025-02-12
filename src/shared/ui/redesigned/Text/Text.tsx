@@ -1,5 +1,6 @@
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Text.module.scss';
 
 export type TextVariant = 'primary' | 'error' | 'accent';
@@ -56,7 +57,7 @@ export const Text = memo(
 
         return (
             <div
-                className={classNames(
+                className={clsx(
                     cls.Text,
                     { [cls.bold]: bold },
                     additionalClasses,

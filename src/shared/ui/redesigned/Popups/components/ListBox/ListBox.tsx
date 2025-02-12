@@ -1,14 +1,17 @@
 import { Fragment, ReactNode, useMemo } from 'react';
 import { Listbox as HListBox } from '@headlessui/react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import { DropdownDirection } from '@/shared/types/ui';
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
+
 import { HStack } from '../../../../redesigned/Stack';
 import { Button } from '../../../Button/Button';
-import cls from './ListBox.module.scss';
 import { mapDirectionClass } from '../../styles/consts';
 import popupCls from '../../styles/popup.module.scss';
-import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg';
 import { Icon } from '../../../Icon';
+
+import cls from './ListBox.module.scss';
 
 export interface ListBoxItem<T extends string> {
     value: string;
@@ -51,10 +54,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
             <HListBox
                 disabled={readonly}
                 as="div"
-                className={classNames(cls.ListBox, {}, [
-                    className,
-                    popupCls.popup,
-                ])}
+                className={clsx(cls.ListBox, className, popupCls.popup)}
                 value={value}
                 onChange={onChange}
             >
@@ -66,9 +66,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 >
                     {selectedItem?.content ?? defaultValue}
                 </HListBox.Button>
-                <HListBox.Options
-                    className={classNames(cls.options, {}, optionsClasses)}
-                >
+                <HListBox.Options className={clsx(cls.options, optionsClasses)}>
                     {items?.map((item) => (
                         <HListBox.Option
                             key={item.value}
@@ -78,7 +76,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                         >
                             {({ active, selected }) => (
                                 <li
-                                    className={classNames(cls.item, {
+                                    className={clsx(cls.item, {
                                         [popupCls.active]: active,
                                         [popupCls.disabled]: item.disabled,
                                         [popupCls.selected]: selected,

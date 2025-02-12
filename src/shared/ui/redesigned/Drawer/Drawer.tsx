@@ -1,5 +1,6 @@
-import React, { memo, ReactNode, useCallback, useEffect } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { memo, ReactNode, useCallback, useEffect } from 'react';
+import clsx from 'clsx';
+
 import {
     AnimationProvider,
     useAnimationLibs,
@@ -85,12 +86,13 @@ export const DrawerContent = memo((props: DrawerProps) => {
     return (
         <Portal element={document.getElementById('app') ?? document.body}>
             <div
-                className={classNames(cls.Drawer, {}, [
+                className={clsx(
+                    cls.Drawer,
                     className,
                     theme,
                     'app_drawer',
                     cls.drawerNew,
-                ])}
+                )}
             >
                 <Overlay onClick={close} />
                 <Spring.a.div

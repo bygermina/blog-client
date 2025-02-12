@@ -1,5 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import cls from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
@@ -63,21 +64,22 @@ export const Flex = (props: FlexProps) => {
         ...otherProps
     } = props;
 
-    const classes = [
-        className,
-        justifyClasses[justify],
-        alignClasses[align],
-        directionClasses[direction],
-        cls[wrap],
-        gap && gapClasses[gap],
-    ];
-
-    const mods: Mods = {
-        [cls.max]: max,
-    };
-
     return (
-        <div className={classNames(cls.Flex, mods, classes)} {...otherProps}>
+        <div
+            className={clsx(
+                cls.Flex,
+                {
+                    [cls.max]: max,
+                },
+                className,
+                justifyClasses[justify],
+                alignClasses[align],
+                directionClasses[direction],
+                cls[wrap],
+                gap && gapClasses[gap],
+            )}
+            {...otherProps}
+        >
             {children}
         </div>
     );

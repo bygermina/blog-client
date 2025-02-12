@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
     DynamicModuleLoader,
@@ -59,10 +59,9 @@ const AddCommentForm = memo(
                         justify="between"
                         max
                         gap="16"
-                        className={classNames(
+                        className={clsx(
                             cls.AddCommentFormRedesigned,
-                            {},
-                            [className],
+                            className,
                         )}
                     >
                         <Input

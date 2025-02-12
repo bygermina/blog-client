@@ -1,6 +1,6 @@
 import { memo } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import ListIcon from '@/shared/assets/icons/burger.svg';
 import TiledIcon from '@/shared/assets/icons/tile.svg';
 import { ArticleView } from '@/entities/Article';
@@ -36,9 +36,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
 
     return (
         <Card
-            className={classNames(cls.ArticleViewSelectorRedesigned, {}, [
-                className,
-            ])}
+            className={clsx(cls.ArticleViewSelectorRedesigned, className)}
             border="round"
         >
             <HStack gap="8">
@@ -48,7 +46,7 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                         key={viewType.view}
                         onClick={onClick(viewType.view)}
                         Svg={viewType.icon}
-                        className={classNames('', {
+                        className={clsx({
                             [cls.notSelected]: viewType.view !== view,
                         })}
                     />

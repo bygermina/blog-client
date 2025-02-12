@@ -1,5 +1,6 @@
 import { memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import clsx from 'clsx';
+
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
@@ -27,10 +28,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
                 data-testid="CommentCard.Loading"
                 gap="8"
                 max
-                className={classNames(cls.CommentCard, {}, [
-                    className,
-                    cls.loading,
-                ])}
+                className={clsx(cls.CommentCard, className, cls.loading)}
             >
                 <div className={cls.header}>
                     <Skeleton width={30} height={30} border="50%" />
@@ -55,9 +53,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
                 data-testid="CommentCard.Content"
                 gap="8"
                 max
-                className={classNames(cls.CommentCardRedesigned, {}, [
-                    className,
-                ])}
+                className={clsx(cls.CommentCardRedesigned, className)}
             >
                 <AppLink to={getRouteProfile(comment.user.id)}>
                     <HStack gap="8">

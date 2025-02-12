@@ -1,6 +1,6 @@
 import { memo, useMemo, useState } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { VStack } from '@/shared/ui/redesigned/Stack';
@@ -40,10 +40,10 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     return (
         <aside
             data-testid="sidebar"
-            className={classNames(
+            className={clsx(
                 cls.SidebarRedesigned,
                 { [cls.collapsedRedesigned]: collapsed },
-                [className],
+                className,
             )}
         >
             <AppLogo size={collapsed ? 30 : 50} className={cls.appLogo} />

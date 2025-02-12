@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import clsx from 'clsx';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
@@ -32,7 +32,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
     } = useArticleFilters();
 
     return (
-        <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
+        <div className={clsx(cls.ArticlesPageFilters, className)}>
             <div className={cls.sortWrapper}>
                 <ArticleSortSelector
                     order={order}
