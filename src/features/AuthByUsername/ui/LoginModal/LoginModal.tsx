@@ -1,7 +1,7 @@
 import { PropsWithChildren, Suspense } from 'react';
 
 import { Modal } from '@/shared/ui/redesigned/Modal';
-import { Loader } from '@/shared/ui/deprecated/Loader';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 interface LoginModalProps {
     className?: string;
@@ -16,6 +16,6 @@ export const LoginModal = ({
     children,
 }: PropsWithChildren<LoginModalProps>) => (
     <Modal className={className} isOpen={isOpen} onClose={onClose} lazy>
-        <Suspense fallback={<Loader />}>{children}</Suspense>
+        <Suspense fallback={<Skeleton />}>{children}</Suspense>
     </Modal>
 );

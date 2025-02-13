@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useMemo } from 'react';
 
-import { TabItem } from '@/shared/ui/deprecated/Tabs';
+import { TabItem } from '@/shared/ui/redesigned/Tabs/Tabs';
 import { ArticleType } from '@/entities/Article';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 

@@ -1,18 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+
 import { RatingCard } from '@/entities/Rating';
-import { useRateArticle } from '../../api/articleRatingApi';
 import { getUserAuthData } from '@/entities/User';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+
+import { useRateArticle } from '../../api/articleRatingApi';
 
 export interface ArticleRatingProps {
     className?: string;
     articleId: string;
 }
 
-const ArticleRating = memo((props: ArticleRatingProps) => {
-    const { className, articleId } = props;
+const ArticleRating = memo(({ className, articleId }: ArticleRatingProps) => {
     const { t } = useTranslation();
     const userData = useSelector(getUserAuthData);
 

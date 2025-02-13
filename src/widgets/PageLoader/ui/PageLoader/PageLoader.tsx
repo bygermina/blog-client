@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { Loader } from '@/shared/ui/deprecated/Loader';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 import cls from './PageLoader.module.scss';
 
@@ -10,6 +10,6 @@ interface PageLoaderProps {
 
 export const PageLoader = ({ className }: PageLoaderProps) => (
     <div className={clsx(cls.PageLoader, className)}>
-        <Loader />
+        <Skeleton />
     </div>
 );

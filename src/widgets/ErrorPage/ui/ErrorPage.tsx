@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 
-import { Button } from '@/shared/ui/deprecated/Button';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 import cls from './ErrorPage.module.scss';
 
