@@ -12,10 +12,10 @@
 }
 
 .app_redesigned {
-    background: var(--bg-redesigned);
+    background: var(--bg);
     min-height: 100vh;
     font: var(--font-m-redesigned);
-    color: var(--text-redesigned);
+    color: var(--text);
 }
 
 .content-page {
@@ -28,13 +28,13 @@
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--light-bg-redesigned);        /* цвет дорожки */
+    background: var(--bg--light-bg);        /* цвет дорожки */
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--icon-redesigned);    /* цвет плашки */
+    background-color: var(--icon);    /* цвет плашки */
     border-radius: 20px;       /* закругления плашки */
-    border: 1px solid var(--accent-redesigned);  /* padding вокруг плашки */
+    border: 1px solid var(--accent);  /* padding вокруг плашки */
 }
 
 .app *::-webkit-scrollbar {
