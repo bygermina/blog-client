@@ -6,11 +6,11 @@ import { getUserAuthData, getUserRoles, UserRole } from '@/entities/User';
 import { getRouteForbidden, getRouteMain } from '@/shared/const/router';
 
 interface RequireAuthProps {
-    children: JSX.Element;
     roles?: UserRole[];
+    children: JSX.Element;
 }
 
-export function RequireAuth({ children, roles }: RequireAuthProps) {
+export function RequireAuth({ roles, children }: RequireAuthProps) {
     const auth = useSelector(getUserAuthData);
     const location = useLocation();
     const userRoles = useSelector(getUserRoles);
