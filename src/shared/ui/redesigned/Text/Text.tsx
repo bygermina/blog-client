@@ -46,21 +46,16 @@ export const Text = memo(
         'data-testid': dataTestId = 'Text',
     }: TextProps) => {
         const HeaderTag = mapSizeToHeaderTag[size];
-        const sizeClass = mapSizeToClass[size];
-
-        const additionalClasses = [
-            className,
-            cls[variant],
-            cls[align],
-            sizeClass,
-        ];
 
         return (
             <div
                 className={clsx(
                     cls.Text,
                     { [cls.bold]: bold },
-                    additionalClasses,
+                    className,
+                    cls[variant],
+                    cls[align],
+                    mapSizeToClass[size],
                 )}
             >
                 {title && (

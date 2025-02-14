@@ -30,20 +30,16 @@ interface ListBoxProps<T extends string> {
     label?: string;
 }
 
-export function ListBox<T extends string>(props: ListBoxProps<T>) {
-    const {
-        className,
-        items,
-        value,
-        defaultValue,
-        onChange,
-        readonly,
-        direction = 'bottom right',
-        label,
-    } = props;
-
-    const optionsClasses = [mapDirectionClass[direction], popupCls.menu];
-
+export function ListBox<T extends string>({
+    className,
+    items,
+    value,
+    defaultValue,
+    onChange,
+    readonly,
+    direction = 'bottom right',
+    label,
+}: ListBoxProps<T>) {
     const selectedItem = useMemo(() => {
         return items?.find((item) => item.value === value);
     }, [items, value]);
@@ -66,7 +62,13 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 >
                     {selectedItem?.content ?? defaultValue}
                 </HListBox.Button>
-                <HListBox.Options className={clsx(cls.options, optionsClasses)}>
+                <HListBox.Options
+                    className={clsx(
+                        cls.options,
+                        mapDirectionClass[direction],
+                        popupCls.menu,
+                    )}
+                >
                     {items?.map((item) => (
                         <HListBox.Option
                             key={item.value}

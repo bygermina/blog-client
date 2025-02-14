@@ -21,38 +21,38 @@ interface ClickableBaseProps extends IconBaseProps {
 
 type IconProps = NonClickableIconProps | ClickableBaseProps;
 
-export const Icon = memo((props: IconProps) => {
-    const {
+export const Icon = memo(
+    ({
         className,
         Svg,
         width = 32,
         height = 32,
         clickable,
         ...otherProps
-    } = props;
-
-    const icon = (
-        <Svg
-            className={clsx(cls.Icon, className)}
-            width={width}
-            height={height}
-            {...otherProps}
-            onClick={undefined}
-        />
-    );
-
-    if (clickable) {
-        return (
-            <button
-                type="button"
-                className={cls.button}
-                onClick={props.onClick}
-                style={{ height, width }}
-            >
-                {icon}
-            </button>
+    }: IconProps) => {
+        const icon = (
+            <Svg
+                className={clsx(cls.Icon, className)}
+                width={width}
+                height={height}
+                {...otherProps}
+                onClick={undefined}
+            />
         );
-    }
 
-    return icon;
-});
+        if (clickable) {
+            return (
+                <button
+                    type="button"
+                    className={cls.button}
+                    onClick={props.onClick}
+                    style={{ height, width }}
+                >
+                    {icon}
+                </button>
+            );
+        }
+
+        return icon;
+    },
+);

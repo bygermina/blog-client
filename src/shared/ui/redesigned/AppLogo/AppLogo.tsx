@@ -1,4 +1,3 @@
-import React, { memo } from 'react';
 import clsx from 'clsx';
 
 import AppSvg from '@/shared/assets/icons/app-image.svg';
@@ -12,7 +11,7 @@ interface AppLogoProps {
     size?: number;
 }
 
-export const AppLogo = memo(({ className, size = 50 }: AppLogoProps) => {
+export const AppLogo = ({ className, size = 50 }: AppLogoProps) => {
     return (
         <HStack
             max
@@ -29,4 +28,4 @@ export const AppLogo = memo(({ className, size = 50 }: AppLogoProps) => {
             <div className={cls.gradientSmall} />
         </HStack>
     );
-});
+};

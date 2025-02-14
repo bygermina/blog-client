@@ -3,8 +3,9 @@ import clsx from 'clsx';
 
 import CopyIconNew from '@/shared/assets/icons/copy.svg';
 
-import cls from './Code.module.scss';
 import { Icon } from '../Icon';
+
+import cls from './Code.module.scss';
 
 interface CodeProps {
     className?: string;

@@ -26,8 +26,8 @@ const mapPaddingToClass: Record<CardPadding, string> = {
     '24': 'gap_24',
 };
 
-export const Card = memo((props: CardProps) => {
-    const {
+export const Card = memo(
+    ({
         className,
         children,
         variant = 'normal',
@@ -37,24 +37,25 @@ export const Card = memo((props: CardProps) => {
         fullWidth,
         fullHeight,
         ...otherProps
-    } = props;
-
-    const paddingClass = mapPaddingToClass[padding];
-
-    return (
-        <div
-            className={clsx(
-                cls.Card,
-                {
-                    [cls.max]: max,
-                    [cls.fullHeight]: fullHeight,
-                    [cls.fullWidth]: fullWidth,
-                },
-                [className, cls[variant], cls[paddingClass], cls[border]],
-            )}
-            {...otherProps}
-        >
-            {children}
-        </div>
-    );
-});
+    }: CardProps) => {
+        return (
+            <div
+                className={clsx(
+                    cls.Card,
+                    {
+                        [cls.max]: max,
+                        [cls.fullHeight]: fullHeight,
+                        [cls.fullWidth]: fullWidth,
+                    },
+                    className,
+                    cls[variant],
+                    cls[mapPaddingToClass[padding]],
+                    cls[border],
+                )}
+                {...otherProps}
+            >
+                {children}
+            </div>
+        );
+    },
+);

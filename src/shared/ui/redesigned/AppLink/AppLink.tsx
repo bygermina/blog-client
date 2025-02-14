@@ -1,5 +1,5 @@
 import { LinkProps, NavLink } from 'react-router-dom';
-import { memo, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
 import cls from './AppLink.module.scss';
@@ -9,22 +9,20 @@ export type AppLinkVariant = 'primary' | 'red';
 interface AppLinkProps extends LinkProps {
     className?: string;
     variant?: AppLinkVariant;
-    children?: ReactNode;
     activeClassName?: string;
 }
 
-export const AppLink = memo((props: AppLinkProps) => {
-    const {
-        to,
-        className,
-        children,
-        variant = 'primary',
-        activeClassName = '',
-        ...otherProps
-    } = props;
-
+export const AppLink = ({
+    to,
+    className,
+    variant = 'primary',
+    activeClassName = '',
+    children,
+    ...otherProps
+}: PropsWithChildren<AppLinkProps>) => {
     return (
         <NavLink
+            {...otherProps}
             to={to}
             className={({ isActive }) =>
                 clsx(
@@ -34,9 +32,8 @@ export const AppLink = memo((props: AppLinkProps) => {
                     cls[variant],
                 )
             }
-            {...otherProps}
         >
             {children}
         </NavLink>
     );
-});
+};

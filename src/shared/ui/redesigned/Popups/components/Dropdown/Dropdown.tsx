@@ -5,9 +5,10 @@ import clsx from 'clsx';
 import { DropdownDirection } from '@/shared/types/ui';
 
 import { AppLink } from '../../../AppLink/AppLink';
-import cls from './Dropdown.module.scss';
 import { mapDirectionClass } from '../../styles/consts';
+
 import popupCls from '../../styles/popup.module.scss';
+import cls from './Dropdown.module.scss';
 
 export interface DropdownItem {
     disabled?: boolean;
@@ -23,18 +24,25 @@ interface DropdownProps {
     trigger: ReactNode;
 }
 
-export function Dropdown(props: DropdownProps) {
-    const { className, trigger, items, direction = 'bottom right' } = props;
-
-    const menuClasses = [mapDirectionClass[direction], popupCls.menu];
-
+export function Dropdown({
+    className,
+    trigger,
+    items,
+    direction = 'bottom right',
+}: DropdownProps) {
     return (
         <Menu
             as="div"
             className={clsx(cls.Dropdown, className, popupCls.popup)}
         >
             <Menu.Button className={popupCls.trigger}>{trigger}</Menu.Button>
-            <Menu.Items className={clsx(cls.menu, menuClasses)}>
+            <Menu.Items
+                className={clsx(
+                    cls.menu,
+                    mapDirectionClass[direction],
+                    popupCls.menu,
+                )}
+            >
                 {items.map((item, index) => {
                     const content = ({ active }: { active: boolean }) => (
                         <button
