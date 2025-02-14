@@ -2,13 +2,14 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import { StoreProvider } from '@/app/providers/StoreProvider';
-import App from './app/App';
-import '@/app/styles/index.scss';
-import './shared/config/i18n/i18n';
-import { ErrorBoundary } from './app/providers/ErrorBoundary';
 import { ForceUpdateProvider } from '@/shared/lib/render/forceUpdate';
+import { ErrorBoundary } from '@/app/providers/ErrorBoundary';
+import App from '@/app/App';
+
+import './shared/config/i18n/i18n';
+
+import '@/app/styles/index.scss';
 
 const container = document.getElementById('root');
 
@@ -25,14 +26,11 @@ root.render(
         <StoreProvider>
             <ErrorBoundary>
                 <ForceUpdateProvider>
-                    <ThemeProvider>
-                        <HelmetProvider>
-                            <App />
-                        </HelmetProvider>
-                    </ThemeProvider>
+                    <HelmetProvider>
+                        <App />
+                    </HelmetProvider>
                 </ForceUpdateProvider>
             </ErrorBoundary>
         </StoreProvider>
     </BrowserRouter>,
 );
-export { Theme } from '@/shared/const/theme';

@@ -12,8 +12,7 @@ interface NotificationListProps {
     className?: string;
 }
 
-export const NotificationList = memo((props: NotificationListProps) => {
-    const { className } = props;
+export const NotificationList = memo(({ className }: NotificationListProps) => {
     const { data, isLoading } = useNotifications(null, {
         pollingInterval: 10000,
     });

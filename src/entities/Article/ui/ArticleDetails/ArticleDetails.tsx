@@ -13,6 +13,7 @@ import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { InfoSEO } from '@/shared/lib/components/SEO';
+import { Html } from '@/shared/ui/redesigned/Html/Html';
 
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
@@ -24,7 +25,6 @@ import {
 import { renderArticleBlock } from './renderBlock';
 
 import cls from './ArticleDetails.module.scss';
-import { Html } from '@/shared/ui/redesigned/Html/Html';
 
 interface ArticleDetailsProps {
     className?: string;

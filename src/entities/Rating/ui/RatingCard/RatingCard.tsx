@@ -71,8 +71,8 @@ export const RatingCard = memo((props: RatingCardProps) => {
         </>
     );
 
-    const content = (
-        <>
+    return (
+        <Card fullWidth border="partial" padding="24">
             <VStack align="center" gap="8" max>
                 <Text title={starsCount ? t('Спасибо за оценку!') : title} />
                 <StarRating
@@ -113,12 +113,6 @@ export const RatingCard = memo((props: RatingCardProps) => {
                     </VStack>
                 </Drawer>
             </MobileView>
-        </>
-    );
-
-    return (
-        <Card fullWidth border="partial" padding="24">
-            {content}
         </Card>
     );
 });

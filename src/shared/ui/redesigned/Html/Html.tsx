@@ -48,19 +48,15 @@ export const Html = memo(
         const HeaderTag = mapSizeToHeaderTag[size];
         const sizeClass = mapSizeToClass[size];
 
-        const additionalClasses = [
-            className,
-            cls[variant],
-            cls[align],
-            sizeClass,
-        ];
-
         return (
             <div
                 className={clsx(
                     cls.Text,
                     { [cls.bold]: bold },
-                    additionalClasses,
+                    className,
+                    cls[variant],
+                    cls[align],
+                    sizeClass,
                 )}
             >
                 {title && (

@@ -11,8 +11,7 @@ interface ThemeProviderProps {
 
 const fallbackTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme;
 
-const ThemeProvider = (props: ThemeProviderProps) => {
-    const { initialTheme, children } = props;
+const ThemeProvider = ({ initialTheme, children }: ThemeProviderProps) => {
     const [isThemeInited, setThemeInited] = useState(false);
 
     const [theme, setTheme] = useState<Theme>(

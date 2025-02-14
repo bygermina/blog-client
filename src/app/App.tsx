@@ -1,12 +1,9 @@
-import { memo, Suspense, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import clsx from 'clsx';
+import { Suspense } from 'react';
 
-import { getUserInited, getUserInfo } from '@/entities/User';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 
@@ -14,38 +11,38 @@ import { AppRouter } from './providers/router';
 import { useAppToolbar } from './lib/useAppToolbar';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
 
-const App = memo(() => {
+const App = () => {
     const { theme } = useTheme();
-    const dispatch = useAppDispatch();
-    const inited = useSelector(getUserInited);
-    const toolbar = useAppToolbar();
+    // const dispatch = useAppDispatch();
+    // const inited = useSelector(getUserInited);
+    const Toolbar = useAppToolbar();
 
-    useEffect(() => {
-        if (!inited) {
-            dispatch(getUserInfo());
-        }
-    }, [dispatch, inited]);
+    // useEffect(() => {
+    //     if (!inited) {
+    //         dispatch(getUserInfo());
+    //     }
+    // }, [dispatch, inited]);
 
-    if (!inited) {
-        return (
-            <div id="app" className={clsx('app_redesigned', {}, [theme])}>
-                <AppLoaderLayout />{' '}
-            </div>
-        );
-    }
+    // if (!inited) {
+    //     return (
+    //         <div id="app" className={clsx('app_redesigned', theme)}>
+    //             <AppLoaderLayout />
+    //         </div>
+    //     );
+    // }
 
     return (
         <div id="app" className={clsx('app_redesigned', theme)}>
-            <Suspense fallback="">
+            <Suspense fallback={<AppLoaderLayout />}>
                 <MainLayout
                     header={<Navbar />}
                     content={<AppRouter />}
                     sidebar={<Sidebar />}
-                    toolbar={toolbar}
+                    toolbar={Toolbar ? <Toolbar /> : undefined}
                 />
             </Suspense>
         </div>
     );
-});
+};
 
 export default withTheme(App);

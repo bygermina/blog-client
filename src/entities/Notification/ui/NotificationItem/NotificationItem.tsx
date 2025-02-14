@@ -13,27 +13,27 @@ interface NotificationItemProps {
     item: Notification;
 }
 
-export const NotificationItem = memo((props: NotificationItemProps) => {
-    const { className, item } = props;
-
-    const content = (
-        <Card className={clsx(cls.NotificationItem, className)}>
-            <Text title={item.title} text={item.description} />
-        </Card>
-    );
-
-    if (item.href) {
-        return (
-            <a
-                className={cls.link}
-                target="_blank"
-                href={item.href}
-                rel="noreferrer"
-            >
-                {content}
-            </a>
+export const NotificationItem = memo(
+    ({ className, item }: NotificationItemProps) => {
+        const content = (
+            <Card className={clsx(cls.NotificationItem, className)}>
+                <Text title={item.title} text={item.description} />
+            </Card>
         );
-    }
 
-    return content;
-});
+        if (item.href) {
+            return (
+                <a
+                    className={cls.link}
+                    target="_blank"
+                    href={item.href}
+                    rel="noreferrer"
+                >
+                    {content}
+                </a>
+            );
+        }
+
+        return content;
+    },
+);
