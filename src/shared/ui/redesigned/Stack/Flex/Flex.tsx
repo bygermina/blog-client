@@ -51,19 +51,17 @@ export interface FlexProps extends DivProps {
     max?: boolean;
 }
 
-export const Flex = (props: FlexProps) => {
-    const {
-        className,
-        children,
-        justify = 'start',
-        align = 'center',
-        direction = 'row',
-        wrap = 'nowrap',
-        gap,
-        max,
-        ...otherProps
-    } = props;
-
+export const Flex = ({
+    className,
+    children,
+    justify = 'start',
+    align = 'center',
+    direction = 'row',
+    wrap = 'nowrap',
+    gap,
+    max,
+    ...otherProps
+}: FlexProps) => {
     return (
         <div
             className={clsx(

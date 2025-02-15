@@ -14,6 +14,7 @@ import { getRouteArticleDetails } from '@/shared/const/router';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Html } from '@/shared/ui/redesigned/Html/Html';
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
 
 import {
     ArticleBlockType,
@@ -47,21 +48,24 @@ export const ArticleListItemRedesigned = memo(
             return null;
         }
 
-        // const userInfo = (
-        //     <>
-        //         <Avatar
-        //             size={32}
-        //             src={article.user?.avatar}
-        //             className={cls.avatar}
-        //         />
-        //         <Text bold text={article.user.username} />
-        //     </>
-        // );
+        const userInfo = (
+            <>
+                <Avatar
+                    size={32}
+                    src={article.user?.avatar}
+                    className={cls.avatar}
+                />
+                <Text bold text={article.user?.username} />
+            </>
+        );
+
         const views = (
-            <HStack gap="8">
-                <Icon Svg={EyeIcon} />
-                <Text text={String(article.views)} className={cls.views} />
-            </HStack>
+            <div>
+                <HStack gap="8">
+                    <Icon Svg={EyeIcon} />
+                    <Text text={String(article.views)} className={cls.views} />
+                </HStack>
+            </div>
         );
 
         if (view === ArticleView.BIG) {
@@ -78,7 +82,7 @@ export const ArticleListItemRedesigned = memo(
                 >
                     <VStack max gap="16">
                         <HStack gap="8" max>
-                            {/* {userInfo} */}
+                            {userInfo}
                             <Text
                                 text={dayjs(article.createdAt).format(
                                     'DD MMMM YYYY',
@@ -148,7 +152,7 @@ export const ArticleListItemRedesigned = memo(
                                 />
                                 {views}
                             </HStack>
-                            {/* <HStack gap="4">{userInfo}</HStack> */}
+                            <HStack gap="4">{userInfo}</HStack>
                         </VStack>
                     </VStack>
                 </Card>
