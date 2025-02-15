@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import dayjs from 'dayjs';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -12,6 +13,7 @@ import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { Html } from '@/shared/ui/redesigned/Html/Html';
 
 import {
     ArticleBlockType,
@@ -21,7 +23,6 @@ import { ArticleListItemProps } from '../ArticleListItem';
 import { ArticleTextBlock } from '../../../model/types/article';
 
 import cls from './ArticleListItemRedesigned.module.scss';
-import { Html } from '@/shared/ui/redesigned/Html/Html';
 
 const highlightText = (text: string, searchTerm?: string): string => {
     if (!searchTerm) return text;
@@ -78,7 +79,11 @@ export const ArticleListItemRedesigned = memo(
                     <VStack max gap="16">
                         <HStack gap="8" max>
                             {/* {userInfo} */}
-                            <Text text={article.createdAt} />
+                            <Text
+                                text={dayjs(article.createdAt).format(
+                                    'DD MMMM YYYY',
+                                )}
+                            />
                         </HStack>
                         <Html
                             title={highlightText(article.title, search)}

@@ -1,4 +1,4 @@
-import { MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
+import { memo, MutableRefObject, ReactNode, UIEvent, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
@@ -21,7 +21,7 @@ interface PageProps extends TestProps {
 
 export const PAGE_ID = 'PAGE_ID';
 
-export const Page = ({ className, children, onScrollEnd }: PageProps) => {
+export const Page = memo(({ className, children, onScrollEnd }: PageProps) => {
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
@@ -55,7 +55,7 @@ export const Page = ({ className, children, onScrollEnd }: PageProps) => {
             className={clsx(cls.PageRedesigned, className)}
             onScroll={onScroll}
             id={PAGE_ID}
-            data-testid={props['data-testid'] ?? 'Page'}
+            // data-testid={props['data-testid'] ?? 'Page'}
         >
             {children}
             {onScrollEnd ? (
@@ -63,4 +63,4 @@ export const Page = ({ className, children, onScrollEnd }: PageProps) => {
             ) : null}
         </main>
     );
-};
+});
