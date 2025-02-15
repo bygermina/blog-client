@@ -1,17 +1,16 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import cls from './ScrollToolbar.module.scss';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ScrollToTopButton } from '@/features/scrollToTopButton';
 
-interface ScrollToolbarProps {
+import cls from './ScrollToolbar.module.scss';
+
+type Props = {
     className?: string;
-}
+};
 
-export const ScrollToolbar = memo((props: ScrollToolbarProps) => {
-    const { className } = props;
-
+export const ScrollToolbar = memo(({ className }: Props) => {
     return (
         <VStack
             justify="center"

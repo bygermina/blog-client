@@ -4,11 +4,11 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 import cls from './PageLoader.module.scss';
 
-interface PageLoaderProps {
+type Props = {
     className?: string;
-}
+};
 
-export const PageLoader = ({ className }: PageLoaderProps) => (
+export const PageLoader = ({ className }: Props) => (
     <div className={clsx(cls.PageLoader, className)}>
         <Skeleton />
     </div>

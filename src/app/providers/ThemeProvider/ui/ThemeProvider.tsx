@@ -4,14 +4,14 @@ import { ThemeContext } from '@/shared/lib/context/ThemeContext';
 import { Theme } from '@/shared/const/theme';
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage';
 
-interface ThemeProviderProps {
+type Props = {
     initialTheme?: Theme;
     children: ReactNode;
-}
+};
 
 const fallbackTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme;
 
-const ThemeProvider = ({ initialTheme, children }: ThemeProviderProps) => {
+const ThemeProvider = ({ initialTheme, children }: Props) => {
     const [isThemeInited, setThemeInited] = useState(false);
 
     const [theme, setTheme] = useState<Theme>(
