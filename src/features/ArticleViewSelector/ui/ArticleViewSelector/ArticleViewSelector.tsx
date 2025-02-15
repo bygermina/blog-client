@@ -27,31 +27,31 @@ const viewTypes = [
     },
 ];
 
-export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
-    const { className, view, onViewClick } = props;
+export const ArticleViewSelector = memo(
+    ({ className, view, onViewClick }: ArticleViewSelectorProps) => {
+        const onClick = (newView: ArticleView) => () => {
+            onViewClick?.(newView);
+        };
 
-    const onClick = (newView: ArticleView) => () => {
-        onViewClick?.(newView);
-    };
-
-    return (
-        <Card
-            className={clsx(cls.ArticleViewSelectorRedesigned, className)}
-            border="round"
-        >
-            <HStack gap="8">
-                {viewTypes.map((viewType) => (
-                    <Icon
-                        clickable
-                        key={viewType.view}
-                        onClick={onClick(viewType.view)}
-                        Svg={viewType.icon}
-                        className={clsx({
-                            [cls.notSelected]: viewType.view !== view,
-                        })}
-                    />
-                ))}
-            </HStack>
-        </Card>
-    );
-});
+        return (
+            <Card
+                className={clsx(cls.ArticleViewSelectorRedesigned, className)}
+                border="round"
+            >
+                <HStack gap="8">
+                    {viewTypes.map((viewType) => (
+                        <Icon
+                            clickable
+                            key={viewType.view}
+                            onClick={onClick(viewType.view)}
+                            Svg={viewType.icon}
+                            className={clsx({
+                                [cls.notSelected]: viewType.view !== view,
+                            })}
+                        />
+                    ))}
+                </HStack>
+            </Card>
+        );
+    },
+);
