@@ -20,13 +20,6 @@ export const ArticleTextBlockComponent = memo(
         return (
             <div className={clsx(cls.ArticleTextBlockComponent, className)}>
                 <Html title={block.data.text} className={cls.title} />
-                {/* {block.data.text.map((paragraph, index) => (
-                    <Text
-                        key={paragraph}
-                        text={paragraph}
-                        className={cls.paragraph}
-                    />
-                ))} */}
             </div>
         );
     },

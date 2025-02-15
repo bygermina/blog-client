@@ -7,14 +7,13 @@ import { VStack } from '@/shared/ui/redesigned/Stack';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { Comment } from '../../model/types/comment';
 
-interface CommentListProps {
+type Props = {
     className?: string;
     comments?: Comment[];
     isLoading?: boolean;
-}
+};
 
-export const CommentList = memo((props: CommentListProps) => {
-    const { className, isLoading, comments } = props;
+export const CommentList = memo(({ className, isLoading, comments }: Props) => {
     const { t } = useTranslation();
 
     if (isLoading) {

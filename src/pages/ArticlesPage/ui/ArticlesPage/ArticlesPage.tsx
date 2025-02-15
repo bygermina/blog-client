@@ -22,15 +22,15 @@ import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 
 import cls from './ArticlesPage.module.scss';
 
-interface ArticlesPageProps {
+type Props = {
     className?: string;
-}
+};
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
 
-const ArticlesPage = ({ className }: ArticlesPageProps) => {
+const ArticlesPage = ({ className }: Props) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();

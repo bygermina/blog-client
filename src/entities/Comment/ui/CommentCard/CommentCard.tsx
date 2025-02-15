@@ -4,12 +4,14 @@ import clsx from 'clsx';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
-import cls from './CommentCard.module.scss';
-import { Comment } from '../../model/types/comment';
 import { getRouteProfile } from '@/shared/const/router';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
+
+import { Comment } from '../../model/types/comment';
+
+import cls from './CommentCard.module.scss';
 
 interface CommentCardProps {
     className?: string;
