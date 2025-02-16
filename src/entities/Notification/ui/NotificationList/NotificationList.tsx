@@ -2,22 +2,21 @@ import { memo } from 'react';
 import clsx from 'clsx';
 
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
 import { useNotifications } from '../../api/notificationApi';
-import cls from './NotificationList.module.scss';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
 
-interface NotificationListProps {
-    className?: string;
-}
+import cls from './NotificationList.module.scss';
 
-export const NotificationList = memo(({ className }: NotificationListProps) => {
+type Props = {
+    className?: string;
+};
+
+export const NotificationList = memo(({ className }: Props) => {
     const { data, isLoading } = useNotifications(null, {
         pollingInterval: 10000,
     });
-
-    const Skeleton = SkeletonRedesigned;
 
     if (isLoading) {
         return (

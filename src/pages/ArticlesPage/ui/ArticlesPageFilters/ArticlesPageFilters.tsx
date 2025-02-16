@@ -6,17 +6,17 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
 
 import cls from './ArticlesPageFilters.module.scss';
 
-interface ArticlesPageFiltersProps {
+type Props = {
     className?: string;
-}
+};
 
-export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
-    const { className } = props;
+export const ArticlesPageFilters = memo(({ className }: Props) => {
     const { t } = useTranslation();
     const {
         onChangeSort,
@@ -40,7 +40,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
                     onChangeOrder={onChangeOrder}
                     onChangeSort={onChangeSort}
                 />
-                {/* <ArticleViewSelector view={view} onViewClick={onChangeView} /> */}
+                <ArticleViewSelector view={view} onViewClick={onChangeView} />
             </div>
             <Card className={cls.search}>
                 <Input
