@@ -1,16 +1,11 @@
 import { MainPage } from '@/pages/MainPage';
-import { AboutPage } from '@/pages/AboutPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { ArticlesPage } from '@/pages/ArticlesPage';
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
 import { ArticleEditPage } from '@/pages/ArticleEditPage';
-import { AdminPanelPage } from '@/pages/AdminPanelPage';
-import { UserRole } from '@/entities/User';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import {
-    getRouteAbout,
-    getRouteAdmin,
     getRouteArticleCreate,
     getRouteArticleDetails,
     getRouteArticleEdit,
@@ -31,10 +26,6 @@ export const routeConfig = {
     settings: {
         path: getRouteSettings(),
         element: <SettingsPage />,
-    },
-    about: {
-        path: getRouteAbout(),
-        element: <AboutPage />,
     },
     profile: {
         path: getRouteProfile(':id'),
@@ -59,12 +50,12 @@ export const routeConfig = {
         element: <ArticleEditPage />,
         authOnly: true,
     },
-    admin_panel: {
-        path: getRouteAdmin(),
-        element: <AdminPanelPage />,
-        authOnly: true,
-        roles: [UserRole.MANAGER, UserRole.ADMIN],
-    },
+    // admin_panel: {
+    //     path: getRouteAdmin(),
+    //     element: <AdminPanelPage />,
+    //     authOnly: true,
+    //     roles: [UserRole.MANAGER, UserRole.ADMIN],
+    // },
     forbidden: {
         path: getRouteForbidden(),
         element: <ForbiddenPage />,

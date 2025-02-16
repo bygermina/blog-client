@@ -38,13 +38,6 @@ const generateStaticPagesSitemap = async () => {
             description: 'description main',
         },
         {
-            loc: 'about',
-            changefreq: 'monthly',
-            priority: 0.8,
-            title: 'about',
-            description: 'description about',
-        },
-        {
             loc: 'articles',
             changefreq: 'monthly',
             priority: 0.5,

@@ -16,13 +16,11 @@ export const getRouteForbidden = () => '/forbidden';
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: 'main',
-    // [getRouteSettings()]: AppRoutes.SETTINGS,
-    [getRouteAbout()]: 'about',
+    [getRouteSettings()]: 'settings',
     [getRouteProfile(':id')]: 'profile',
     [getRouteArticles()]: 'articles',
     [getRouteArticleDetails(':id')]: 'article_details',
     [getRouteArticleCreate()]: 'article_create',
     [getRouteArticleEdit(':id')]: 'article_edit',
-    [getRouteAdmin()]: 'admin_panel',
     [getRouteForbidden()]: 'forbidden',
 };
