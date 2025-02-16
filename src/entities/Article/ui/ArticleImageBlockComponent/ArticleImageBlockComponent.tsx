@@ -8,13 +8,13 @@ import { ArticleImageBlock } from '../../model/types/article';
 
 import cls from './ArticleImageBlockComponent.module.scss';
 
-interface ArticleImageBlockComponentProps {
+type Props = {
     className?: string;
     block: ArticleImageBlock;
-}
+};
 
 export const ArticleImageBlockComponent = memo(
-    ({ className, block }: ArticleImageBlockComponentProps) => {
+    ({ className, block }: Props) => {
         const { t } = useTranslation();
 
         return (
