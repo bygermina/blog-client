@@ -1,16 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
 
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 
 import { Country } from '../../model/types/country';
 
-interface CountrySelectProps {
+type Props = {
     className?: string;
     value?: Country;
     onChange?: (value: Country) => void;
     readonly?: boolean;
-}
+};
 
 const options = [
     { value: Country.Armenia, content: Country.Armenia },
@@ -20,28 +19,27 @@ const options = [
     { value: Country.Ukraine, content: Country.Ukraine },
 ];
 
-export const CountrySelect = memo(
-    ({ className, value, onChange, readonly }: CountrySelectProps) => {
-        const { t } = useTranslation();
+export const CountrySelect = ({
+    className,
+    value,
+    onChange,
+    readonly,
+}: Props) => {
+    const { t } = useTranslation();
 
-        const onChangeHandler = useCallback(
-            (value: string) => {
-                onChange?.(value as Country);
-            },
-            [onChange],
-        );
-
-        const props = {
-            className,
-            value,
-            defaultValue: t('Укажите страну'),
-            label: t('Укажите страну'),
-            items: options,
-            onChange: onChangeHandler,
-            readonly,
-            direction: 'top right' as const,
-        };
-
-        return <ListBox {...props} />;
-    },
-);
+    const onChangeHandler = (value: string) => {
+        onChange?.(value as Country);
+    };
+    return (
+        <ListBox
+            className={className}
+            value={value}
+            defaultValue={t('Укажите страну')}
+            label={t('Укажите страну')}
+            items={options}
+            onChange={onChangeHandler}
+            readonly={readonly}
+            direction="top right"
+        />
+    );
+};
