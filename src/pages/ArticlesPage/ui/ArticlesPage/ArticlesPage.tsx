@@ -46,7 +46,7 @@ const ArticlesPage = ({ className }: Props) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <StickyContentLayout
-                left={<ViewSelectorContainer />}
+                top={<ViewSelectorContainer />}
                 right={<FiltersContainer />}
                 content={
                     <Page

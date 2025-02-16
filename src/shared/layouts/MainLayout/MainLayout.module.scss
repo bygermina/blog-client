@@ -9,7 +9,7 @@
 
 .sidebar {
   grid-area: sidebar;
-  padding: 32px;
+  padding: 10px;
   max-width: 284px;
 }
 
@@ -17,7 +17,7 @@
   grid-area: content;
   max-width: 1200px;
   justify-self: center;
-  padding: 32px;
+  padding: 0 10px 10px;
   width: 100%;
 }
 
