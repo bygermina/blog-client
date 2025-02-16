@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -12,12 +12,11 @@ import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { Dropdown } from '@/shared/ui/redesigned/Popups';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 
-interface AvatarDropdownProps {
+type Props = {
     className?: string;
-}
+};
 
-export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
-    const { className } = props;
+export const AvatarDropdown = memo(({ className }: Props) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const isAdmin = useSelector(isUserAdmin);
