@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
@@ -11,7 +11,7 @@ import { Input } from '@/shared/ui/redesigned/Input';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Card } from '@/shared/ui/redesigned/Card';
 
-interface RatingCardProps {
+type Props = {
     className?: string;
     title?: string;
     feedbackTitle?: string;
@@ -19,18 +19,17 @@ interface RatingCardProps {
     onCancel?: (starsCount: number) => void;
     onAccept?: (starsCount: number, feedback?: string) => void;
     rate?: number;
-}
+};
 
-export const RatingCard = memo((props: RatingCardProps) => {
-    const {
-        className,
-        onAccept,
-        feedbackTitle,
-        hasFeedback,
-        onCancel,
-        title,
-        rate = 0,
-    } = props;
+export const RatingCard = ({
+    className,
+    onAccept,
+    feedbackTitle,
+    hasFeedback,
+    onCancel,
+    title,
+    rate = 0,
+}: Props) => {
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [starsCount, setStarsCount] = useState(rate);
@@ -115,4 +114,4 @@ export const RatingCard = memo((props: RatingCardProps) => {
             </MobileView>
         </Card>
     );
-});
+};
