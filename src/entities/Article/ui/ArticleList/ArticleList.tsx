@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { HTMLAttributeAnchorTarget } from 'react';
 import clsx from 'clsx';
+import Masonry from 'react-masonry-css';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack } from '@/shared/ui/redesigned/Stack';
@@ -14,14 +15,14 @@ import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 
 import cls from './ArticleList.module.scss';
 
-interface ArticleListProps {
+type Props = {
     className?: string;
     articles: Article[];
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
     view?: ArticleView;
     search?: string;
-}
+};
 
 const getSkeletons = (view: ArticleView) =>
     new Array(view === ArticleView.SMALL ? 9 : 3)
@@ -34,44 +35,54 @@ const getSkeletons = (view: ArticleView) =>
             />
         ));
 
-export const ArticleList = memo(
-    ({
-        className,
-        articles,
-        view = ArticleView.BIG,
-        isLoading,
-        target,
-        search,
-    }: ArticleListProps) => {
-        const { t } = useTranslation();
+export const ArticleList = ({
+    className,
+    articles,
+    view = ArticleView.BIG,
+    isLoading,
+    target,
+    search,
+}: Props) => {
+    const { t } = useTranslation();
 
-        if (!isLoading && !articles.length) {
-            return (
-                <div className={clsx(cls.ArticleList, className, cls[view])}>
-                    <Text size="l" title={t('Статьи не найдены')} />
-                </div>
-            );
-        }
-
+    if (!isLoading && !articles.length) {
         return (
-            <HStack
-                wrap="wrap"
-                gap="16"
-                className={clsx(cls.ArticleListRedesigned)}
-                data-testid="ArticleList"
-            >
-                {articles.map((item) => (
-                    <ArticleListItem
-                        article={item}
-                        view={view}
-                        target={target}
-                        key={item.id}
-                        className={cls.card}
-                        search={search}
-                    />
-                ))}
-                {isLoading && getSkeletons(view)}
-            </HStack>
+            <div className={clsx(cls.ArticleList, className, cls[view])}>
+                <Text size="l" title={t('Статьи не найдены')} />
+            </div>
         );
-    },
-);
+    }
+
+    return view === ArticleView.BIG ? (
+        <HStack wrap="wrap" gap="16" data-testid="ArticleList">
+            {articles.map((item) => (
+                <ArticleListItem
+                    article={item}
+                    view={view}
+                    target={target}
+                    key={item.id}
+                    className={cls.card}
+                    search={search}
+                />
+            ))}
+            {isLoading && getSkeletons(view)}
+        </HStack>
+    ) : (
+        <Masonry
+            breakpointCols={3}
+            className={cls['my-masonry-grid']}
+            columnClassName={cls['my-masonry-grid_column']}
+        >
+            {articles.map((item) => (
+                <ArticleListItem
+                    article={item}
+                    view={view}
+                    target={target}
+                    key={item.id}
+                    className={cls.card}
+                    search={search}
+                />
+            ))}
+        </Masonry>
+    );
+};

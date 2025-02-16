@@ -8,14 +8,13 @@ import { MainLayout } from '@/shared/layouts/MainLayout';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 
 import { AppRouter } from './providers/router';
-import { useAppToolbar } from './lib/useAppToolbar';
+import { Toolbar } from './lib/useAppToolbar';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
 
 const App = () => {
     const { theme } = useTheme();
     // const dispatch = useAppDispatch();
     // const inited = useSelector(getUserInited);
-    const Toolbar = useAppToolbar();
 
     // useEffect(() => {
     //     if (!inited) {
@@ -38,8 +37,9 @@ const App = () => {
                     header={<Navbar />}
                     content={<AppRouter />}
                     sidebar={<Sidebar />}
-                    toolbar={Toolbar ? <Toolbar /> : undefined}
-                />
+                >
+                    <Toolbar />
+                </MainLayout>
             </Suspense>
         </div>
     );

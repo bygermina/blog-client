@@ -8,13 +8,13 @@ type Props = {
     header: ReactElement;
     content: ReactElement;
     sidebar: ReactElement;
-    toolbar?: ReactElement;
+    children?: ReactElement;
 };
 
 export const MainLayout = ({
     className,
     content,
-    toolbar,
+    children,
     header,
     sidebar,
 }: Props) => {
@@ -24,7 +24,7 @@ export const MainLayout = ({
             <div className={cls.sidebar}>{sidebar}</div>
             <div className={cls.rightbar}>
                 <div className={cls.header}>{header}</div>
-                <div className={cls.toolbar}>{toolbar}</div>
+                <div className={cls.toolbar}>{children}</div>
             </div>
         </div>
     );

@@ -1,16 +1,14 @@
-import { FC } from 'react';
-
 import { ScrollToolbar } from '@/widgets/ScrollToolbar';
 import { AppRoutes } from '@/shared/const/router';
 import { useRouteChange } from '@/shared/lib/hooks/useRouteChange';
 
-const toolbarByAppRoute: OptionalRecord<AppRoutes, FC> = {
-    articles: ScrollToolbar,
-    article_details: ScrollToolbar,
+const toolbarByAppRoute: OptionalRecord<AppRoutes, JSX.Element> = {
+    articles: <ScrollToolbar />,
+    article_details: <ScrollToolbar />,
 };
 
-export function useAppToolbar(): FC {
+export function Toolbar() {
     const appRoute = useRouteChange();
 
-    return toolbarByAppRoute[appRoute] as FC;
+    return toolbarByAppRoute[appRoute] ? toolbarByAppRoute[appRoute] : null;
 }
