@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from 'react';
+import { memo, useState } from 'react';
 import clsx from 'clsx';
 
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
@@ -13,29 +13,17 @@ import { useSidebarItems } from '../../model/selectors/getSidebarItems';
 
 import cls from './Sidebar.module.scss';
 
-interface SidebarProps {
+type Props = {
     className?: string;
-}
+};
 
-export const Sidebar = memo(({ className }: SidebarProps) => {
+export const Sidebar = memo(({ className }: Props) => {
     const [collapsed, setCollapsed] = useState(false);
     const sidebarItemsList = useSidebarItems();
 
     const onToggle = () => {
         setCollapsed((prev) => !prev);
     };
-
-    const itemsList = useMemo(
-        () =>
-            sidebarItemsList.map((item) => (
-                <SidebarItem
-                    item={item}
-                    collapsed={collapsed}
-                    key={item.path}
-                />
-            )),
-        [collapsed, sidebarItemsList],
-    );
 
     return (
         <aside
@@ -48,7 +36,13 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         >
             <AppLogo size={collapsed ? 30 : 50} className={cls.appLogo} />
             <VStack role="navigation" gap="8" className={cls.items}>
-                {itemsList}
+                {sidebarItemsList.map((item) => (
+                    <SidebarItem
+                        item={item}
+                        collapsed={collapsed}
+                        key={item.path}
+                    />
+                ))}
             </VStack>
             <Icon
                 data-testid="sidebar-toggle"

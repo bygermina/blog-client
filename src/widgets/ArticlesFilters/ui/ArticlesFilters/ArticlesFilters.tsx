@@ -19,7 +19,7 @@ import { getUserAuthData } from '@/entities/User';
 
 import cls from './ArticlesFilters.module.scss';
 
-interface ArticlesFiltersProps {
+type Props = {
     className?: string;
     sort: ArticleSortField;
     order: SortOrder;
@@ -29,7 +29,7 @@ interface ArticlesFiltersProps {
     onChangeOrder: (newOrder: SortOrder) => void;
     onChangeSort: (newSort: ArticleSortField) => void;
     onChangeType: (type: ArticleType) => void;
-}
+};
 
 export const ArticlesFilters = memo(
     ({
@@ -42,7 +42,7 @@ export const ArticlesFilters = memo(
         onChangeOrder,
         order,
         type,
-    }: ArticlesFiltersProps) => {
+    }: Props) => {
         const { t } = useTranslation();
         const navigate = useNavigate();
         const isAuth = useSelector(getUserAuthData);

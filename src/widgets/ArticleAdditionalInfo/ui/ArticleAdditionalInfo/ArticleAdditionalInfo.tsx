@@ -8,22 +8,16 @@ import { Button } from '@/shared/ui/redesigned/Button';
 
 import cls from './ArticleAdditionalInfo.module.scss';
 
-interface ArticleAdditionalInfoProps {
+type Props = {
     className?: string;
     author?: User;
     createdAt?: string;
     views?: number;
     onEdit: () => void;
-}
+};
 
 export const ArticleAdditionalInfo = memo(
-    ({
-        className,
-        author,
-        createdAt,
-        views,
-        onEdit,
-    }: ArticleAdditionalInfoProps) => {
+    ({ className, author, createdAt, views, onEdit }: Props) => {
         const { t } = useTranslation();
 
         return (

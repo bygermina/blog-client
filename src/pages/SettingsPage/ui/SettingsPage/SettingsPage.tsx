@@ -10,8 +10,7 @@ interface SettingsPageProps {
     className?: string;
 }
 
-const SettingsPage = memo((props: SettingsPageProps) => {
-    const { className } = props;
+const SettingsPage = memo(({ className }: SettingsPageProps) => {
     const { t } = useTranslation();
 
     return (
