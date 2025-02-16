@@ -40,6 +40,7 @@ export const Card = memo(
     }: CardProps) => {
         return (
             <div
+                {...otherProps}
                 className={clsx(
                     cls.Card,
                     {
@@ -52,7 +53,6 @@ export const Card = memo(
                     cls[mapPaddingToClass[padding]],
                     cls[border],
                 )}
-                {...otherProps}
             >
                 {children}
             </div>

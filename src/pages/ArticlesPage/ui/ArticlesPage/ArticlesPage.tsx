@@ -60,7 +60,6 @@ const ArticlesPage = ({ className }: Props) => {
                             keywords={t('Articles keywords')}
                         />
                         <ArticleInfiniteList className={cls.list} />
-                        {/* <ArticlePageGreeting /> */}
                     </Page>
                 }
             />

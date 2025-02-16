@@ -37,6 +37,7 @@ export const Tabs = memo(
             >
                 {tabs.map((tab) => {
                     const isSelected = tab.value === value;
+
                     return (
                         <Card
                             variant={isSelected ? 'light' : 'normal'}

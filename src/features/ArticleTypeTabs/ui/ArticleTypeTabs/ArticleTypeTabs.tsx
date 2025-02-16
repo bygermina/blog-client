@@ -5,14 +5,14 @@ import { TabItem } from '@/shared/ui/redesigned/Tabs/Tabs';
 import { ArticleType } from '@/entities/Article';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
-interface ArticleTypeTabsProps {
+type Props = {
     className?: string;
     value: ArticleType;
     onChangeType: (type: ArticleType) => void;
-}
+};
 
 export const ArticleTypeTabs = memo(
-    ({ className, value, onChangeType }: ArticleTypeTabsProps) => {
+    ({ className, value, onChangeType }: Props) => {
         const { t } = useTranslation();
 
         const typeTabs = useMemo<TabItem[]>(
