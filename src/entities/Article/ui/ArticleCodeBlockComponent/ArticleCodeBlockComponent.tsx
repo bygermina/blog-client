@@ -1,29 +1,23 @@
-// import { useTranslation } from 'react-i18next';
-// import { memo } from 'react';
-// import { classNames } from '@/shared/lib/classNames/classNames';
-// import { Code } from '@/shared/ui/redesigned/Code';
-// import cls from './ArticleCodeBlockComponent.module.scss';
-// import { ArticleCodeBlock } from '../../model/types/article';
+import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
-// interface ArticleCodeBlockComponentProps {
-//     className?: string;
-//     block: ArticleCodeBlock;
-// }
+import { Code } from '@/shared/ui/redesigned/Code';
 
-// export const ArticleCodeBlockComponent = memo(
-//     (props: ArticleCodeBlockComponentProps) => {
-//         const { className, block } = props;
-//         const { t } = useTranslation();
+import { ArticleCodeBlock } from '../../model/types/article';
 
-//         return (
-//             <div
-//                 className={classNames(cls.ArticleCodeBlockComponent, {}, [
-//                     className,
-//                 ])}
-//             >
-//                 <Code text={block.code} />
-//             </div>
-//         );
-//     },
-// );
-export {};
+import cls from './ArticleCodeBlockComponent.module.scss';
+
+type Props = {
+    className?: string;
+    block: ArticleCodeBlock;
+};
+
+export const ArticleCodeBlockComponent = ({ className, block }: Props) => {
+    const { t } = useTranslation();
+
+    return (
+        <div className={clsx(cls.ArticleCodeBlockComponent, className)}>
+            <Code text={block.data.code} />
+        </div>
+    );
+};

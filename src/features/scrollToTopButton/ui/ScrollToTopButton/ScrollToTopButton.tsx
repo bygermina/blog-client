@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import clsx from 'clsx';
 
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -6,13 +5,11 @@ import CircleIcon from '@/shared/assets/icons/circle-up.svg';
 
 import cls from './ScrollToTopButton.module.scss';
 
-interface ScrollToTopButtonProps {
+type Props = {
     className?: string;
-}
+};
 
-export const ScrollToTopButton = memo((props: ScrollToTopButtonProps) => {
-    const { className } = props;
-
+export const ScrollToTopButton = ({ className }: Props) => {
     const onCLick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -27,4 +24,4 @@ export const ScrollToTopButton = memo((props: ScrollToTopButtonProps) => {
             className={clsx(cls.ScrollToTopButton, className)}
         />
     );
-});
+};

@@ -9,10 +9,12 @@ export interface ArticleBlockBase {
     type: ArticleBlockType;
 }
 
-// export interface ArticleCodeBlock extends ArticleBlockBase {
-//     type: ArticleBlockType.CODE;
-//     code: string;
-// }
+export interface ArticleCodeBlock extends ArticleBlockBase {
+    type: ArticleBlockType.CODE;
+    data: {
+        code: string;
+    };
+}
 
 export interface ArticleImageBlock extends ArticleBlockBase {
     type: ArticleBlockType.IMAGE;
@@ -32,8 +34,9 @@ export interface ArticleTextBlock extends ArticleBlockBase {
 }
 
 export type ArticleBlock =
-    // | ArticleCodeBlock
-    ArticleImageBlock | ArticleTextBlock;
+    | ArticleCodeBlock
+    | ArticleImageBlock
+    | ArticleTextBlock;
 
 export type Block = OutputBlockData<ArticleBlockType, ArticleBlock['data']>;
 
