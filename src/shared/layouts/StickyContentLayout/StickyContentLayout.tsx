@@ -6,14 +6,14 @@ import cls from './StickyContentLayout.module.scss';
 type Props = {
     className?: string;
     left?: ReactElement;
-    content: ReactElement;
+    children: ReactElement;
     right?: ReactElement;
     top?: ReactElement;
 };
 
 export const StickyContentLayout = ({
     className,
-    content,
+    children,
     left,
     right,
     top,
@@ -22,7 +22,7 @@ export const StickyContentLayout = ({
         <div className={clsx(cls.MainLayout, className)}>
             {top && <div className={cls.top}>{top}</div>}
             {left && <div className={cls.left}>{left}</div>}
-            <div className={cls.content}>{content}</div>
+            <div className={cls.content}>{children}</div>
             {right && <div className={cls.right}>{right}</div>}
         </div>
     );

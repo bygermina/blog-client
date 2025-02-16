@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import clsx from 'clsx';
 
 import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
 import {
@@ -22,49 +21,50 @@ import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 
 import cls from './ArticlesPage.module.scss';
 
-type Props = {
-    className?: string;
-};
-
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
 };
 
-const ArticlesPage = ({ className }: Props) => {
+const Content = () => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
-
-    const onLoadNextPart = useCallback(() => {
-        dispatch(fetchNextArticlesPage());
-    }, [dispatch]);
 
     useInitialEffect(() => {
         dispatch(initArticlesPage(searchParams));
     });
 
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextArticlesPage());
+    }, [dispatch]);
+
+    return (
+        <Page
+            data-testid="ArticlesPage"
+            onScrollEnd={onLoadNextPart}
+            className={cls.ArticlesPageRedesigned}
+        >
+            <InfoSEO
+                title={t('Articles page')}
+                description={t('Articles page description')}
+                keywords={t('Articles keywords')}
+            />
+            <ArticleInfiniteList className={cls.list} />
+        </Page>
+    );
+};
+
+const ArticlesPage = () => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <StickyContentLayout
                 top={<ViewSelectorContainer />}
                 right={<FiltersContainer />}
-                content={
-                    <Page
-                        data-testid="ArticlesPage"
-                        onScrollEnd={onLoadNextPart}
-                        className={clsx(cls.ArticlesPageRedesigned, className)}
-                    >
-                        <InfoSEO
-                            title={t('Articles page')}
-                            description={t('Articles page description')}
-                            keywords={t('Articles keywords')}
-                        />
-                        <ArticleInfiniteList className={cls.list} />
-                    </Page>
-                }
-            />
+            >
+                <Content />
+            </StickyContentLayout>
         </DynamicModuleLoader>
     );
 };
 
-export default memo(ArticlesPage);
+export default ArticlesPage;

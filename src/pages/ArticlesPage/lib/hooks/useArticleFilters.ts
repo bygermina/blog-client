@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
 
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+import { ArticleSortField, ArticleType } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sort';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
@@ -11,13 +11,11 @@ import {
     getArticlesPageSearch,
     getArticlesPageSort,
     getArticlesPageType,
-    getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 import { articlesPageActions } from '../../model/slices/articlesPageSlice';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
 
 export function useArticleFilters() {
-    const view = useSelector(getArticlesPageView);
     const sort = useSelector(getArticlesPageSort);
     const order = useSelector(getArticlesPageOrder);
     const search = useSelector(getArticlesPageSearch);
@@ -30,13 +28,6 @@ export function useArticleFilters() {
     }, [dispatch]);
 
     const debouncedFetchData = useDebounce(fetchData, 500);
-
-    const onChangeView = useCallback(
-        (view: ArticleView) => {
-            dispatch(articlesPageActions.setView(view));
-        },
-        [dispatch],
-    );
 
     const onChangeSort = useCallback(
         (newSort: ArticleSortField) => {
@@ -75,12 +66,10 @@ export function useArticleFilters() {
     );
 
     return {
-        view,
         sort,
         order,
         search,
         type,
-        onChangeView,
         onChangeSort,
         onChangeOrder,
         onChangeSearch,

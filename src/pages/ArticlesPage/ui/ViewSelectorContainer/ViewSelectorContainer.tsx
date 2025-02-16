@@ -1,15 +1,13 @@
-import { memo } from 'react';
-
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 
-import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
+import { useView } from '../../lib/hooks/useView';
 
 type Props = {
     className?: string;
 };
 
-export const ViewSelectorContainer = memo(({ className }: Props) => {
-    const { view, onChangeView } = useArticleFilters();
+export const ViewSelectorContainer = ({ className }: Props) => {
+    const { view, onChangeView } = useView();
 
     return (
         <ArticleViewSelector
@@ -18,4 +16,4 @@ export const ViewSelectorContainer = memo(({ className }: Props) => {
             onViewClick={onChangeView}
         />
     );
-});
+};

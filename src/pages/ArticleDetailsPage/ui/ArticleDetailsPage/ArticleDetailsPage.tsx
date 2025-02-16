@@ -42,19 +42,16 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <StickyContentLayout
-                content={
-                    <Page className={clsx(cls.ArticleDetailsPage, className)}>
-                        <VStack gap="16" max>
-                            <DetailsContainer />
-                            <ArticleRating articleId={id} />
-                            <ArticleRecommendationsList />
-                            <ArticleDetailsComments id={id} />
-                        </VStack>
-                    </Page>
-                }
-                right={<AdditionalInfoContainer />}
-            />
+            <StickyContentLayout right={<AdditionalInfoContainer />}>
+                <Page className={clsx(cls.ArticleDetailsPage, className)}>
+                    <VStack gap="16" max>
+                        <DetailsContainer />
+                        <ArticleRating articleId={id} />
+                        <ArticleRecommendationsList />
+                        <ArticleDetailsComments id={id} />
+                    </VStack>
+                </Page>
+            </StickyContentLayout>
         </DynamicModuleLoader>
     );
 };

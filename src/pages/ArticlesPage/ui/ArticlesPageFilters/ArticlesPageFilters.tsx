@@ -11,6 +11,7 @@ import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
 
 import cls from './ArticlesPageFilters.module.scss';
+import { useView } from '../../lib/hooks/useView';
 
 type Props = {
     className?: string;
@@ -25,11 +26,11 @@ export const ArticlesPageFilters = memo(({ className }: Props) => {
         type,
         onChangeSearch,
         search,
-        onChangeView,
-        view,
         onChangeOrder,
         order,
     } = useArticleFilters();
+
+    const { view, onChangeView } = useView();
 
     return (
         <div className={clsx(cls.ArticlesPageFilters, className)}>
