@@ -5,16 +5,16 @@ import clsx from 'clsx';
 import NotificationIcon from '@/shared/assets/icons/notification.svg';
 import { NotificationList } from '@/entities/Notification';
 import { Drawer } from '@/shared/ui/redesigned/Drawer';
-import cls from './NotificationButton.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Popover } from '@/shared/ui/redesigned/Popups';
 
-interface NotificationButtonProps {
-    className?: string;
-}
+import cls from './NotificationButton.module.scss';
 
-export const NotificationButton = memo((props: NotificationButtonProps) => {
-    const { className } = props;
+type Props = {
+    className?: string;
+};
+
+export const NotificationButton = memo(({ className }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const onOpenDrawer = useCallback(() => {

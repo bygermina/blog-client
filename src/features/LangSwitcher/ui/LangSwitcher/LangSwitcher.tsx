@@ -3,12 +3,12 @@ import { memo } from 'react';
 
 import { Button } from '@/shared/ui/redesigned/Button';
 
-interface LangSwitcherProps {
+type Props = {
     className?: string;
     short?: boolean;
-}
+};
 
-export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
+export const LangSwitcher = memo(({ className, short }: Props) => {
     const { t, i18n } = useTranslation();
 
     const toggle = async () => {
