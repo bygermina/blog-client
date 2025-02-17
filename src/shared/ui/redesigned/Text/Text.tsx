@@ -52,10 +52,10 @@ export const Text = memo(
                 className={clsx(
                     cls.Text,
                     { [cls.bold]: bold },
-                    className,
                     cls[variant],
                     cls[align],
                     mapSizeToClass[size],
+                    className,
                 )}
             >
                 {title && (

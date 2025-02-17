@@ -147,10 +147,10 @@ export const ArticleListItem = ({
                     className={cls.img}
                 />
                 <VStack className={cls.info} gap="4">
-                    <Text title={article.title} className={cls.title} />
+                    <Text title={article.title} size="s" />
                     <VStack gap="4" className={cls.footer} max>
                         <HStack justify="between" max>
-                            <Text text={createdAt} className={cls.date} />
+                            <Text text={createdAt} size="s" />
                             {views}
                         </HStack>
                     </VStack>
