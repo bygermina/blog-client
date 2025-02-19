@@ -3,15 +3,15 @@ import { memo } from 'react';
 import clsx from 'clsx';
 
 import { Card } from '@/shared/ui/redesigned/Card';
-import { Input } from '@/shared/ui/redesigned/Input';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
+import { useView } from '../../lib/hooks/useView';
+import { ArticleSearch } from '../../../../entities/Article/ui/ArticleSearch/ArticleSearch';
 
 import cls from './ArticlesPageFilters.module.scss';
-import { useView } from '../../lib/hooks/useView';
 
 type Props = {
     className?: string;
@@ -19,16 +19,8 @@ type Props = {
 
 export const ArticlesPageFilters = memo(({ className }: Props) => {
     const { t } = useTranslation();
-    const {
-        onChangeSort,
-        onChangeType,
-        sort,
-        type,
-        onChangeSearch,
-        search,
-        onChangeOrder,
-        order,
-    } = useArticleFilters();
+    const { onChangeSort, onChangeType, sort, type, onChangeOrder, order } =
+        useArticleFilters();
 
     const { view, onChangeView } = useView();
 
@@ -44,12 +36,7 @@ export const ArticlesPageFilters = memo(({ className }: Props) => {
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
             </div>
             <Card className={cls.search}>
-                <Input
-                    type="text"
-                    onChange={onChangeSearch}
-                    value={search}
-                    placeholder={t('Поиск')}
-                />
+                <ArticleSearch />
             </Card>
             <ArticleTypeTabs
                 value={type}

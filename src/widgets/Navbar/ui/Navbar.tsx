@@ -12,11 +12,11 @@ import { Button } from '@/shared/ui/redesigned/Button';
 
 import cls from './Navbar.module.scss';
 
-interface NavbarProps {
+type Props = {
     className?: string;
-}
+};
 
-export const Navbar = ({ className }: NavbarProps) => {
+export const Navbar = ({ className }: Props) => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);
     const authData = useSelector(getUserAuthData);

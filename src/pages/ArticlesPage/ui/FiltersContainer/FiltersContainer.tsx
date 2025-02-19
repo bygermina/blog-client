@@ -9,24 +9,14 @@ type Props = {
 };
 
 export const FiltersContainer = memo(({ className }: Props) => {
-    const {
-        onChangeSort,
-        onChangeType,
-        sort,
-        type,
-        onChangeSearch,
-        search,
-        onChangeOrder,
-        order,
-    } = useArticleFilters();
+    const { onChangeSort, onChangeType, sort, type, onChangeOrder, order } =
+        useArticleFilters();
 
     return (
         <ArticlesFilters
             type={type}
-            onChangeSearch={onChangeSearch}
             order={order}
             onChangeOrder={onChangeOrder}
-            search={search}
             sort={sort}
             onChangeSort={onChangeSort}
             onChangeType={onChangeType}

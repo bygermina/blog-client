@@ -1,9 +1,26 @@
 export { ArticleDetailsSkeleton } from './ui/ArticleDetails/ArticleDetails';
 
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
+export { ArticleSearch } from './ui/ArticleSearch/ArticleSearch';
 
 export type { Article, Block } from './model/types/article';
 
+export { fetchArticlesList } from './model/services/fetchArticlesList';
+export {
+    getArticlesPageOrder,
+    getArticlesPageSort,
+    getArticlesPageType,
+    getArticlesPageSearch,
+    getArticlesPageLimit,
+    getArticlesPageError,
+    getArticlesPageHasMore,
+    getArticlesPageIsLoading,
+} from './model/selectors/articlesPageSelectors';
+
+export { getArticles } from './model/slice/articlesPageSlice';
+
+export { getArticlesPageView } from './model/selectors/articlesPageSelectors';
+export { articlesPageActions } from './model/slice/articlesPageSlice';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 
 export { ArticleList } from './ui/ArticleList/ArticleList';

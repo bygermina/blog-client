@@ -10,9 +10,6 @@ import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ArticleSortField, ArticleType } from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sort';
-import { Input } from '@/shared/ui/redesigned/Input';
-import SearchIcon from '@/shared/assets/icons/search.svg';
-import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { getRouteArticleCreate } from '@/shared/const/router';
 import { getUserAuthData } from '@/entities/User';
@@ -24,8 +21,6 @@ type Props = {
     sort: ArticleSortField;
     order: SortOrder;
     type: ArticleType;
-    search: string;
-    onChangeSearch: (value: string) => void;
     onChangeOrder: (newOrder: SortOrder) => void;
     onChangeSort: (newSort: ArticleSortField) => void;
     onChangeType: (type: ArticleType) => void;
@@ -35,8 +30,6 @@ export const ArticlesFilters = memo(
     ({
         className,
         onChangeType,
-        onChangeSearch,
-        search,
         onChangeSort,
         sort,
         onChangeOrder,
@@ -50,14 +43,7 @@ export const ArticlesFilters = memo(
         return (
             <Card className={clsx(cls.ArticlesFilters, className)} padding="24">
                 <VStack gap="32">
-                    <Input
-                        type="text"
-                        onChange={onChangeSearch}
-                        value={search}
-                        size="s"
-                        placeholder={t('Поиск')}
-                        addonLeft={<Icon Svg={SearchIcon} />}
-                    />
+                    {/* <ArticleSearch /> */}
                     <ArticleTypeTabs
                         value={type}
                         onChangeType={onChangeType}
