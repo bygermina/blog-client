@@ -2,15 +2,16 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 
+import { Text } from '@/shared/ui/redesigned/Text';
+
+import { getArticles } from '../../model/slice/articlesPageSlice';
 import {
-    getArticlesPageView,
-    ArticleList,
-    getArticles,
     getArticlesPageError,
     getArticlesPageIsLoading,
     getArticlesPageSearch,
-} from '@/entities/Article';
-import { Text } from '@/shared/ui/redesigned/Text';
+    getArticlesPageView,
+} from '../../model/selectors/articlesPageSelectors';
+import { ArticleList } from '../ArticleList/ArticleList';
 
 type Props = {
     className?: string;

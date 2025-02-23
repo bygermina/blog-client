@@ -34,3 +34,9 @@ export {
     ArticleSortField,
     ArticleBlockType,
 } from './model/consts/articleConsts';
+
+export { initArticlesPage } from './model/services/initArticlesPage';
+
+export { articlesPageReducer } from './model/slice/articlesPageSlice';
+
+export { fetchNextArticlesPage } from './model/services/fetchNextArticlesPage';

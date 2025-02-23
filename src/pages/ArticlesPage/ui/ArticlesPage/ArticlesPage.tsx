@@ -11,13 +11,15 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from '@/widgets/Page';
 import { InfoSEO } from '@/shared/lib/components/SEO';
-import { ArticleSearch } from '@/entities/Article';
+import {
+    ArticleSearch,
+    initArticlesPage,
+    articlesPageReducer,
+    fetchNextArticlesPage,
+} from '@/entities/Article';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 
-import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
-import { fetchNextArticlesPage } from '../../../../entities/Article/model/services/fetchNextArticlesPage';
-import { initArticlesPage } from '../../../../entities/Article/model/services/initArticlesPage';
-import { articlesPageReducer } from '../../../../entities/Article/model/slice/articlesPageSlice';
+import { ArticleInfiniteList } from '../../../../entities/Article/ui/ArticleInfiniteList/ArticleInfiniteList';
 import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
 import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 

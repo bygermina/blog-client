@@ -6,10 +6,10 @@ import { Card } from '@/shared/ui/redesigned/Card';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { ArticleSearch } from '@/entities/Article';
 
 import { useArticleFilters } from '../../lib/hooks/useArticleFilters';
 import { useView } from '../../lib/hooks/useView';
-import { ArticleSearch } from '../../../../entities/Article/ui/ArticleSearch/ArticleSearch';
 
 import cls from './ArticlesPageFilters.module.scss';
 

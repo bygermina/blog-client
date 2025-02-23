@@ -43,7 +43,6 @@ export const ArticlesFilters = memo(
         return (
             <Card className={clsx(cls.ArticlesFilters, className)} padding="24">
                 <VStack gap="32">
-                    {/* <ArticleSearch /> */}
                     <ArticleTypeTabs
                         value={type}
                         onChangeType={onChangeType}
