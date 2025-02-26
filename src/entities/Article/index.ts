@@ -7,20 +7,20 @@ export type { Article, Block } from './model/types/article';
 
 export { fetchArticlesList } from './model/services/fetchArticlesList';
 export {
-    getArticlesPageOrder,
-    getArticlesPageSort,
-    getArticlesPageType,
-    getArticlesPageSearch,
-    getArticlesPageLimit,
-    getArticlesPageError,
-    getArticlesPageHasMore,
-    getArticlesPageIsLoading,
+    getArticlesListOrder,
+    getArticlesListSort,
+    getArticlesListType,
+    getArticlesListSearch,
+    getArticlesListLimit,
+    getArticlesListError,
+    getArticlesListHasMore,
+    getArticlesListIsLoading,
 } from './model/selectors/articlesListSelectors';
 
-export { getArticles } from './model/slice/articlesPageSlice';
+export { getArticles } from './model/slice/articlesListSlice';
 
-export { getArticlesPageView } from './model/selectors/articlesListSelectors';
-export { articlesPageActions } from './model/slice/articlesPageSlice';
+export { getArticlesListView } from './model/selectors/articlesListSelectors';
+export { articlesPageActions } from './model/slice/articlesListSlice';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 
 export { ArticleList } from './ui/ArticleList/ArticleList';
@@ -33,10 +33,10 @@ export type {
     ArticleType,
     ArticleSortField,
     ArticleBlockType,
-} from './model/consts/articleConsts';
+} from './model/types/articleConsts';
 
-export { initArticlesPage } from './model/services/initArticlesPage';
+export { initArticlesList } from './model/services/initArticlesPage';
 
-export { articlesPageReducer } from './model/slice/articlesPageSlice';
+export { articlesPageReducer } from './model/slice/articlesListSlice';
 
 export { fetchNextArticlesPage } from './model/services/fetchNextArticlesPage';

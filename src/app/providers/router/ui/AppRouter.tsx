@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { PageLoader } from '@/widgets/PageLoader';
-import { AppRoutesProps } from '@/shared/types/router';
 
 import { RequireAuth } from './RequireAuth';
 import { routeConfig } from '../config/routeConfig';
@@ -10,7 +9,7 @@ import { routeConfig } from '../config/routeConfig';
 const AppRouter = () => {
     return (
         <Routes>
-            {Object.values(routeConfig).map((route: AppRoutesProps) => (
+            {Object.values(routeConfig).map((route) => (
                 <Route
                     key={route.path}
                     path={route.path}

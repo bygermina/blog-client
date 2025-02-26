@@ -5,10 +5,8 @@ import Masonry from 'react-masonry-css';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-// @ts-ignore
-// eslint-disable-next-line ulbi-tv-plugin/layer-imports
 
-import { ArticleView } from '../../model/consts/articleConsts';
+import { ArticleView } from '../../model/types/articleConsts';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';

@@ -13,15 +13,13 @@ import { Comment } from '../../model/types/comment';
 
 import cls from './CommentCard.module.scss';
 
-interface CommentCardProps {
+type Props = {
     className?: string;
     comment?: Comment;
     isLoading?: boolean;
-}
+};
 
-export const CommentCard = memo((props: CommentCardProps) => {
-    const { className, comment, isLoading } = props;
-
+export const CommentCard = memo(({ className, comment, isLoading }: Props) => {
     const Skeleton = SkeletonRedesigned;
 
     if (isLoading) {

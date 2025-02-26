@@ -11,13 +11,13 @@ import { ListBox } from '@/shared/ui/redesigned/Popups';
 
 import cls from './ArticleSortSelector.module.scss';
 
-interface ArticleSortSelectorProps {
+type Props = {
     className?: string;
     sort: ArticleSortField;
     order: SortOrder;
     onChangeOrder: (newOrder: SortOrder) => void;
     onChangeSort: (newSort: ArticleSortField) => void;
-}
+};
 
 export const ArticleSortSelector = ({
     className,
@@ -25,7 +25,7 @@ export const ArticleSortSelector = ({
     onChangeSort,
     order,
     sort,
-}: ArticleSortSelectorProps) => {
+}: Props) => {
     const { t } = useTranslation();
 
     const orderOptions = useMemo<SelectOption<SortOrder>[]>(

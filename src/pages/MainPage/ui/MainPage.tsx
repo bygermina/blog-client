@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Page } from '@/widgets/Page';
@@ -6,11 +5,6 @@ import { InfoSEO } from '@/shared/lib/components/SEO';
 
 const MainPage = () => {
     const { t } = useTranslation();
-    const [value, setValue] = useState('');
-
-    const onChange = (val: string) => {
-        setValue(val);
-    };
 
     return (
         <Page data-testid="MainPage">

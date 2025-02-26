@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 
-import { ArticleImageBlock } from '../../model/types/article';
+import { ArticleImageBlock } from '../../../model/types/article';
 
 import cls from './ArticleImageBlockComponent.module.scss';
 

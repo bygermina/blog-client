@@ -4,13 +4,13 @@ import { useCallback } from 'react';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
-import { articlesPageActions } from '../../model/slice/articlesPageSlice';
+import { articlesPageActions } from '../../model/slice/articlesListSlice';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
-import { getArticlesPageSearch } from '../../model/selectors/articlesListSelectors';
+import { getArticlesListSearch } from '../../model/selectors/articlesListSelectors';
 
 export const useSearch = () => {
     const dispatch = useAppDispatch();
-    const search = useSelector(getArticlesPageSearch);
+    const search = useSelector(getArticlesListSearch);
 
     const fetchData = useCallback(() => {
         dispatch(fetchArticlesList({ replace: true }));

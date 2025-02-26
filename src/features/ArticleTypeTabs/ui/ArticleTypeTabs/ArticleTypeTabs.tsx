@@ -29,19 +29,6 @@ export const ArticleTypeTabs = memo(
                     value: 'ASIA',
                     content: t('Азия'),
                 },
-
-                // {
-                //     value: ArticleType.IT,
-                //     content: t('Айти'),
-                // },
-                // {
-                //     value: ArticleType.ECONOMICS,
-                //     content: t('Экономика'),
-                // },
-                // {
-                //     value: ArticleType.SCIENCE,
-                //     content: t('Наука'),
-                // },
             ],
             [t],
         );

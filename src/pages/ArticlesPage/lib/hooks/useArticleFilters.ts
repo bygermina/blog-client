@@ -4,9 +4,9 @@ import { useCallback } from 'react';
 import {
     ArticleSortField,
     ArticleType,
-    getArticlesPageOrder,
-    getArticlesPageSort,
-    getArticlesPageType,
+    getArticlesListOrder,
+    getArticlesListSort,
+    getArticlesListType,
     articlesPageActions,
     fetchArticlesList,
 } from '@/entities/Article';
@@ -14,9 +14,9 @@ import { SortOrder } from '@/shared/types/sort';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export function useArticleFilters() {
-    const sort = useSelector(getArticlesPageSort);
-    const order = useSelector(getArticlesPageOrder);
-    const type = useSelector(getArticlesPageType);
+    const sort = useSelector(getArticlesListSort);
+    const order = useSelector(getArticlesListOrder);
+    const type = useSelector(getArticlesListType);
 
     const dispatch = useAppDispatch();
 

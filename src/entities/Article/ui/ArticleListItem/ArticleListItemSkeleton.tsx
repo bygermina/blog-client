@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Card } from '@/shared/ui/redesigned/Card';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 
-import { ArticleView } from '../../model/consts/articleConsts';
+import { ArticleView } from '../../model/types/articleConsts';
 
 import cls from './ArticleListItem.module.scss';
 

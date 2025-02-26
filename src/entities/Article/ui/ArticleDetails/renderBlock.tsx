@@ -3,8 +3,8 @@ import {
     ArticleTextBlock,
     Block,
 } from '../../model/types/article';
-import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleImageBlockComponent } from '../Components/ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../Components/ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 import cls from './ArticleDetails.module.scss';
 

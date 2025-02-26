@@ -19,15 +19,15 @@ import { AdditionalInfoContainer } from '../AdditionalInfoContainer/AdditionalIn
 
 import cls from './ArticleDetailsPage.module.scss';
 
-interface ArticleDetailsPageProps {
+type Props = {
     className?: string;
-}
+};
 
 const reducers: ReducersList = {
     articleDetailsPage: articleDetailsPageReducer,
 };
 
-const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
+const ArticleDetailsPage = ({ className }: Props) => {
     const { id } = useParams<{ id: string }>();
 
     useEffect(() => {

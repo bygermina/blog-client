@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 
-import { getArticles } from '../../model/slice/articlesPageSlice';
+import { getArticles } from '../../model/slice/articlesListSlice';
 import {
-    getArticlesPageError,
-    getArticlesPageIsLoading,
-    getArticlesPageSearch,
-    getArticlesPageView,
+    getArticlesListError,
+    getArticlesListIsLoading,
+    getArticlesListSearch,
+    getArticlesListView,
 } from '../../model/selectors/articlesListSelectors';
 import { ArticleList } from '../ArticleList/ArticleList';
 
@@ -19,12 +19,12 @@ type Props = {
 
 export const ArticleInfiniteList = memo(({ className }: Props) => {
     const articles = useSelector(getArticles.selectAll);
-    const isLoading = useSelector(getArticlesPageIsLoading);
-    const view = useSelector(getArticlesPageView);
-    const error = useSelector(getArticlesPageError);
+    const isLoading = useSelector(getArticlesListIsLoading);
+    const view = useSelector(getArticlesListView);
+    const error = useSelector(getArticlesListError);
     const { t } = useTranslation();
 
-    const search = useSelector(getArticlesPageSearch);
+    const search = useSelector(getArticlesListSearch);
 
     if (error) {
         return <Text text={t('Ошибка при загрузке статей')} />;

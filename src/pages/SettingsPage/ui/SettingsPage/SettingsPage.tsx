@@ -1,15 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 
-interface SettingsPageProps {
-    className?: string;
-}
-
-const SettingsPage = memo(({ className }: SettingsPageProps) => {
+const SettingsPage = () => {
     const { t } = useTranslation();
 
     return (
@@ -19,6 +14,6 @@ const SettingsPage = memo(({ className }: SettingsPageProps) => {
             </VStack>
         </Page>
     );
-});
+};
 
 export default SettingsPage;

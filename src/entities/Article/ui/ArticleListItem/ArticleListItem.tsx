@@ -16,7 +16,7 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { Html } from '@/shared/ui/redesigned/Html/Html';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 
-import { ArticleView } from '../../model/consts/articleConsts';
+import { ArticleView } from '../../model/types/articleConsts';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 
 import cls from './ArticleListItem.module.scss';
@@ -34,6 +34,17 @@ const highlightText = (text: string, searchTerm?: string): string => {
                 : part,
         )
         .join('');
+};
+
+const formatDate = (date?: string) => dayjs(date).format('DD MMMM YYYY');
+
+const Views = ({ views }: { views?: number }) => {
+    return (
+        <HStack gap="8">
+            <Icon Svg={EyeIcon} />
+            <Text text={String(views)} className={cls.views} />
+        </HStack>
+    );
 };
 
 type Props = {
@@ -57,28 +68,6 @@ export const ArticleListItem = ({
         return null;
     }
 
-    const userInfo = (
-        <>
-            <Avatar
-                size={32}
-                src={article.user?.avatar}
-                className={cls.avatar}
-            />
-            <Text bold text={article.user?.username} />
-        </>
-    );
-
-    const views = (
-        <div>
-            <HStack gap="8">
-                <Icon Svg={EyeIcon} />
-                <Text text={String(article.views)} className={cls.views} />
-            </HStack>
-        </div>
-    );
-
-    const createdAt = dayjs(article.createdAt).format('DD MMMM YYYY');
-
     if (view === 'BIG') {
         const textBlock = article.blocks.find(
             (block) => block.type === 'paragraph',
@@ -93,8 +82,13 @@ export const ArticleListItem = ({
             >
                 <VStack max gap="16">
                     <HStack gap="8" max>
-                        {userInfo}
-                        <Text text={createdAt} />
+                        <Avatar
+                            size={32}
+                            src={article.user?.avatar}
+                            className={cls.avatar}
+                        />
+                        <Text bold text={article.user?.username} />
+                        <Text text={formatDate(article.createdAt)} />
                     </HStack>
                     <Html title={highlightText(article.title, search)} bold />
                     <Html
@@ -122,7 +116,7 @@ export const ArticleListItem = ({
                                 {t('Читать далее...')}
                             </Button>
                         </AppLink>
-                        {views}
+                        <Views views={article.views} />
                     </HStack>
                 </VStack>
             </Card>
@@ -150,8 +144,11 @@ export const ArticleListItem = ({
                     />
                     <VStack gap="4" className={cls.footer} max>
                         <HStack justify="between" max>
-                            <Text text={createdAt} size="s" />
-                            {views}
+                            <Text
+                                text={formatDate(article.createdAt)}
+                                size="s"
+                            />
+                            <Views views={article.views} />
                         </HStack>
                     </VStack>
                 </VStack>

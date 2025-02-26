@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
     ArticleView,
-    getArticlesPageView,
+    getArticlesListView,
     articlesPageActions,
 } from '@/entities/Article';
 
 export const useView = () => {
-    const view = useSelector(getArticlesPageView);
+    const view = useSelector(getArticlesListView);
     const dispatch = useAppDispatch();
 
     const onChangeView = useCallback(

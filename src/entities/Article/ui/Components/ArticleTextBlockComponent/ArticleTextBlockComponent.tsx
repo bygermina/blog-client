@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { Html } from '@/shared/ui/redesigned/Html/Html';
 
-import { ArticleTextBlock } from '../../model/types/article';
+import { ArticleTextBlock } from '../../../model/types/article';
 
 import cls from './ArticleTextBlockComponent.module.scss';
 

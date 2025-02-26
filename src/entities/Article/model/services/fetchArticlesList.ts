@@ -4,12 +4,12 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 
 import {
-    getArticlesPageLimit,
-    getArticlesPageNum,
-    getArticlesPageOrder,
-    getArticlesPageSearch,
-    getArticlesPageSort,
-    getArticlesPageType,
+    getArticlesListLimit,
+    getArticlesListNum,
+    getArticlesListOrder,
+    getArticlesListSearch,
+    getArticlesListSort,
+    getArticlesListType,
 } from '../selectors/articlesListSelectors';
 import { Articles } from '../types/articlesPageSchema';
 
@@ -23,12 +23,12 @@ export const fetchArticlesList = createAsyncThunk<
     ThunkConfig<string>
 >('articlesPage/fetchArticlesList', async (props, thunkApi) => {
     const { extra, rejectWithValue, getState } = thunkApi;
-    const limit = getArticlesPageLimit(getState());
-    const sort = getArticlesPageSort(getState());
-    const order = getArticlesPageOrder(getState());
-    const search = getArticlesPageSearch(getState());
-    const page = getArticlesPageNum(getState());
-    const type = getArticlesPageType(getState());
+    const limit = getArticlesListLimit(getState());
+    const sort = getArticlesListSort(getState());
+    const order = getArticlesListOrder(getState());
+    const search = getArticlesListSearch(getState());
+    const page = getArticlesListNum(getState());
+    const type = getArticlesListType(getState());
 
     try {
         addQueryParams({

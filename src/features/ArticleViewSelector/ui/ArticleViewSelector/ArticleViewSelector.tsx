@@ -10,11 +10,11 @@ import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import cls from './ArticleViewSelector.module.scss';
 
-interface ArticleViewSelectorProps {
+type Props = {
     className?: string;
     view: ArticleView;
     onViewClick?: (view: ArticleView) => void;
-}
+};
 
 const viewTypes: { view: ArticleView; icon: FC<SVGProps<SVGSVGElement>> }[] = [
     {
@@ -28,7 +28,7 @@ const viewTypes: { view: ArticleView; icon: FC<SVGProps<SVGSVGElement>> }[] = [
 ];
 
 export const ArticleViewSelector = memo(
-    ({ className, view, onViewClick }: ArticleViewSelectorProps) => {
+    ({ className, view, onViewClick }: Props) => {
         const onClick = (newView: ArticleView) => () => {
             onViewClick?.(newView);
         };

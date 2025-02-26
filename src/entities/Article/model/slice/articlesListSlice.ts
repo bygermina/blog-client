@@ -15,14 +15,14 @@ import {
     ArticleSortField,
     ArticleType,
     ArticleView,
-} from '../consts/articleConsts';
+} from '../types/articleConsts';
 
 const articlesAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id,
 });
 
 export const getArticles = articlesAdapter.getSelectors<StateSchema>(
-    (state) => state.articlesPage || articlesAdapter.getInitialState(),
+    (state) => state.articlesList || articlesAdapter.getInitialState(),
 );
 
 const articlesPageSlice = createSlice({

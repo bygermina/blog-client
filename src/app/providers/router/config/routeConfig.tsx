@@ -18,7 +18,7 @@ import {
 import { AppRoutesProps } from '@/shared/types/router';
 import { SettingsPage } from '@/pages/SettingsPage';
 
-export const routeConfig = {
+export const routeConfig: Record<string, AppRoutesProps> = {
     main: {
         path: getRouteMain(),
         element: <MainPage />,

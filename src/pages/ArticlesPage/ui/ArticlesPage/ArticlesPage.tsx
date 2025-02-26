@@ -13,7 +13,7 @@ import { Page } from '@/widgets/Page';
 import { InfoSEO } from '@/shared/lib/components/SEO';
 import {
     ArticleSearch,
-    initArticlesPage,
+    initArticlesList,
     articlesPageReducer,
     fetchNextArticlesPage,
 } from '@/entities/Article';
@@ -26,7 +26,7 @@ import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 import cls from './ArticlesPage.module.scss';
 
 const reducers: ReducersList = {
-    articlesPage: articlesPageReducer,
+    articlesList: articlesPageReducer,
 };
 
 const Content = () => {
@@ -35,7 +35,7 @@ const Content = () => {
     const [searchParams] = useSearchParams();
 
     useInitialEffect(() => {
-        dispatch(initArticlesPage(searchParams));
+        dispatch(initArticlesList(searchParams));
     });
 
     const onLoadNextPart = useCallback(() => {
