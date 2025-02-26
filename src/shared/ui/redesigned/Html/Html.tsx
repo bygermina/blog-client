@@ -9,7 +9,7 @@ export type TextAlign = 'right' | 'left' | 'center';
 
 export type TextSize = 's' | 'm' | 'l';
 
-interface TextProps {
+type Props = {
     className?: string;
     title?: string | JSX.Element;
     text?: string | JSX.Element;
@@ -18,7 +18,7 @@ interface TextProps {
     size?: TextSize;
     bold?: boolean;
     'data-testid'?: string;
-}
+};
 
 type HeaderTagType = 'h1' | 'h2' | 'h3';
 
@@ -44,7 +44,7 @@ export const Html = memo(
         size = 'm',
         bold,
         'data-testid': dataTestId = 'Text',
-    }: TextProps) => {
+    }: Props) => {
         const HeaderTag = mapSizeToHeaderTag[size];
         const sizeClass = mapSizeToClass[size];
 

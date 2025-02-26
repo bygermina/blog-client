@@ -6,8 +6,8 @@ import { Flex, FlexDirection } from '../Stack/Flex/Flex';
 
 import cls from './Tabs.module.scss';
 
-export interface TabItem {
-    value: string;
+export interface TabItem<T extends string = string> {
+    value: T;
     content: ReactNode;
 }
 

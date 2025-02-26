@@ -15,24 +15,33 @@ export const ArticleTypeTabs = memo(
     ({ className, value, onChangeType }: Props) => {
         const { t } = useTranslation();
 
-        const typeTabs = useMemo<TabItem[]>(
+        const typeTabs = useMemo<TabItem<ArticleType>[]>(
             () => [
                 {
-                    value: ArticleType.ALL,
+                    value: 'ALL',
                     content: t('Все статьи'),
                 },
                 {
-                    value: ArticleType.IT,
-                    content: t('Айти'),
+                    value: 'EUROPE',
+                    content: t('Европа'),
                 },
                 {
-                    value: ArticleType.ECONOMICS,
-                    content: t('Экономика'),
+                    value: 'ASIA',
+                    content: t('Азия'),
                 },
-                {
-                    value: ArticleType.SCIENCE,
-                    content: t('Наука'),
-                },
+
+                // {
+                //     value: ArticleType.IT,
+                //     content: t('Айти'),
+                // },
+                // {
+                //     value: ArticleType.ECONOMICS,
+                //     content: t('Экономика'),
+                // },
+                // {
+                //     value: ArticleType.SCIENCE,
+                //     content: t('Наука'),
+                // },
             ],
             [t],
         );

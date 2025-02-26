@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { FC, memo, SVGProps } from 'react';
 import clsx from 'clsx';
 
 import ListIcon from '@/shared/assets/icons/burger.svg';
@@ -16,13 +16,13 @@ interface ArticleViewSelectorProps {
     onViewClick?: (view: ArticleView) => void;
 }
 
-const viewTypes = [
+const viewTypes: { view: ArticleView; icon: FC<SVGProps<SVGSVGElement>> }[] = [
     {
-        view: ArticleView.SMALL,
+        view: 'SMALL',
         icon: TiledIcon,
     },
     {
-        view: ArticleView.BIG,
+        view: 'BIG',
         icon: ListIcon,
     },
 ];

@@ -1,18 +1,12 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { buildSelector } from '@/shared/lib/store';
 
-import {
-    ArticleSortField,
-    ArticleType,
-    ArticleView,
-} from '../consts/articleConsts';
-
 export const getArticlesPageIsLoading = (state: StateSchema) =>
     state.articlesPage?.isLoading || false;
 export const getArticlesPageError = (state: StateSchema) =>
     state.articlesPage?.error;
 export const getArticlesPageView = (state: StateSchema) =>
-    state.articlesPage?.view || ArticleView.SMALL;
+    state.articlesPage?.view || 'SMALL';
 
 export const getArticlesPageNum = (state: StateSchema) =>
     state.articlesPage?.page || 1;
@@ -26,11 +20,11 @@ export const getArticlesPageInited = (state: StateSchema) =>
 export const getArticlesPageOrder = (state: StateSchema) =>
     state.articlesPage?.order ?? 'asc';
 export const getArticlesPageSort = (state: StateSchema) =>
-    state.articlesPage?.sort ?? ArticleSortField.CREATED;
+    state.articlesPage?.sort ?? 'createdAt';
 export const getArticlesPageSearch = (state: StateSchema) =>
     state.articlesPage?.search ?? '';
 export const getArticlesPageType = (state: StateSchema) =>
-    state.articlesPage?.type ?? ArticleType.ALL;
+    state.articlesPage?.type ?? 'ALL';
 
 export const [useArticleItemById] = buildSelector(
     (state, id: string) => state.articlesPage?.entities[id],

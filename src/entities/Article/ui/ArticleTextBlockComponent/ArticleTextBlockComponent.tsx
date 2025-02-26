@@ -8,19 +8,17 @@ import { ArticleTextBlock } from '../../model/types/article';
 
 import cls from './ArticleTextBlockComponent.module.scss';
 
-interface ArticleTextBlockComponentProps {
+type Props = {
     className?: string;
     block: ArticleTextBlock;
-}
+};
 
-export const ArticleTextBlockComponent = memo(
-    ({ className, block }: ArticleTextBlockComponentProps) => {
-        const { t } = useTranslation();
+export const ArticleTextBlockComponent = memo(({ className, block }: Props) => {
+    const { t } = useTranslation();
 
-        return (
-            <div className={clsx(cls.ArticleTextBlockComponent, className)}>
-                <Html title={block.data.text} className={cls.title} />
-            </div>
-        );
-    },
-);
+    return (
+        <div className={clsx(cls.ArticleTextBlockComponent, className)}>
+            <Html title={block.data.text} className={cls.title} />
+        </div>
+    );
+});

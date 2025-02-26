@@ -9,12 +9,10 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
 import {
     Article,
-    ArticleType,
     createArticle,
     fetchArticleById,
     updateArticle,
     Block,
-    ArticleBlockType,
 } from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -27,7 +25,7 @@ import cls from './Editor.module.scss';
 
 const processBlocks = (blocks: Block[]) => {
     return blocks.map((block) => {
-        if (block.type === ArticleBlockType.IMAGE) {
+        if (block.type === 'image') {
             return {
                 ...block,
                 data: {
@@ -172,12 +170,12 @@ export const Editor = () => {
                         img: url,
                         blocks: cleanImagePaths(outputData.blocks as Block[]),
                         userId: user?.id,
-                        type: [ArticleType.ALL],
+                        type: ['ALL'],
                     };
 
                     const action = id ? updateArticle : createArticle;
 
-                    const result = await dispatch(action(article));
+                    const result = await dispatch(action(article as Article));
 
                     // @ts-ignore
                     const _id = id ?? result.payload?.id;

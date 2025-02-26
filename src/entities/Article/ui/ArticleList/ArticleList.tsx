@@ -25,7 +25,7 @@ type Props = {
 };
 
 const getSkeletons = (view: ArticleView) =>
-    new Array(view === ArticleView.SMALL ? 9 : 3)
+    new Array(view === 'SMALL' ? 9 : 3)
         .fill(0)
         .map((item, index) => (
             <ArticleListItemSkeleton
@@ -38,7 +38,7 @@ const getSkeletons = (view: ArticleView) =>
 export const ArticleList = ({
     className,
     articles,
-    view = ArticleView.BIG,
+    view = 'BIG',
     isLoading,
     target,
     search,
@@ -53,7 +53,7 @@ export const ArticleList = ({
         );
     }
 
-    return view === ArticleView.BIG ? (
+    return view === 'BIG' ? (
         <HStack wrap="wrap" gap="16" data-testid="ArticleList">
             {articles.map((item) => (
                 <ArticleListItem

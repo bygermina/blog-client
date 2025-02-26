@@ -1,11 +1,14 @@
 import clsx from 'clsx';
-import { ReactNode, Suspense } from 'react';
+import { ReactNode, Suspense, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getUserInfo, getUserInited } from '@/entities/User';
 
 import { AppRouter } from './providers/router';
 import { Toolbar } from './lib/useAppToolbar';
@@ -22,22 +25,14 @@ function ThemedContainer({ children }: { children: ReactNode }) {
 }
 
 const App = () => {
-    // const dispatch = useAppDispatch();
-    // const inited = useSelector(getUserInited);
+    const dispatch = useAppDispatch();
+    const inited = useSelector(getUserInited);
 
-    // useEffect(() => {
-    //     if (!inited) {
-    //         dispatch(getUserInfo());
-    //     }
-    // }, [dispatch, inited]);
-
-    // if (!inited) {
-    //     return (
-    //         <div id="app" className={clsx('app_redesigned', theme)}>
-    //             <AppLoaderLayout />
-    //         </div>
-    //     );
-    // }
+    useEffect(() => {
+        if (!inited) {
+            dispatch(getUserInfo());
+        }
+    }, [dispatch, inited]);
 
     return (
         <ThemedContainer>

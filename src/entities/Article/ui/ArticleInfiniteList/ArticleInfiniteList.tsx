@@ -10,7 +10,7 @@ import {
     getArticlesPageIsLoading,
     getArticlesPageSearch,
     getArticlesPageView,
-} from '../../model/selectors/articlesPageSelectors';
+} from '../../model/selectors/articlesListSelectors';
 import { ArticleList } from '../ArticleList/ArticleList';
 
 type Props = {

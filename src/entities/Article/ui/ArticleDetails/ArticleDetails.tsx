@@ -10,12 +10,12 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { InfoSEO } from '@/shared/lib/components/SEO';
 import { Html } from '@/shared/ui/redesigned/Html/Html';
 
-import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { fetchArticleById } from '../../model/services/fetchArticleById';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import {
     getArticleDetailsData,
@@ -45,13 +45,7 @@ const Redesigned = () => {
             <Html title={article?.title} size="l" bold />
             <Html title={article?.subtitle} />
             <AppImage
-                fallback={
-                    <SkeletonRedesigned
-                        width="100%"
-                        height={420}
-                        border="16px"
-                    />
-                }
+                fallback={<Skeleton width="100%" height={420} border="16px" />}
                 src={`${__API__}/${article?.img}`}
                 className={cls.img}
             />
@@ -61,8 +55,6 @@ const Redesigned = () => {
 };
 
 export const ArticleDetailsSkeleton = () => {
-    const Skeleton = SkeletonRedesigned;
-
     return (
         <VStack gap="16" max>
             <Skeleton

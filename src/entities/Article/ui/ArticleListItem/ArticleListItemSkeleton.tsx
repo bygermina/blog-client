@@ -15,7 +15,7 @@ type Props = {
 
 export const ArticleListItemSkeleton = memo(({ className, view }: Props) => {
     const cardContent =
-        view === ArticleView.BIG ? (
+        view === 'BIG' ? (
             <>
                 <div className={cls.header}>
                     <Skeleton border="50%" height={30} width={30} />

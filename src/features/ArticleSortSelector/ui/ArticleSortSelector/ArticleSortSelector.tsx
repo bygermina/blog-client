@@ -45,15 +45,15 @@ export const ArticleSortSelector = ({
     const sortFieldOptions = useMemo<SelectOption<ArticleSortField>[]>(
         () => [
             {
-                value: ArticleSortField.CREATED,
+                value: 'createdAt',
                 content: t('дате создания'),
             },
             {
-                value: ArticleSortField.TITLE,
+                value: 'title',
                 content: t('названию'),
             },
             {
-                value: ArticleSortField.VIEWS,
+                value: 'views',
                 content: t('просмотрам'),
             },
         ],

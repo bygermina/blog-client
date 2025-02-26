@@ -3,7 +3,6 @@ import {
     ArticleTextBlock,
     Block,
 } from '../../model/types/article';
-import { ArticleBlockType } from '../../model/consts/articleConsts';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
@@ -19,7 +18,7 @@ export const renderArticleBlock = (block: Block) => {
         //             className={cls.block}
         //         />
         //     );
-        case ArticleBlockType.IMAGE:
+        case 'image':
             return (
                 <ArticleImageBlockComponent
                     key={block.id}
@@ -27,7 +26,7 @@ export const renderArticleBlock = (block: Block) => {
                     className={cls.block}
                 />
             );
-        case ArticleBlockType.TEXT:
+        case 'paragraph':
             return (
                 <ArticleTextBlockComponent
                     key={block.id}

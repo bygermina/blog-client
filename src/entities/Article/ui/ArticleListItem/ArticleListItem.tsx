@@ -16,10 +16,7 @@ import { Button } from '@/shared/ui/redesigned/Button';
 import { Html } from '@/shared/ui/redesigned/Html/Html';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 
-import {
-    ArticleBlockType,
-    ArticleView,
-} from '../../model/consts/articleConsts';
+import { ArticleView } from '../../model/consts/articleConsts';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 
 import cls from './ArticleListItem.module.scss';
@@ -82,10 +79,10 @@ export const ArticleListItem = ({
 
     const createdAt = dayjs(article.createdAt).format('DD MMMM YYYY');
 
-    if (view === ArticleView.BIG) {
+    if (view === 'BIG') {
         const textBlock = article.blocks.find(
-            (block) => block.type === ArticleBlockType.TEXT,
-        ) as unknown as ArticleTextBlock;
+            (block) => block.type === 'paragraph',
+        ) as ArticleTextBlock;
 
         return (
             <Card
@@ -147,7 +144,10 @@ export const ArticleListItem = ({
                     className={cls.img}
                 />
                 <VStack className={cls.info} gap="4">
-                    <Text title={article.title} size="s" />
+                    <Html
+                        title={highlightText(article.title, search)}
+                        size="s"
+                    />
                     <VStack gap="4" className={cls.footer} max>
                         <HStack justify="between" max>
                             <Text text={createdAt} size="s" />

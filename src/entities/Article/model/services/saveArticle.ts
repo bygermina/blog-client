@@ -18,10 +18,8 @@ export const createArticle = createAsyncThunk<
             throw new Error();
         }
 
-        // dispatch(userActions.setAuthData(response.data));
         return response.data;
     } catch (e) {
-        // console.log(e);
         return rejectWithValue('error');
     }
 });

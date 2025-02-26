@@ -10,14 +10,14 @@ export interface ArticleBlockBase {
 }
 
 export interface ArticleCodeBlock extends ArticleBlockBase {
-    type: ArticleBlockType.CODE;
+    type: 'code';
     data: {
         code: string;
     };
 }
 
 export interface ArticleImageBlock extends ArticleBlockBase {
-    type: ArticleBlockType.IMAGE;
+    type: 'image';
     data: {
         title: string;
         file: {
@@ -27,7 +27,7 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 }
 
 export interface ArticleTextBlock extends ArticleBlockBase {
-    type: ArticleBlockType.TEXT;
+    type: 'paragraph';
     data: {
         text: string;
     };

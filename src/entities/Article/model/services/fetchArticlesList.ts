@@ -10,9 +10,8 @@ import {
     getArticlesPageSearch,
     getArticlesPageSort,
     getArticlesPageType,
-} from '../selectors/articlesPageSelectors';
+} from '../selectors/articlesListSelectors';
 import { Articles } from '../types/articlesPageSchema';
-import { ArticleType } from '../consts/articleConsts';
 
 interface FetchArticlesListProps {
     replace?: boolean;
@@ -46,7 +45,7 @@ export const fetchArticlesList = createAsyncThunk<
                 _sort: sort,
                 _order: order,
                 q: search,
-                type: type === ArticleType.ALL ? undefined : type,
+                type: type === 'ALL' ? undefined : type,
             },
         });
 

@@ -6,7 +6,7 @@ import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
 import { articlesPageActions } from '../../model/slice/articlesPageSlice';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList';
-import { getArticlesPageSearch } from '../../model/selectors/articlesPageSelectors';
+import { getArticlesPageSearch } from '../../model/selectors/articlesListSelectors';
 
 export const useSearch = () => {
     const dispatch = useAppDispatch();

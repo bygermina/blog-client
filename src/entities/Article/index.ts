@@ -15,11 +15,11 @@ export {
     getArticlesPageError,
     getArticlesPageHasMore,
     getArticlesPageIsLoading,
-} from './model/selectors/articlesPageSelectors';
+} from './model/selectors/articlesListSelectors';
 
 export { getArticles } from './model/slice/articlesPageSlice';
 
-export { getArticlesPageView } from './model/selectors/articlesPageSelectors';
+export { getArticlesPageView } from './model/selectors/articlesListSelectors';
 export { articlesPageActions } from './model/slice/articlesPageSlice';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 
@@ -27,8 +27,8 @@ export { ArticleList } from './ui/ArticleList/ArticleList';
 export { getArticleDetailsData } from './model/selectors/articleDetails';
 export { createArticle } from './model/services/saveArticle';
 export { updateArticle } from './model/services/upadateArticle';
-export { fetchArticleById } from './model/services/fetchArticleById/fetchArticleById';
-export {
+export { fetchArticleById } from './model/services/fetchArticleById';
+export type {
     ArticleView,
     ArticleType,
     ArticleSortField,

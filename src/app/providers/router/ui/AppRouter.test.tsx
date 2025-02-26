@@ -6,7 +6,6 @@ import {
     getRouteAdmin,
     getRouteProfile,
 } from '@/shared/const/router';
-import { UserRole } from '@/entities/User';
 
 import AppRouter from './AppRouter';
 
@@ -66,7 +65,7 @@ describe('app/router/AppRouter', () => {
         componentRender(<AppRouter />, {
             route: getRouteAdmin(),
             initialState: {
-                user: { _inited: true, authData: { roles: [UserRole.ADMIN] } },
+                user: { _inited: true, authData: { roles: ['ADMIN'] } },
             },
         });
 

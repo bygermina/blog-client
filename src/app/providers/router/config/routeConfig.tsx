@@ -54,7 +54,7 @@ export const routeConfig = {
     //     path: getRouteAdmin(),
     //     element: <AdminPanelPage />,
     //     authOnly: true,
-    //     roles: [UserRole.MANAGER, UserRole.ADMIN],
+    //     roles: ['MANAGER', 'ADMIN'],
     // },
     forbidden: {
         path: getRouteForbidden(),

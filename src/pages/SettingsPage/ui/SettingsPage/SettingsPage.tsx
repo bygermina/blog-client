@@ -4,7 +4,6 @@ import { memo } from 'react';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Page } from '@/widgets/Page';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 
 interface SettingsPageProps {
     className?: string;
@@ -17,7 +16,6 @@ const SettingsPage = memo(({ className }: SettingsPageProps) => {
         <Page>
             <VStack gap="16">
                 <Text title={t('Настройки пользователя')} />
-                <UiDesignSwitcher />
             </VStack>
         </Page>
     );
