@@ -18,6 +18,8 @@ export const MainLayout = ({
     header,
     sidebar,
 }: Props) => {
+    console.log(2);
+
     return (
         <div className={clsx(cls.MainLayout, className)}>
             <div className={cls.content}>{content}</div>

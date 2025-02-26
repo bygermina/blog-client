@@ -8,11 +8,11 @@ import { Editor } from '@/features/addEditArticle';
 
 import cls from './ArticleEditPage.module.scss';
 
-interface ArticleEditPageProps {
+type Props = {
     className?: string;
-}
+};
 
-const ArticleEditPage = memo(({ className }: ArticleEditPageProps) => {
+const ArticleEditPage = memo(({ className }: Props) => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     const isEdit = Boolean(id);

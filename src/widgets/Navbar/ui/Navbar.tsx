@@ -29,11 +29,9 @@ export const Navbar = ({ className }: Props) => {
         setIsAuthModal(true);
     }, []);
 
-    const mainClass = cls.NavbarRedesigned;
-
     if (authData) {
         return (
-            <header className={clsx(mainClass, className)}>
+            <header className={clsx(cls.NavbarRedesigned, className)}>
                 <HStack gap="16" className={cls.actions}>
                     <NotificationButton />
                     <AvatarDropdown />
@@ -43,7 +41,7 @@ export const Navbar = ({ className }: Props) => {
     }
 
     return (
-        <header className={clsx(mainClass, className)}>
+        <header className={clsx(cls.NavbarRedesigned, className)}>
             <Button variant="clear" className={cls.links} onClick={onShowModal}>
                 {t('Войти')}
             </Button>

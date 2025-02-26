@@ -14,7 +14,7 @@ const AppRouter = () => {
                     key={route.path}
                     path={route.path}
                     element={
-                        route.authOnly ? (
+                        route.auth ? (
                             <RequireAuth roles={route.roles}>
                                 <Suspense fallback={<PageLoader />}>
                                     {route.element}

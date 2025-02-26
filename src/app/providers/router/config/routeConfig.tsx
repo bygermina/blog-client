@@ -30,7 +30,7 @@ export const routeConfig: Record<string, AppRoutesProps> = {
     profile: {
         path: getRouteProfile(':id'),
         element: <ProfilePage />,
-        authOnly: true,
+        auth: true,
     },
     articles: {
         path: getRouteArticles(),
@@ -43,17 +43,17 @@ export const routeConfig: Record<string, AppRoutesProps> = {
     article_create: {
         path: getRouteArticleCreate(),
         element: <ArticleEditPage />,
-        authOnly: true,
+        auth: true,
     },
     article_edit: {
         path: getRouteArticleEdit(':id'),
         element: <ArticleEditPage />,
-        authOnly: true,
+        auth: true,
     },
     // admin_panel: {
     //     path: getRouteAdmin(),
     //     element: <AdminPanelPage />,
-    //     authOnly: true,
+    //     auth: true,
     //     roles: ['MANAGER', 'ADMIN'],
     // },
     forbidden: {

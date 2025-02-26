@@ -6,11 +6,11 @@ import cls from './AppLink.module.scss';
 
 export type AppLinkVariant = 'primary' | 'red';
 
-interface AppLinkProps extends LinkProps {
+type Props = {
     className?: string;
     variant?: AppLinkVariant;
     activeClassName?: string;
-}
+} & LinkProps;
 
 export const AppLink = ({
     to,
@@ -19,7 +19,7 @@ export const AppLink = ({
     activeClassName = '',
     children,
     ...otherProps
-}: PropsWithChildren<AppLinkProps>) => {
+}: PropsWithChildren<Props>) => {
     return (
         <NavLink
             {...otherProps}

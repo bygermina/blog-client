@@ -11,7 +11,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { getUserInfo, getUserInited } from '@/entities/User';
 
 import { AppRouter } from './providers/router';
-import { Toolbar } from './lib/useAppToolbar';
+import { Toolbar } from './lib/Toolbar';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
 
 function ThemedContainer({ children }: { children: ReactNode }) {
@@ -33,6 +33,8 @@ const App = () => {
             dispatch(getUserInfo());
         }
     }, [dispatch, inited]);
+
+    console.log(1);
 
     return (
         <ThemedContainer>

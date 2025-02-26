@@ -16,6 +16,7 @@ import { SidebarItemType } from '../types/sidebar';
 
 export const useSidebarItems = () => {
     const userData = useSelector(getUserAuthData);
+
     const sidebarItemsList: SidebarItemType[] = [
         {
             path: getRouteMain(),
@@ -39,7 +40,7 @@ export const useSidebarItems = () => {
             path: getRouteProfile(userData.id),
             Icon: ProfileIcon,
             text: 'Профиль',
-            authOnly: true,
+            auth: true,
         });
     }
 
