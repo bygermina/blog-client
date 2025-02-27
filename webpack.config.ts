@@ -7,6 +7,8 @@ import { BuildEnv, BuildPaths } from './config/build/types/config';
 
 const env = dotenv.config().parsed as unknown as BuildEnv;
 
+console.log(env.API_URL);
+
 export default () => {
     const paths: BuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),

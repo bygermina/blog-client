@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
-export const { API_URL } = process.env;
+// eslint-disable-next-line prefer-destructuring
+export const API_URL = process.env.API_URL;
 export const IS_DEV = process.env.MODE === 'development';
 
 export const $api = axios.create({

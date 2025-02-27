@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
-const { PROJECT } = process.env;
+// eslint-disable-next-line prefer-destructuring
+const PROJECT = process.env.PROJECT;
 
 export function useInitialEffect(callback: () => void) {
     useEffect(() => {

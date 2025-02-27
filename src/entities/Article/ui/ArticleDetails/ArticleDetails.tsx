@@ -27,7 +27,8 @@ import { renderArticleBlock } from './renderBlock';
 import cls from './ArticleDetails.module.scss';
 import { API_URL } from '@/shared/api/api';
 
-const { PROJECT } = process.env;
+// eslint-disable-next-line prefer-destructuring
+const PROJECT = process.env.PROJECT;
 
 interface ArticleDetailsProps {
     className?: string;
