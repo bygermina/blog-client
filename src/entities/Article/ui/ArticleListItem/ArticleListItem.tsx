@@ -1,7 +1,6 @@
 import { HTMLAttributeAnchorTarget } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import dayjs from 'dayjs';
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -15,6 +14,7 @@ import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Html } from '@/shared/ui/redesigned/Html/Html';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
+import { formatDate } from '@/shared/lib/dates/date';
 
 import { ArticleView } from '../../model/types/articleConsts';
 import { Article, ArticleTextBlock } from '../../model/types/article';
@@ -35,8 +35,6 @@ const highlightText = (text: string, searchTerm?: string): string => {
         )
         .join('');
 };
-
-const formatDate = (date?: string) => dayjs(date).format('DD MMMM YYYY');
 
 const Views = ({ views }: { views?: number }) => {
     return (

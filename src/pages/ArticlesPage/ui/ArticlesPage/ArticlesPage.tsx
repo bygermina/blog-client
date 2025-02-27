@@ -18,10 +18,10 @@ import {
     fetchNextArticlesPage,
 } from '@/entities/Article';
 import { HStack } from '@/shared/ui/redesigned/Stack';
+import { ArticlesFilters } from '@/widgets/ArticlesFilters';
 
 import { ArticleInfiniteList } from '../../../../entities/Article/ui/ArticleInfiniteList/ArticleInfiniteList';
 import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer';
-import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 
 import cls from './ArticlesPage.module.scss';
 
@@ -68,7 +68,7 @@ const ArticlesPage = () => {
                         <ArticleSearch />
                     </HStack>
                 }
-                right={<FiltersContainer />}
+                right={<ArticlesFilters />}
             >
                 <Content />
             </StickyContentLayout>

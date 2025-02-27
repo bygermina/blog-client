@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 
 import { User } from '@/entities/User';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { Text } from '@/shared/ui/redesigned/Text';
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
+import { formatDate } from '@/shared/lib/dates/date';
 
 import cls from './ArticleAdditionalInfo.module.scss';
 
@@ -25,13 +28,13 @@ export const ArticleAdditionalInfo = memo(
                 gap="32"
                 className={clsx(cls.ArticleAdditionalInfo, className)}
             >
-                {/* <HStack gap="8">
+                <HStack gap="8">
                     <Avatar src={author?.avatar} size={32} />
-                    <Text text={author.username} bold />
-                    <Text text={createdAt} />
-                </HStack> */}
+                    <Text text={author?.username} bold />
+                    <Text text={formatDate(createdAt)} />
+                </HStack>
                 <Button onClick={onEdit}>{t('Редактировать')}</Button>
-                {/* <Text text={t('{{count}} просмотров', { count: views })} /> */}
+                <Text text={t('{{count}} просмотров', { count: views })} />
             </VStack>
         );
     },

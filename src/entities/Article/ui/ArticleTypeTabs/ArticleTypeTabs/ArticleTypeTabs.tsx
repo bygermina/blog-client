@@ -4,7 +4,7 @@ import { useCallback, useMemo } from 'react';
 import { TabItem } from '@/shared/ui/redesigned/Tabs/Tabs';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
-import { ArticleType } from '../../../../model/types/articleConsts';
+import { ArticleType } from '../../../model/types/articleConsts';
 
 type Props = {
     className?: string;

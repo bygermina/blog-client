@@ -6,69 +6,52 @@ import clsx from 'clsx';
 
 import { Card } from '@/shared/ui/redesigned/Card';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import {
-    ArticleSortField,
-    ArticleType,
-    ArticleTypeTabs,
-} from '@/entities/Article';
-import { SortOrder } from '@/shared/types/sort';
+import { ArticleTypeTabs } from '@/entities/Article';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { getRouteArticleCreate } from '@/shared/const/router';
 import { getUserAuthData } from '@/entities/User';
 
 import { ArticleSortSelector } from './ArticleSortSelector/ArticleSortSelector';
+import { useArticleFilters } from './useArticleFilters';
 
 import cls from './ArticlesFilters.module.scss';
 
 type Props = {
     className?: string;
-    sort: ArticleSortField;
-    order: SortOrder;
-    type: ArticleType;
-    onChangeOrder: (newOrder: SortOrder) => void;
-    onChangeSort: (newSort: ArticleSortField) => void;
-    onChangeType: (type: ArticleType) => void;
 };
 
-export const ArticlesFilters = memo(
-    ({
-        className,
-        onChangeType,
-        onChangeSort,
-        sort,
-        onChangeOrder,
-        order,
-        type,
-    }: Props) => {
-        const { t } = useTranslation();
-        const navigate = useNavigate();
-        const isAuth = useSelector(getUserAuthData);
+export const ArticlesFilters = memo(({ className }: Props) => {
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const isAuth = useSelector(getUserAuthData);
 
-        return (
-            <Card className={clsx(cls.ArticlesFilters, className)} padding="24">
-                <VStack gap="32">
-                    <ArticleTypeTabs
-                        value={type}
-                        onChange={onChangeType}
-                        className={cls.tabs}
-                    />
-                    <ArticleSortSelector
-                        order={order}
-                        sort={sort}
-                        onChangeOrder={onChangeOrder}
-                        onChangeSort={onChangeSort}
-                    />
-                    {isAuth && (
-                        <Button
-                            onClick={() => {
-                                navigate(getRouteArticleCreate());
-                            }}
-                        >
-                            {t('Создать статью')}
-                        </Button>
-                    )}
-                </VStack>
-            </Card>
-        );
-    },
-);
+    const { onChangeSort, onChangeType, sort, type, onChangeOrder, order } =
+        useArticleFilters();
+
+    return (
+        <Card className={clsx(cls.ArticlesFilters, className)} padding="24">
+            <VStack gap="32">
+                <ArticleTypeTabs
+                    value={type}
+                    onChange={onChangeType}
+                    className={cls.tabs}
+                />
+                <ArticleSortSelector
+                    order={order}
+                    sort={sort}
+                    onChangeOrder={onChangeOrder}
+                    onChangeSort={onChangeSort}
+                />
+                {isAuth && (
+                    <Button
+                        onClick={() => {
+                            navigate(getRouteArticleCreate());
+                        }}
+                    >
+                        {t('Создать статью')}
+                    </Button>
+                )}
+            </VStack>
+        </Card>
+    );
+});
