@@ -2,8 +2,11 @@ import axios from 'axios';
 
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
+export const { API_URL } = process.env;
+export const IS_DEV = process.env.MODE === 'development';
+
 export const $api = axios.create({
-    baseURL: __API__,
+    baseURL: API_URL,
 });
 
 $api.interceptors.request.use((config) => {

@@ -8,8 +8,8 @@ export default defineConfig({
         alias: [{ find: '@', replacement: '/src' }],
     },
     define: {
-        __IS_DEV__: JSON.stringify(true),
-        __API__: JSON.stringify('http://localhost:3050'),
-        __PROJECT__: JSON.stringify('frontend'),
+        IS_DEV: JSON.stringify(true),
+        API_URL: JSON.stringify('http://localhost:3050'),
+        PROJECT: JSON.stringify('frontend'),
     },
 });

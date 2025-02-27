@@ -114,9 +114,9 @@ module.exports = {
         'react/no-unstable-nested-components': 'warn',
     },
     globals: {
-        __IS_DEV__: true,
-        __API__: true,
-        __PROJECT__: true,
+        IS_DEV: true,
+        API_URL: true,
+        PROJECT: true,
     },
     overrides: [
         {

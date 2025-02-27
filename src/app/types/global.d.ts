@@ -16,9 +16,14 @@ declare module '*.svg' {
     export default SVG;
 }
 
-declare const __IS_DEV__: boolean;
-declare const __API__: string;
-declare const __PROJECT__: 'storybook' | 'frontend' | 'jest';
+declare namespace NodeJS {
+    interface ProcessEnv {
+        IS_DEV: string;
+        MODE: 'development' | 'production' | 'test';
+        API_URL: string;
+        PROJECT?: 'storybook' | 'frontend' | 'jest';
+    }
+}
 
 type DeepPartial<T> = T extends object
     ? {

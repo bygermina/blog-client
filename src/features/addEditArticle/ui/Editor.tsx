@@ -17,7 +17,7 @@ import {
 import { getUserAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
-import { $api } from '@/shared/api/api';
+import { $api, API_URL } from '@/shared/api/api';
 
 import { uploadImage } from '../model/services/uploadFile';
 
@@ -34,7 +34,7 @@ const processBlocks = (blocks: Block[]) => {
                         // @ts-ignore
                         ...block.data.file,
                         // @ts-ignore
-                        url: `${__API__}/${block.data.file.url}`,
+                        url: `${API_URL}/${block.data.file.url}`,
                     },
                 },
             };
@@ -55,7 +55,7 @@ const cleanImagePaths = (blocks: Block[]) => {
                         // @ts-ignore
                         ...block.data.file,
                         // @ts-ignore
-                        url: block.data.file.url.replace(`${__API__}/`, ''),
+                        url: block.data.file.url.replace(`${API_URL}/`, ''),
                     },
                 },
             };
@@ -106,7 +106,7 @@ export const Editor = () => {
                         class: SimpleImage,
                         config: {
                             endpoints: {
-                                byFile: `${__API__}/editor-images`,
+                                byFile: `${API_URL}/editor-images`,
                             },
                             additionalRequestHeaders: {
                                 Authorization: localStorage.getItem(
@@ -129,7 +129,7 @@ export const Editor = () => {
                                             return {
                                                 success: 1,
                                                 file: {
-                                                    url: `${__API__}/${result.data.file.url}`,
+                                                    url: `${API_URL}/${result.data.file.url}`,
                                                 },
                                             };
                                         });
@@ -219,7 +219,7 @@ export const Editor = () => {
             />
             <div>
                 <img
-                    src={`${__API__}/${url}`}
+                    src={`${API_URL}/${url}`}
                     alt="article"
                     className={cls.image}
                 />

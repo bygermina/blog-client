@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { NotificationList } from './NotificationList';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { API_URL } from '@/shared/api/api';
 
 export default {
     title: 'entities/Notification/NotificationList',
@@ -22,7 +23,7 @@ Normal.decorators = [StoreDecorator({})];
 Normal.parameters = {
     mockData: [
         {
-            url: `${__API__}/notifications`,
+            url: `${API_URL}/notifications`,
             method: 'GET',
             status: 200,
             response: [

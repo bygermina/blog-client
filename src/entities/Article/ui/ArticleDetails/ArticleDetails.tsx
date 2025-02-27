@@ -25,6 +25,9 @@ import {
 import { renderArticleBlock } from './renderBlock';
 
 import cls from './ArticleDetails.module.scss';
+import { API_URL } from '@/shared/api/api';
+
+const { PROJECT } = process.env;
 
 interface ArticleDetailsProps {
     className?: string;
@@ -46,7 +49,7 @@ const Redesigned = () => {
             <Html title={article?.subtitle} />
             <AppImage
                 fallback={<Skeleton width="100%" height={420} border="16px" />}
-                src={`${__API__}/${article?.img}`}
+                src={`${API_URL}/${article?.img}`}
                 className={cls.img}
             />
             {article?.blocks?.map(renderArticleBlock)}
@@ -79,7 +82,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     const error = useSelector(getArticleDetailsError);
 
     useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
+        if (PROJECT !== 'storybook') {
             dispatch(fetchArticleById(id));
         }
     }, [dispatch, id]);

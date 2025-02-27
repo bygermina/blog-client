@@ -1,20 +1,13 @@
 import webpack from 'webpack';
 import path from 'path';
+import dotenv from 'dotenv';
+
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
-import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+import { BuildEnv, BuildPaths } from './config/build/types/config';
 
-function getApiUrl(mode: BuildMode, apiUrl?: string) {
-    if (apiUrl) {
-        return apiUrl;
-    }
-    if (mode === 'production') {
-        return '/api';
-    }
+const env = dotenv.config().parsed as unknown as BuildEnv;
 
-    return 'http://164.90.215.222';
-}
-
-export default (env: BuildEnv) => {
+export default () => {
     const paths: BuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         build: path.resolve(__dirname, 'build'),
@@ -24,9 +17,9 @@ export default (env: BuildEnv) => {
         buildLocales: path.resolve(__dirname, 'build', 'locales'),
     };
 
-    const mode = env?.mode || 'development';
-    const PORT = env?.port || 3000;
-    const apiUrl = getApiUrl(mode, env?.apiUrl);
+    const mode = env?.MODE || 'development';
+    const PORT = env?.PORT || 3000;
+    const apiUrl = env?.API_URL;
 
     const isDev = mode === 'development';
 

@@ -1,3 +1,4 @@
+import { API_URL } from '../api/api';
 import { AppRoutes } from '../const/router';
 
 const BASE_URL = 'http://206.189.60.138:3000';
@@ -77,7 +78,7 @@ const generateStaticPagesSitemap = async () => {
 
 const generateArticlesSitemap = async () => {
     try {
-        const result = await fetch(`${__API__}/articles-sitemap`, {
+        const result = await fetch(`${API_URL}/articles-sitemap`, {
             method: 'GET',
         });
         const articles = await result.json();

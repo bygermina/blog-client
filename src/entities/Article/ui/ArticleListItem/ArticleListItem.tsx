@@ -20,6 +20,7 @@ import { ArticleView } from '../../model/types/articleConsts';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 
 import cls from './ArticleListItem.module.scss';
+import { API_URL } from '@/shared/api/api';
 
 const highlightText = (text: string, searchTerm?: string): string => {
     if (!searchTerm) return text;
@@ -95,7 +96,7 @@ export const ArticleListItem = ({
                     />
                     <AppImage
                         fallback={<Skeleton width="100%" height={250} />}
-                        src={`${__API__}/${article.img}`}
+                        src={`${API_URL}/${article.img}`}
                         className={cls.img}
                         alt={article.title}
                     />
@@ -132,7 +133,7 @@ export const ArticleListItem = ({
                 <AppImage
                     fallback={<Skeleton width="100%" height={200} />}
                     alt={article.title}
-                    src={`${__API__}/${article.img}`}
+                    src={`${API_URL}/${article.img}`}
                     className={cls.img}
                 />
                 <VStack className={cls.info} gap="4">

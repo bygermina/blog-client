@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Article } from '@/entities/Article';
 import { ArticleRecommendationsList } from './ArticleRecommendationsList';
+import { API_URL } from '@/shared/api/api';
 
 export default {
     title: 'features/ArticleRecommendationsList',
@@ -35,7 +36,7 @@ Normal.decorators = [StoreDecorator({})];
 Normal.parameters = {
     mockData: [
         {
-            url: `${__API__}/articles?_limit=3`,
+            url: `${API_URL}/articles?_limit=3`,
             method: 'GET',
             status: 200,
             response: [
