@@ -2,6 +2,7 @@ export { ArticleDetailsSkeleton } from './ui/ArticleDetails/ArticleDetails';
 
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
 export { ArticleSearch } from './ui/ArticleSearch/ArticleSearch';
+export { ArticleTypeTabs } from './ui/ArticleTypeTabs/ArticleTypeTabs/ArticleTypeTabs';
 
 export type { Article, Block } from './model/types/article';
 

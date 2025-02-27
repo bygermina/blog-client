@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { Code } from '@/shared/ui/redesigned/Code';
 
-import { ArticleCodeBlock } from '../../model/types/article';
+import { ArticleCodeBlock } from '../../../model/types/article';
 
 import cls from './ArticleCodeBlockComponent.module.scss';
 

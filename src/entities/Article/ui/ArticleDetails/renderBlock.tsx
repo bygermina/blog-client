@@ -22,7 +22,7 @@ export const renderArticleBlock = (block: Block) => {
             return (
                 <ArticleImageBlockComponent
                     key={block.id}
-                    block={block as unknown as ArticleImageBlock}
+                    block={block as ArticleImageBlock}
                     className={cls.block}
                 />
             );
@@ -31,7 +31,7 @@ export const renderArticleBlock = (block: Block) => {
                 <ArticleTextBlockComponent
                     key={block.id}
                     className={cls.block}
-                    block={block as unknown as ArticleTextBlock}
+                    block={block as ArticleTextBlock}
                 />
             );
         default:

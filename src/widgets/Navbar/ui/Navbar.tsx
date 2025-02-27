@@ -7,8 +7,9 @@ import { LoginModal, LoginFormAsync } from '@/features/AuthByUsername';
 import { getUserAuthData } from '@/entities/User';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { NotificationButton } from '@/features/notificationButton';
-import { AvatarDropdown } from '@/features/avatarDropdown';
 import { Button } from '@/shared/ui/redesigned/Button';
+
+import { AvatarDropdown } from './AvatarDropdown/AvatarDropdown';
 
 import cls from './Navbar.module.scss';
 

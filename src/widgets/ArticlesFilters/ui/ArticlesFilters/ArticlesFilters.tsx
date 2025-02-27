@@ -5,14 +5,18 @@ import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 
 import { Card } from '@/shared/ui/redesigned/Card';
-import { ArticleSortSelector } from '@/features/ArticleSortSelector';
-import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { VStack } from '@/shared/ui/redesigned/Stack';
-import { ArticleSortField, ArticleType } from '@/entities/Article';
+import {
+    ArticleSortField,
+    ArticleType,
+    ArticleTypeTabs,
+} from '@/entities/Article';
 import { SortOrder } from '@/shared/types/sort';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { getRouteArticleCreate } from '@/shared/const/router';
 import { getUserAuthData } from '@/entities/User';
+
+import { ArticleSortSelector } from './ArticleSortSelector/ArticleSortSelector';
 
 import cls from './ArticlesFilters.module.scss';
 
@@ -45,7 +49,7 @@ export const ArticlesFilters = memo(
                 <VStack gap="32">
                     <ArticleTypeTabs
                         value={type}
-                        onChangeType={onChangeType}
+                        onChange={onChangeType}
                         className={cls.tabs}
                     />
                     <ArticleSortSelector

@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
@@ -17,7 +17,7 @@ type Props = {
     className?: string;
 };
 
-export const Sidebar = memo(({ className }: Props) => {
+export const Sidebar = ({ className }: Props) => {
     const [collapsed, setCollapsed] = useState(false);
     const sidebarItemsList = useSidebarItems();
 
@@ -57,4 +57,4 @@ export const Sidebar = memo(({ className }: Props) => {
             </div>
         </aside>
     );
-});
+};

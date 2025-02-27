@@ -34,17 +34,15 @@ const App = () => {
         }
     }, [dispatch, inited]);
 
-    console.log(1);
-
     return (
         <ThemedContainer>
             <Suspense fallback={<AppLoaderLayout />}>
                 <MainLayout
                     header={<Navbar />}
-                    content={<AppRouter />}
+                    right={<Toolbar />}
                     sidebar={<Sidebar />}
                 >
-                    <Toolbar />
+                    <AppRouter />
                 </MainLayout>
             </Suspense>
         </ThemedContainer>

@@ -11,7 +11,7 @@ function getApiUrl(mode: BuildMode, apiUrl?: string) {
         return '/api';
     }
 
-    return 'http://localhost:3050';
+    return 'http://164.90.215.222';
 }
 
 export default (env: BuildEnv) => {
