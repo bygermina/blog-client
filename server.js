@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 
-app.use('public/locales', express.static(path.join(__dirname, 'locales')));
+app.use('/locales', express.static(path.join(__dirname, 'public', 'locales')));
 
 app.use(express.static(path.join(__dirname, 'build')));
 
