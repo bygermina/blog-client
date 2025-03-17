@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, Suspense, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Navbar } from '@/widgets/Navbar';
@@ -34,17 +34,23 @@ const App = () => {
         }
     }, [dispatch, inited]);
 
+    if (!inited) {
+        return (
+            <ThemedContainer>
+                <AppLoaderLayout />
+            </ThemedContainer>
+        );
+    }
+
     return (
         <ThemedContainer>
-            <Suspense fallback={<AppLoaderLayout />}>
-                <MainLayout
-                    header={<Navbar />}
-                    right={<Toolbar />}
-                    sidebar={<Sidebar />}
-                >
-                    <AppRouter />
-                </MainLayout>
-            </Suspense>
+            <MainLayout
+                header={<Navbar />}
+                right={<Toolbar />}
+                sidebar={<Sidebar />}
+            >
+                <AppRouter />
+            </MainLayout>
         </ThemedContainer>
     );
 };
