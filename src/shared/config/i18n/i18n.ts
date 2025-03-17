@@ -10,7 +10,7 @@ i18n.use(Backend)
     .init({
         fallbackLng: 'en',
         // debug: __IS_DEV__,
-        debug: false,
+        debug: true,
 
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
