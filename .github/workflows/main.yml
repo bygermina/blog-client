@@ -29,6 +29,8 @@ jobs:
                   cd blog-client
 
                   git pull https://${{ secrets.TOKEN }}@github.com/bygermina/blog-client.git main
+                  node -v
+                  npm -v
                   npm install
                   npm run build:prod
 
