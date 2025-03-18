@@ -18,6 +18,16 @@ jobs:
               with:
                   ssh-private-key: ${{ secrets.SSH_KEY }}
 
+            - name: Проверка путей в GitHub Actions
+              run: |
+               ssh -T -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} << 'EOF'
+               echo "Проверка путей:"
+               which node
+               which npm
+               echo "Переменная PATH:"
+               echo $PATH
+               EOF
+
             - name: Deploy to Droplet
               run: |
                   ssh -T -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} << 'EOF'
