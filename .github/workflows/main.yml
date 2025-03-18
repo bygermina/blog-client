@@ -29,6 +29,10 @@ jobs:
                   which node
                   which npm
 
+                  echo "Current PATH: $PATH"
+                  which node
+                  node -v
+
                   git pull https://${{ secrets.TOKEN }}@github.com/bygermina/blog-client.git main
                   npm install
                   npm run build:prod
