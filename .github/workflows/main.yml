@@ -20,17 +20,12 @@ jobs:
 
             - name: Deploy to Droplet
               run: |
-               echo 'export PATH="/root/.nvm/versions/node/v22.12.0/bin:$PATH"' >> ~/.bashrc
-               source ~/.bashrc
-               node -v
+               
                   ssh -T -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} << 'EOF'
                   cd blog-client
 
-                  which node
-                  which npm
-
-                  echo "Current PATH: $PATH"
-                  which node
+                  echo 'export PATH="/root/.nvm/versions/node/v22.12.0/bin:$PATH"' >> ~/.bashrc
+                  source ~/.bashrc
                   node -v
 
                   git pull https://${{ secrets.TOKEN }}@github.com/bygermina/blog-client.git main
