@@ -23,6 +23,9 @@ jobs:
                   ssh -T -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} << 'EOF'
                   cd blog-client
 
+                  which node
+                  which npm
+
                   git pull https://${{ secrets.TOKEN }}@github.com/bygermina/blog-client.git main
                   npm install
                   npm run build:prod
