@@ -13,19 +13,6 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v3
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                node-version: 18
-
-            - name: Проверка установки Node.js
-              run: |
-               echo "Проверка установки Node.js"
-               which node
-               which npm
-               node -v
-               npm -v
-
             - name: Set up SSH
               uses: webfactory/ssh-agent@v0.9.0
               with:
@@ -36,9 +23,10 @@ jobs:
                   ssh -T -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} << 'EOF'
                   cd blog-client
 
+                  npm cache clean --force
+                  rm -rf node_modules/.cache
+
                   git pull https://${{ secrets.TOKEN }}@github.com/bygermina/blog-client.git main
-                  node -v
-                  npm -v
                   npm install
                   npm run build:prod
 
