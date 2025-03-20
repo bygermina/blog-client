@@ -17,7 +17,7 @@ import {
     ArticleView,
 } from '../types/articleConsts';
 
-const articlesAdapter = createEntityAdapter<Article>({
+const articlesAdapter = createEntityAdapter<Article, string>({
     selectId: (article) => article.id,
 });
 

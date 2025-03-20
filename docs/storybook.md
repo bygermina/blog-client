@@ -6,6 +6,7 @@
 Файл со сторикейсами создает рядом с компонентом с расширением .stories.tsx
 
 Запустить сторибук можно командой:
+
 - `npm run storybook`
 
 Подробнее о [Storybook](/docs/storybook.md)
@@ -14,7 +15,7 @@
 
 ```typescript jsx
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Button, ButtonSize, ButtonTheme } from './Button';
@@ -26,9 +27,9 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: StoryObj<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

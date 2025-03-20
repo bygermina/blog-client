@@ -1,9 +1,11 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
-import { CombinedState, Reducer } from 'redux';
+import { Reducer } from 'redux';
+
 import { userReducer } from '@/entities/User';
 import { $api, IS_DEV } from '@/shared/api/api';
 import { uiReducer } from '@/features/UI';
 import { rtkApi } from '@/shared/api/rtkApi';
+
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -25,7 +27,7 @@ export function createReduxStore(
     };
 
     const store = configureStore({
-        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
+        reducer: reducerManager.reduce as Reducer<StateSchema>,
         devTools: IS_DEV,
         preloadedState: initialState,
         middleware: (getDefaultMiddleware) =>

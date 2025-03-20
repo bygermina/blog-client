@@ -1,19 +1,16 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { AvatarDropdown } from './AvatarDropdown';
 
-export default {
+const meta = {
     title: 'features/AvatarDropdown',
     component: AvatarDropdown,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-} as ComponentMeta<typeof AvatarDropdown>;
+} satisfies Meta<typeof AvatarDropdown>;
 
-const Template: ComponentStory<typeof AvatarDropdown> = (args) => (
-    <AvatarDropdown {...args} />
-);
+export default meta;
 
-export const Normal = Template.bind({});
-Normal.args = {};
+type Story = StoryObj<typeof AvatarDropdown>;
+
+export const Normal: Story = {
+    args: {},
+};

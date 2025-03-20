@@ -1,5 +1,5 @@
 // import React from 'react';
-// import { ComponentMeta, ComponentStory } from '@storybook/react';
+// import { Meta, StoryObj } from '@storybook/react';
 
 // import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 // import {
@@ -15,9 +15,9 @@
 //     argTypes: {
 //         backgroundColor: { control: 'color' },
 //     },
-// } as ComponentMeta<typeof ArticleDetails>;
+// } as Meta<typeof ArticleDetails>;
 
-// const Template: ComponentStory<typeof ArticleDetails> = (args) => (
+// const Template: StoryObj<typeof ArticleDetails> = (args) => (
 //     <ArticleDetails {...args} />
 // );
 

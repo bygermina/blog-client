@@ -1,21 +1,19 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import { EditableProfileCard } from './EditableProfileCard';
 
-export default {
+const meta = {
     title: 'features/editableProfileCard/EditableProfileCard',
     component: EditableProfileCard,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-} as ComponentMeta<typeof EditableProfileCard>;
+} satisfies Meta<typeof EditableProfileCard>;
 
-const Template: ComponentStory<typeof EditableProfileCard> = (args) => (
-    <EditableProfileCard {...args} />
-);
+export default meta;
 
-export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [StoreDecorator({})];
+type Story = StoryObj<typeof EditableProfileCard>;
+
+export const Primary: Story = {
+    args: {},
+    decorators: [StoreDecorator({})],
+};

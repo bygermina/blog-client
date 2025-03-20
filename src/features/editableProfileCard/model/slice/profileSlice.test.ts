@@ -1,5 +1,6 @@
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
+
 import { ValidateProfileError } from '../../model/consts/consts';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 import { ProfileSchema } from '../types/editableProfileCardSchema';
@@ -64,7 +65,10 @@ describe('profileSlice.test', () => {
         };
 
         expect(
-            profileReducer(state as ProfileSchema, updateProfileData.pending),
+            profileReducer(
+                state as ProfileSchema,
+                updateProfileData.pending('', undefined),
+            ),
         ).toEqual({
             isLoading: true,
             validateErrors: undefined,
@@ -79,7 +83,7 @@ describe('profileSlice.test', () => {
         expect(
             profileReducer(
                 state as ProfileSchema,
-                updateProfileData.fulfilled(data, ''),
+                updateProfileData.fulfilled(data, '', undefined),
             ),
         ).toEqual({
             isLoading: false,

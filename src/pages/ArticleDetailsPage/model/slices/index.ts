@@ -6,6 +6,8 @@ import { articleDetailsCommentsReducer } from './articleDetailsCommentsSlice';
 
 export const articleDetailsPageReducer =
     combineReducers<ArticleDetailsPageSchema>({
+        // @ts-ignore
         recommendations: articleDetailsPageRecommendationsReducer,
+        // @ts-ignore
         comments: articleDetailsCommentsReducer,
     });

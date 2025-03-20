@@ -2,7 +2,7 @@ import { memo } from 'react';
 import clsx from 'clsx';
 
 import { Text } from '@/shared/ui/redesigned/Text';
-import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
+import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { getRouteProfile } from '@/shared/const/router';
 import { Card } from '@/shared/ui/redesigned/Card';
@@ -20,8 +20,6 @@ type Props = {
 };
 
 export const CommentCard = memo(({ className, comment, isLoading }: Props) => {
-    const Skeleton = SkeletonRedesigned;
-
     if (isLoading) {
         return (
             <VStack

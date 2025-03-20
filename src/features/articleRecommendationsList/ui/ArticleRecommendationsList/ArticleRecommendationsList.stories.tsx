@@ -1,22 +1,19 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Article } from '@/entities/Article';
-import { ArticleRecommendationsList } from './ArticleRecommendationsList';
 import { API_URL } from '@/shared/api/api';
 
-export default {
+import { ArticleRecommendationsList } from './ArticleRecommendationsList';
+
+const meta = {
     title: 'features/ArticleRecommendationsList',
     component: ArticleRecommendationsList,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-} as ComponentMeta<typeof ArticleRecommendationsList>;
+} satisfies Meta<typeof ArticleRecommendationsList>;
 
-const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => (
-    <ArticleRecommendationsList {...args} />
-);
+export default meta;
+
+type Story = StoryObj<typeof ArticleRecommendationsList>;
 
 const article: Article = {
     id: '1',
@@ -30,20 +27,21 @@ const article: Article = {
     subtitle: 'asfsa',
 };
 
-export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [StoreDecorator({})];
-Normal.parameters = {
-    mockData: [
-        {
-            url: `${API_URL}/articles?_limit=3`,
-            method: 'GET',
-            status: 200,
-            response: [
-                { ...article, id: '1' },
-                { ...article, id: '2' },
-                { ...article, id: '3' },
-            ],
-        },
-    ],
+export const Primary: Story = {
+    args: {},
+    decorators: [StoreDecorator({})],
+    parameters: {
+        mockData: [
+            {
+                url: `${API_URL}/articles?_limit=3`,
+                method: 'GET',
+                status: 200,
+                response: [
+                    { ...article, id: '1' },
+                    { ...article, id: '2' },
+                    { ...article, id: '3' },
+                ],
+            },
+        ],
+    },
 };

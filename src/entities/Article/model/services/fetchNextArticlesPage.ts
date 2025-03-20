@@ -12,7 +12,7 @@ import { fetchArticlesList } from './fetchArticlesList';
 
 export const fetchNextArticlesPage = createAsyncThunk<
     void,
-    void,
+    undefined,
     ThunkConfig<string>
 >('articlesPage/fetchNextArticlesPage', async (_, thunkApi) => {
     const { getState, dispatch } = thunkApi;

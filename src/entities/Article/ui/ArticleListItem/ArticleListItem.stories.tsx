@@ -1,5 +1,5 @@
 // import React from 'react';
-// import { ComponentMeta, ComponentStory } from '@storybook/react';
+// import { Meta, StoryObj } from '@storybook/react';
 
 // import { ArticleView } from '../../model/consts/articleConsts';
 // import { ArticleListItem } from './ArticleListItem';
@@ -11,9 +11,9 @@
 //     argTypes: {
 //         backgroundColor: { control: 'color' },
 //     },
-// } as ComponentMeta<typeof ArticleListItem>;
+// } as Meta<typeof ArticleListItem>;
 
-// const Template: ComponentStory<typeof ArticleListItem> = (args) => (
+// const Template: StoryObj<typeof ArticleListItem> = (args) => (
 //     <ArticleListItem {...args} />
 // );
 
