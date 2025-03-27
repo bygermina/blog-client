@@ -9,7 +9,7 @@ const env = dotenv.config().parsed as unknown as BuildEnv;
 
 console.log(env.API_URL);
 
-export default () => {
+export default (env: BuildEnv) => {
     const paths: BuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         build: path.resolve(__dirname, 'build'),
