@@ -19,7 +19,7 @@ export default () => {
         buildLocales: path.resolve(__dirname, 'build', 'locales'),
     };
 
-    const mode = env?.MODE || 'development';
+    const mode = env?.MODE || 'production';
     const PORT = env?.PORT || 3000;
     const apiUrl = env?.API_URL;
 
