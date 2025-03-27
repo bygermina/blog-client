@@ -21,9 +21,9 @@ export function buildPlugins({
         }),
         new webpack.ProgressPlugin(),
         new webpack.DefinePlugin({
-            __IS_DEV__: JSON.stringify(isDev),
-            __API__: JSON.stringify(apiUrl),
-            __PROJECT__: JSON.stringify(project),
+            'process.env.API_URL': JSON.stringify(env.apiUrl),
+            'process.env.MODE': JSON.stringify(env.mode),
+            'process.env.IS_DEV': JSON.stringify(env.isDev),
         }),
         new CircularDependencyPlugin({
             exclude: /node_modules/,
