@@ -11,7 +11,7 @@ import Dotenv from 'dotenv-webpack';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({
-    paths, isDev, apiUrl, project,
+    paths, isDev, apiUrl, project, mode,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
     const isProd = !isDev;
 
@@ -21,9 +21,9 @@ export function buildPlugins({
         }),
         new webpack.ProgressPlugin(),
         new webpack.DefinePlugin({
-            'process.env.API_URL': JSON.stringify(env.apiUrl),
-            'process.env.MODE': JSON.stringify(env.mode),
-            'process.env.IS_DEV': JSON.stringify(env.isDev),
+            'process.env.API_URL': JSON.stringify(apiUrl),
+            'process.env.MODE': JSON.stringify(mode),
+            'process.env.IS_DEV': JSON.stringify(isDev),
         }),
         new CircularDependencyPlugin({
             exclude: /node_modules/,
