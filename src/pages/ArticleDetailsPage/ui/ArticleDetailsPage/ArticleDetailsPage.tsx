@@ -47,7 +47,7 @@ const ArticleDetailsPage = ({ className }: Props) => {
                     <VStack gap="16" max>
                         <DetailsContainer />
                         <ArticleRating articleId={id} />
-                        <ArticleRecommendationsList />
+{/*                         <ArticleRecommendationsList /> */}
                         <ArticleDetailsComments id={id} />
                     </VStack>
                 </Page>
