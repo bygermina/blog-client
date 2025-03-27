@@ -10,6 +10,8 @@ export const $api = axios.create({
     baseURL: API_URL,
 });
 
+console.log(API_URL);
+
 $api.interceptors.request.use((config) => {
     if (config.headers) {
         config.headers.Authorization =
